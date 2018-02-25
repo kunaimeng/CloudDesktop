@@ -100,7 +100,7 @@
                 <div class="title">开源中国</div>
             </div>
             <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui/archive/master.zip')">
-                <img class="icon" src="./img/icon/download.png"/>
+                <img class="icon" src="./static/img/icon/download.png"/>
                 <div class="title">快速获取</div>
             </div>
             <div class="shortcut"
@@ -216,7 +216,7 @@
                     </div>
                 </div>
                 <div loc="1,4" size="6,3" class="block">
-                    <div class="content" style="background: url('./img/presentation/1.png');background-size: auto">
+                    <div class="content" style="background: url('./static/img/presentation/1.png');background-size: auto">
                         <div style="line-height:132px;text-align: center;">显示图片</div>
                     </div>
                 </div>
