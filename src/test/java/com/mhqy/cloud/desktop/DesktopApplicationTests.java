@@ -1,4 +1,4 @@
-package com.mhqy.cloud.deasktop;
+package com.mhqy.cloud.desktop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DeasktopApplicationTests {
+public class DesktopApplicationTests {
 
 	@Test
 	public void contextLoads() {

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mhqy.cloud</groupId>
-	<artifactId>deasktop</artifactId>
+	<artifactId>desktop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>deasktop</name>
+	<name>desktop</name>
 	<description>云桌面</description>
 
 	<parent>

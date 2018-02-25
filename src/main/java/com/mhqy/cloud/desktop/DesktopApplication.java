@@ -1,12 +1,12 @@
-package com.mhqy.cloud.deasktop;
+package com.mhqy.cloud.desktop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DeasktopApplication {
+public class DesktopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DeasktopApplication.class, args);
+		SpringApplication.run(DesktopApplication.class, args);
 	}
 }
