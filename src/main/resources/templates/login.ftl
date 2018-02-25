@@ -5,7 +5,7 @@
     <title>云桌面</title>
     <style>
         #win10-login {
-            background: url("../static/img/wallpapers/login.jpg") no-repeat fixed;
+            background: url("./static/img/wallpapers/login.jpg") no-repeat fixed;
             width: 100%;
             height: 100%;
             background-size: 100% 100%;
@@ -46,7 +46,6 @@
             width: 90%;
             display: block;
             border: 0;
-            margin: 0 auto;
             line-height: 36px;
             font-size: 20px;
             padding: 0 1em;
@@ -101,13 +100,13 @@
             <img src="./static/img/avatar.jpg" class="content"/>
         </div>
         <p style="font-size: 24px;color: white;text-align: center">游客</p>
-        <form target="_self" method="get" action="#">
+        <form target="_self" method="post" action="/index">
             <!--用户名-->
             <input type="text" placeholder="请输入登录名" class="login-username">
             <!--密码-->
             <input type="password" placeholder="请输入密码" class="login-password">
             <!--登陆按钮-->
-            <input type="submit"  value="登录" id="btn-login" class="login-submit"/>
+            <input type="submit" value="登录" id="btn-login" class="login-submit"/>
         </form>
     </div>
 </div>
