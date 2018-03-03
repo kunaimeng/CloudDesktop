@@ -38,4 +38,15 @@ public class IndexController {
     public String index(){
         return "desktop/index";
     }
+
+    /**
+     * @Description:我的电脑
+     * @author: peiqiankun
+     * @date: 2018/3/3 15:12
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("file")
+    public String file(){
+        return "file/index";
+    }
 }

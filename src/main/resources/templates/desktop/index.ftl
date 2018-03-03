@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <title>WIN10-UI-DEMO</title>
+    <title>云桌面</title>
     <link rel='Shortcut Icon' type='image/x-icon' href='./static/img/windows.ico'>
-    <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <link href="./static/css/animate.css" rel="stylesheet">
-    <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <link rel="stylesheet" href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="./static/css/default.css" rel="stylesheet">
+    <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <script type="text/javascript" src="./static/js/win10.js"></script>
     <style>
         * {
@@ -39,36 +39,13 @@
             ], 0.01);
 
             setTimeout(function () {
-                Win10.newMsg('官方交流一群', '欢迎各位大侠加入讨论：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=4Er0u8i">[点击加入]205546163</a>')
+                Win10.newMsg('主人好', '主人，我是您的移动消息助手，可以记录您的任何事情。</a>')
             }, 2500);
 
             setTimeout(function () {
                 Win10.openUrl('//win10ui.yuri2.cn/src/broadcast.html', '<i class="fa fa-newspaper-o icon red"></i>最新资讯', [['300px', '380px'], 'rt'])
             }, 2000);
-
-
         });
-
-        //该函数可删除 Orz
-        function win10_forgive_me() {
-            Win10.enableFullScreen();
-            layer.alert('点击展示下一版本特性', {}, function (index) {
-                var blue = $('<img src="./static/img/presentation/bluescreen.jpg" style="position: fixed;width: 100%;height:100%;top:0;z-index:9999999999" />');
-                setTimeout(function () {
-                    $('body').append(blue);
-                }, 3000);
-                setTimeout(function () {
-                    blue.remove();
-                    Win10.disableFullScreen();
-                    setTimeout(function () {
-                        layer.msg('开个玩笑，别打我');
-
-                    }, 1000);
-                }, 7000);
-                layer.close(index);
-            });
-
-        }
     </script>
 </head>
 <body>
@@ -76,47 +53,19 @@
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
             <div class="shortcut"
-                 onclick="Win10.openUrl('http://win10ui.yuri2.cn','<img class=\'icon\' src=\'./img/icon/win10.png\'/>Win10-UI官网')">
+                 onclick="Win10.openUrl('/file','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>我的电脑')">
                 <img class="icon" src="./static/img/icon/win10.png"/>
-                <div class="title">Win10-UI官网</div>
+                <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('https://yuri2.cn','<img class=\'icon\' src=\'./img/icon/blogger.png\'/>尤里2号的博客')">
-                <img class="icon" src="./static/img/icon/blogger.png"/>
-                <div class="title">Yuri2's Blog</div>
-            </div>
-            <div class="shortcut"
-                 onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'./img/icon/doc.png\'/>在线文档')">
+                 onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'./static/img/icon/doc.png\'/>在线文档')">
                 <img class="icon" src="./static/img/icon/doc.png"/>
                 <div class="title">在线文档</div>
             </div>
-            <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui')">
-                <img class="icon" src="./static/img/icon/github.png"/>
-                <div class="title">github</div>
-            </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('https://www.oschina.net/p/win10-ui','<img class=\'icon\' src=\'./img/icon/kyzg.png\'/>开源中国（求支持~）')">
-                <img class="icon" src="./static/img/icon/kyzg.png"/>
-                <div class="title">开源中国</div>
-            </div>
-            <div class="shortcut" onclick="window.open('https://github.com/yuri2peter/win10-ui/archive/master.zip')">
-                <img class="icon" src="./static/img/icon/download.png"/>
-                <div class="title">快速获取</div>
-            </div>
-            <div class="shortcut"
-                 onclick='Win10.openUrl("./login.html","<i class=\"fa fa-user icon black-green\"></i>示例登录页")'>
-                <i class="fa fa-user icon black-green"></i>
-                <div class="title">示例登录页</div>
-            </div>
-            <div class="shortcut win10-open-window" data-url="win10ui.yuri2.cn/src/contributor.php">
-                <i class="icon fa fa-fw fa-bank red"></i>
-                <div class="title">名人堂</div>
-            </div>
-
-            <div class="shortcut"
-                 onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>创意工坊")'>
+                 onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>设置")'>
                 <i class="fa fa-gears  icon purple"></i>
-                <div class="title">创意工坊</div>
+                <div class="title">设置</div>
             </div>
         </div>
         <div id="win10-desktop-scene"></div>
@@ -141,15 +90,6 @@
                 菜单代码生成器
             </div>
             <div class="item" onclick="Win10.aboutUs()"><i class="purple icon fa fa-info-circle fa-fw"></i>关于</div>
-            <div class="item" onclick="layer.open({
-                title:'支持作者',
-                type: 1,
-                area:'300px',
-                offset:'50px',
-                shadeClose:true,
-                content: '<img width=\'300\' src=\'./static/img/presentation/donation.jpg\' />'
-            })"><i class="green icon fa fa-thumbs-up fa-fw"></i>捐赠
-            </div>
             <div class="item" onclick=" Win10.exit();"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
         </div>
         <div class="blocks">
