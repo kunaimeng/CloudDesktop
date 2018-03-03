@@ -9,9 +9,11 @@
         ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
         #d_top{width: 100%;height: 40px;border: 1px solid #777;}
         #d_top .d_t_left{width:10%;height: 100%;float: left;}
-        #d_top .d_t_right{width:90%;height: 100%;float: left;}
-        #d_top .d_t_right span{display:block;height: 100%;float: left;margin-right: 5px;padding:0 10px 0 10px;line-height: 40px;}
-        #d_top .d_t_right span:hover{background: #2e8ded;transition: all 0.3s ease;color: #fff;}
+        #d_top .d_t_center{width:70%;height: 100%;float: left;}
+        #d_top .d_t_center span{display:block;height: 100%;float: left;margin-right: 5px;padding:0 10px 0 10px;line-height: 40px;cursor: pointer;}
+        #d_top .d_t_center span:hover{background: #2e8ded;transition: all 0.3s ease;color: #fff;}
+        #d_top .d_t_right{width: 20%;height: 100%;float: left;text-align: center;}
+        #d_top .d_t_right input{width: 90%;height: 25px;margin-top: 5px;border-radius: 3px;padding-left: 3px;}
         #d_left{width: 10%;height: auto;float: left;border-right: #3B3D3F;}
         #d_left ul{padding-left: 10%;}
         #d_left ul li:hover{padding-left: 4%;line-height:36px;transition: all 0.3s ease;border-left: 6px solid #1E9FFF;}
@@ -29,11 +31,14 @@
     <div class="desktop">
         <div  id="d_top">
             <div class="d_t_left"></div>
+            <div class="d_t_center">
+                <span>A盘</span>
+                <span>B盘</span>
+                <span>C盘</span>
+                <span>D盘</span>
+            </div>
             <div class="d_t_right">
-                <span>C盘</span>
-                <span>C盘</span>
-                <span>C盘</span>
-                <span>C盘</span>
+                <input type="text">
             </div>
         </div>
         <div id="d_left">

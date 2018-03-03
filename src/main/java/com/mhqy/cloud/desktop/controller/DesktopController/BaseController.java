@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version: v1.0
  */
 @Controller
-public class IndexController {
+public class BaseController {
 
-    private final static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private final static Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     /**
      * @Description:登录页跳转

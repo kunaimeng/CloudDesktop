@@ -58,6 +58,11 @@
                 <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
+                 onclick="Win10.openUrl('/music','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>音乐')">
+                <img class="icon" src="./static/img/icon/win10.png"/>
+                <div class="title">音乐</div>
+            </div>
+            <div class="shortcut"
                  onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'./static/img/icon/doc.png\'/>在线文档')">
                 <img class="icon" src="./static/img/icon/doc.png"/>
                 <div class="title">在线文档</div>
