@@ -49,4 +49,15 @@ public class BaseController {
     public String file(){
         return "file/index";
     }
+
+    /**
+     * @Description:音乐跳转
+     * @author: peiqiankun
+     * @date: 2018/3/4 15:38
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("music")
+    public String music(){
+        return "music/index";
+    }
 }

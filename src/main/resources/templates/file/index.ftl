@@ -4,16 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <!-- swfupload css -->
+    <link href="./static/js/swfupload/upload/upload.css" rel="stylesheet" type="text/css" />
     <style>
         *{font-size:12px;}
         ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
-        #d_top{width: 100%;height: 40px;border: 1px solid #777;}
+        #d_top{width: 99%;height: 40px;border: 1px solid #777;margin:0 auto;}
         #d_top .d_t_left{width:10%;height: 100%;float: left;}
         #d_top .d_t_center{width:70%;height: 100%;float: left;}
         #d_top .d_t_center span{display:block;height: 100%;float: left;margin-right: 5px;padding:0 10px 0 10px;line-height: 40px;cursor: pointer;}
         #d_top .d_t_center span:hover{background: #2e8ded;transition: all 0.3s ease;color: #fff;}
-        #d_top .d_t_right{width: 20%;height: 100%;float: left;text-align: center;}
+        #d_top .d_t_right{width: 10%;height: 100%;float: left;text-align: center;}
         #d_top .d_t_right input{width: 90%;height: 25px;margin-top: 5px;border-radius: 3px;padding-left: 3px;}
+        #d_top .d_t_upload{width: 10%;float: left;text-align: center;}
+        #d_top .d_t_upload .swfupload{margin-top: 4px;}
         #d_left{width: 10%;height: auto;float: left;border-right: #3B3D3F;}
         #d_left ul{padding-left: 10%;}
         #d_left ul li:hover{padding-left: 4%;line-height:36px;transition: all 0.3s ease;border-left: 6px solid #1E9FFF;}
@@ -23,14 +27,15 @@
         #d_right ul li span{float: left;height: 30px;line-height: 30px;}
         #d_right ul li .d_r_one{width: 40%;}
         #d_right ul li .d_r_two{width: 20%;}
-
     </style>
 </head>
 <body>
 <div id="win10">
     <div class="desktop">
-        <div  id="d_top">
-            <div class="d_t_left"></div>
+        <div id="d_top">
+            <div class="d_t_left">
+
+            </div>
             <div class="d_t_center">
                 <span>A盘</span>
                 <span>B盘</span>
@@ -39,6 +44,9 @@
             </div>
             <div class="d_t_right">
                 <input type="text">
+            </div>
+            <div class="d_t_upload">
+                <span id="upload"></span>
             </div>
         </div>
         <div id="d_left">
@@ -81,5 +89,22 @@
         </div>
     </div>
 </div>
+<div id="console"></div>
+<script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<!-- swfipload js -->
+<script type="text/javascript" src="./static/js/swfupload/upload/tz_upload.js"></script>
+<script type="text/javascript">
+    $.tmUpload({
+        btnId:"upload",
+        url:"<%=basePath%>picture/upload",
+        limitSize:"100 MB",
+        fileTypes:"*.jpg",
+        multiple:true,
+        callback:function(serverData,file){
+            var jsonData = eval("("+serverData+")");
+            alert(jsonData);
+        }
+    });
+</script>
 </body>
 </html>
