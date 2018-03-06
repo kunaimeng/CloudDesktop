@@ -59,25 +59,13 @@
             color: #999;
         }
 
-        .login-password {
-            width: calc(91% - 54px);
-            -webkit-border-radius: 2px 0 0 2px;
-            -moz-border-radius: 2px 0 0 2px;
-            border-radius: 5px 0 0 5px;
-            margin: 0px;
-            float: left;
-        }
-
         .login-submit {
             margin: 0px;
-            float: left;
-            -webkit-border-radius: 0 5px 5px 0;
-            -moz-border-radius: 0 5px 5px 0;
-            border-radius: 0 5px 5px 0;
+            border-radius: 5px;
             background-color: #009688;
             width: 54px;
             display: inline-block;
-            height: 36px;
+            width: 100%;
             line-height: 36px;
             padding: 0 auto;
             color: #fff;
@@ -88,7 +76,6 @@
             cursor: pointer;
             opacity: .9;
             filter: alpha(opacity=90);
-
         }
     </style>
 </head>
@@ -111,4 +98,25 @@
     </div>
 </div>
 </body>
+<script src="./static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script>
+    $("#btn-login").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/index",
+            data: {"id": id},
+            beforeSend:$(this).attr("value", "正在登陆中···");
+            dataType: "json",
+            success: function (msg) {
+                if(msg.code){
+                    $(this).attr("value", "正在加载···");
+                    window.location.href="/index";
+                }else{
+                    $(this).attr("value", "登录失败");
+                }
+            }
+        });
+        return false;
+    });
+</script>
 </html>
