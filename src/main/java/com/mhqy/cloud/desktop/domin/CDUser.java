@@ -3,35 +3,43 @@ package com.mhqy.cloud.desktop.domin;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @Description:用户实体
+ * @author: peiqiankun
+ * @date: 2018/3/9
+ * @mail: peiqiankun@jd.com
+ * @version: v1.0
+ */
 public class CDUser {
+    /*主键*/
     private Long userId;
-
+    /*用户名*/
     private String userName;
-
+    /*用户手机号*/
     private String userPhone;
-
+    /*用户qq*/
     private String userQq;
-
+    /*用户微信*/
     private String userWx;
-
+    /*用户密码*/
     private String userPassword;
-
+    /*用户头像*/
     private String userImg;
-
+    /*出生日期*/
     private Date userBirthday;
-
+    /*年龄*/
     private Integer userAge;
-
+    /*用户住址*/
     private String userAddress;
-
+    /*经度*/
     private BigDecimal userLongitude;
-
+    /*纬度*/
     private BigDecimal userLatitude;
-
+    /*创建日期*/
     private Date createTime;
-
+    /*更新时间*/
     private Date updateTime;
-
+    /*是否有效*/
     private Byte yn;
 
     public Long getUserId() {
