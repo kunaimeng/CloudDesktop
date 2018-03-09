@@ -96,13 +96,20 @@
 <script type="text/javascript">
     $.tmUpload({
         btnId:"upload",
-        url:"<%=basePath%>picture/upload",
+        url:"/fileUpload.ftl",
         limitSize:"100 MB",
-        fileTypes:"*.jpg",
+        fileTypes:"*.*",
         multiple:true,
         callback:function(serverData,file){
+            var obj = JSON.stringify(serverData);
             var jsonData = eval("("+serverData+")");
-            alert(jsonData);
+            $("#d_right li").after("<li class=\"d_r_con\">\n" +
+                    "                    <span class=\"d_r_one\">"+jsonData.fileName"+</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.createTime"+</span>\n" +
+                    "                    <span class=\"d_r_two\">文件</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.createTime"+</span>\n" +
+                    "                </li>");
+            //alert(jsonData);
         }
     });
 </script>

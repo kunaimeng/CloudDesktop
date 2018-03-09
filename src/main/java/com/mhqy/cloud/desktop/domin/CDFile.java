@@ -2,17 +2,7 @@ package com.mhqy.cloud.desktop.domin;
 
 import java.util.Date;
 
-/**
- * @PACKAGE_NAME:com.mhqy.cloud.desktop.domin
- * @ClassName: CDFile
- * @Description:文件实体类
- * @author: peiqiankun
- * @date: 2018-03-09 9:30
- * @mail: peiqiankun@jd.com
- * @version: v1.0
- */
 public class CDFile {
-    
     private Long fileId;
 
     private Long fileUserId;
@@ -23,11 +13,11 @@ public class CDFile {
 
     private String fileSystemName;
 
-    private Integer fileSize;
+    private String fileSize;
 
-    private Double fileSimpleSize;
+    private String fileSimpleSize;
 
-    private Integer fileType;
+    private String fileType;
 
     private String fileExt;
 
@@ -74,31 +64,31 @@ public class CDFile {
     }
 
     public void setFileSystemName(String fileSystemName) {
-        this.fileSystemName = fileSystemName;
+        this.fileSystemName = fileSystemName == null ? null : fileSystemName.trim();
     }
 
-    public Integer getFileSize() {
+    public String getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Integer fileSize) {
-        this.fileSize = fileSize;
+    public void setFileSize(String fileSize) {
+        this.fileSize = fileSize == null ? null : fileSize.trim();
     }
 
-    public Double getFileSimpleSize() {
+    public String getFileSimpleSize() {
         return fileSimpleSize;
     }
 
-    public void setFileSimpleSize(Double fileSimpleSize) {
-        this.fileSimpleSize = fileSimpleSize;
+    public void setFileSimpleSize(String fileSimpleSize) {
+        this.fileSimpleSize = fileSimpleSize == null ? null : fileSimpleSize.trim();
     }
 
-    public Integer getFileType() {
+    public String getFileType() {
         return fileType;
     }
 
-    public void setFileType(Integer fileType) {
-        this.fileType = fileType;
+    public void setFileType(String fileType) {
+        this.fileType = fileType == null ? null : fileType.trim();
     }
 
     public String getFileExt() {

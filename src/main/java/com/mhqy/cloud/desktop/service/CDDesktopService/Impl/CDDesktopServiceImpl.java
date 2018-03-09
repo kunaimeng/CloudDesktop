@@ -6,8 +6,6 @@ import com.mhqy.cloud.desktop.service.CDDesktopService.CDDesktopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service.CDDesktopService.Impl
  * @ClassName: CDDesktopServiceImpl

@@ -1,20 +1,8 @@
 package com.mhqy.cloud.desktop.domin;
 
-import org.springframework.context.annotation.Bean;
-
 import java.util.Date;
 
-/**
- * @PACKAGE_NAME:com.mhqy.cloud.desktop.domin
- * @ClassName: CDDesktop
- * @Description:桌面实体类
- * @author: peiqiankun
- * @date: 2018-03-09 9:29
- * @mail: peiqiankun@jd.com
- * @version: v1.0
- */
 public class CDDesktop {
-
     private Long desktopId;
 
     private Long desktopUserId;

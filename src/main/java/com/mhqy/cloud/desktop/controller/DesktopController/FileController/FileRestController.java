@@ -1,6 +1,10 @@
 package com.mhqy.cloud.desktop.controller.DesktopController.FileController;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import com.mhqy.cloud.desktop.common.FileUpload;
+import com.mhqy.cloud.desktop.domin.CDFile;
+import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,9 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class FileRestController {
 
-    @PostMapping("fileUpload")
-    public String upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    @Autowired
+    private CDFileService cdFileService;
 
-        return null;
+    @RequestMapping("fileUpload")
+    public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+        CDFile cdFile = FileUpload.upload(file, request);
+        cdFileService.insert(cdFile);
+        return cdFile;
     }
 }

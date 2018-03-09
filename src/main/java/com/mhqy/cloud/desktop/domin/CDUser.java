@@ -3,17 +3,7 @@ package com.mhqy.cloud.desktop.domin;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * @PACKAGE_NAME:com.mhqy.cloud.desktop.domin
- * @ClassName: CDUser
- * @Description:用户实体类
- * @author: peiqiankun
- * @date: 2018-03-09 9:31
- * @mail: peiqiankun@jd.com
- * @version: v1.0
- */
 public class CDUser {
-
     private Long userId;
 
     private String userName;
