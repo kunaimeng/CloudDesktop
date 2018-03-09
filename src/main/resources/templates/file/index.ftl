@@ -104,10 +104,10 @@
             var obj = JSON.stringify(serverData);
             var jsonData = eval("("+serverData+")");
             $("#d_right li").after("<li class=\"d_r_con\">\n" +
-                    "                    <span class=\"d_r_one\">"+jsonData.fileName"+</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.createTime"+</span>\n" +
+                    "                    <span class=\"d_r_one\">"+jsonData.fileName+"</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.createTime+"</span>\n" +
                     "                    <span class=\"d_r_two\">文件</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.createTime"+</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.createTime+"</span>\n" +
                     "                </li>");
             //alert(jsonData);
         }

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.Date;
 
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.common
@@ -41,6 +42,8 @@ public class FileUpload {
             cdFile.setFileParentId(0L);
             cdFile.setYn(new Byte("1"));
             cdFile.setFileUserId(0L);
+            cdFile.setCreateTime(new Date());
+            cdFile.setUpdateTime(new Date());
             cdFile.setFileSimpleSize(FileUtil.countFileSize(file.getSize()));
         } catch (Exception e) {
             logger.error("文件上传失败-->{}", e.getMessage());
