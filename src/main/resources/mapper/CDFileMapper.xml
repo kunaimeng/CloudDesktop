@@ -6,6 +6,7 @@
     <result column="file_user_id" property="fileUserId" jdbcType="BIGINT" />
     <result column="file_parent_id" property="fileParentId" jdbcType="BIGINT" />
     <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_system_name" property="fileSystemName" jdbcType="VARCHAR" />
     <result column="file_size" property="fileSize" jdbcType="INTEGER" />
     <result column="file_simple_size" property="fileSimpleSize" jdbcType="DOUBLE" />
     <result column="file_type" property="fileType" jdbcType="INTEGER" />
@@ -15,7 +16,7 @@
     <result column="yn" property="yn" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    file_id, file_user_id, file_parent_id, file_name, file_size, file_simple_size, file_type, 
+    file_id, file_user_id, file_parent_id, file_name,file_system_name, file_size, file_simple_size, file_type,
     file_ext, create_time, update_time, yn
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -30,13 +31,13 @@
   </delete>
   <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDFile" >
     insert into c_d_file (file_id, file_user_id, file_parent_id, 
-      file_name, file_size, file_simple_size, 
+      file_name,file_system_name, file_size, file_simple_size,
       file_type, file_ext, create_time, 
       update_time, yn)
     values (#{fileId,jdbcType=BIGINT}, #{fileUserId,jdbcType=BIGINT}, #{fileParentId,jdbcType=BIGINT}, 
-      #{fileName,jdbcType=VARCHAR}, #{fileSize,jdbcType=INTEGER}, #{fileSimpleSize,jdbcType=DOUBLE}, 
-      #{fileType,jdbcType=INTEGER}, #{fileExt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT})
+      #{fileName,jdbcType=VARCHAR},#{fileSystemName,jdbcType=VARCHAR}, #{fileSize,jdbcType=INTEGER},
+      #{fileSimpleSize,jdbcType=DOUBLE}, #{fileType,jdbcType=INTEGER}, #{fileExt,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDFile" >
     insert into c_d_file
@@ -52,6 +53,9 @@
       </if>
       <if test="fileName != null" >
         file_name,
+      </if>
+      <if test="fileSystemName != null" >
+        file_system_name,
       </if>
       <if test="fileSize != null" >
         file_size,
@@ -88,6 +92,9 @@
       <if test="fileName != null" >
         #{fileName,jdbcType=VARCHAR},
       </if>
+      <if test="fileSystemName != null" >
+        #{fileSystemName,jdbcType=VARCHAR},
+      </if>
       <if test="fileSize != null" >
         #{fileSize,jdbcType=INTEGER},
       </if>
@@ -123,6 +130,9 @@
       <if test="fileName != null" >
         file_name = #{fileName,jdbcType=VARCHAR},
       </if>
+      <if test="fileSystemName != null" >
+        file_system_name = #{fileSystemName,jdbcType=VARCHAR},
+      </if>
       <if test="fileSize != null" >
         file_size = #{fileSize,jdbcType=INTEGER},
       </if>
@@ -152,6 +162,7 @@
     set file_user_id = #{fileUserId,jdbcType=BIGINT},
       file_parent_id = #{fileParentId,jdbcType=BIGINT},
       file_name = #{fileName,jdbcType=VARCHAR},
+      file_system_name = #{fileSystemName,jdbcType=VARCHAR},
       file_size = #{fileSize,jdbcType=INTEGER},
       file_simple_size = #{fileSimpleSize,jdbcType=DOUBLE},
       file_type = #{fileType,jdbcType=INTEGER},

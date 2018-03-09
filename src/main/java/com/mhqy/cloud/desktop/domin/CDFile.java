@@ -21,6 +21,8 @@ public class CDFile {
 
     private String fileName;
 
+    private String fileSystemName;
+
     private Integer fileSize;
 
     private Double fileSimpleSize;
@@ -65,6 +67,14 @@ public class CDFile {
 
     public void setFileName(String fileName) {
         this.fileName = fileName == null ? null : fileName.trim();
+    }
+
+    public String getFileSystemName() {
+        return fileSystemName;
+    }
+
+    public void setFileSystemName(String fileSystemName) {
+        this.fileSystemName = fileSystemName;
     }
 
     public Integer getFileSize() {
