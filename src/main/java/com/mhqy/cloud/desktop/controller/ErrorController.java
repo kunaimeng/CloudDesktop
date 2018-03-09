@@ -75,5 +75,4 @@ public class ErrorController {
         model.addAttribute("email","peiqiankun@jd.com");
         return "errorPage/error";
     }
-
 }

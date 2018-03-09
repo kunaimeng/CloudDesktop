@@ -3,7 +3,7 @@ package com.mhqy.cloud.desktop.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @Description:首页Controller
@@ -23,7 +23,7 @@ public class BaseController {
      * @date: 2018/2/25 20:40
      * @mail: peiqiankun@jd.com
      */
-    @RequestMapping("/")
+    @PostMapping("/")
     public String login() {
         return "login";
     }
@@ -34,7 +34,7 @@ public class BaseController {
      * @date: 2018/2/25 20:41
      * @mail: peiqiankun@jd.com
      */
-    @RequestMapping("index")
+    @PostMapping("index")
     public String index(){
         return "desktop/index";
     }
@@ -45,7 +45,7 @@ public class BaseController {
      * @date: 2018/3/3 15:12
      * @mail: peiqiankun@jd.com
      */
-    @RequestMapping("file")
+    @PostMapping("file")
     public String file(){
         return "file/index";
     }
@@ -56,7 +56,7 @@ public class BaseController {
      * @date: 2018/3/4 15:38
      * @mail: peiqiankun@jd.com
      */
-    @RequestMapping("music")
+    @PostMapping("music")
     public String music(){
         return "music/index";
     }
