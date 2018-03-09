@@ -1,6 +1,7 @@
-package com.mhqy.cloud.desktop.dao;
+package com.mhqy.cloud.desktop.dao.CDUserMapper;
 
 import com.mhqy.cloud.desktop.domin.CDUser;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.dao
@@ -11,6 +12,7 @@ import com.mhqy.cloud.desktop.domin.CDUser;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
+@Mapper
 public interface CDUserMapper {
 
     int deleteByPrimaryKey(Long userId);

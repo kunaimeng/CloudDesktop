@@ -1,5 +1,7 @@
 package com.mhqy.cloud.desktop.domin;
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.Date;
 
 /**

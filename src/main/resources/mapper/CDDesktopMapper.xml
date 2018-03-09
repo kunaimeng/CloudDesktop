@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mhqy.cloud.desktop.dao.CDDesktopMapper" >
+<mapper namespace="com.mhqy.cloud.desktop.dao.CDDesktopMapper.CDDesktopMapper" >
   <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDDesktop" >
     <id column="desktop_id" property="desktopId" jdbcType="BIGINT" />
     <result column="desktop_user_id" property="desktopUserId" jdbcType="BIGINT" />
