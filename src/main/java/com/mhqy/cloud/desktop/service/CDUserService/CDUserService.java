@@ -3,6 +3,9 @@ package com.mhqy.cloud.desktop.service.CDUserService;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service
  * @ClassName: CDUserService
@@ -25,4 +28,8 @@ public interface CDUserService {
     int updateByPrimaryKeySelective(CDUser record);
 
     int updateByPrimaryKey(CDUser record);
+
+    List<CDUser> selectByCDUser(CDUser record);
+
+    Map<String,Object> userLogin(CDUser record);
 }

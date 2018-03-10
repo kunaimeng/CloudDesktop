@@ -61,29 +61,11 @@
         </div>
         <div id="d_right">
             <ul>
-                <li>
+                <li class="d_r_first">
                     <span class="d_r_one">名称</span>
                     <span class="d_r_two">修改日期</span>
                     <span class="d_r_two">类型</span>
                     <span class="d_r_two">大小</span>
-                </li>
-                <li class="d_r_con">
-                    <span class="d_r_one">文件夹</span>
-                    <span class="d_r_two">2018/3/3 16:43</span>
-                    <span class="d_r_two">文件夹</span>
-                    <span class="d_r_two"></span>
-                </li>
-                <li class="d_r_con">
-                    <span class="d_r_one">文件夹</span>
-                    <span class="d_r_two">2018/3/3 16:43</span>
-                    <span class="d_r_two">文件夹</span>
-                    <span class="d_r_two"></span>
-                </li>
-                <li class="d_r_con">
-                    <span class="d_r_one">文件夹</span>
-                    <span class="d_r_two">2018/3/3 16:43</span>
-                    <span class="d_r_two">文件夹</span>
-                    <span class="d_r_two"></span>
                 </li>
             </ul>
         </div>
@@ -101,17 +83,16 @@
         fileTypes:"*.*",
         multiple:true,
         callback:function(serverData,file){
-            var obj = JSON.stringify(serverData);
             var jsonData = eval("("+serverData+")");
-            $("#d_right li").after("<li class=\"d_r_con\">\n" +
+            $("#d_right .d_r_first").after("<li class=\"d_r_con\">\n" +
                     "                    <span class=\"d_r_one\">"+jsonData.fileName+"</span>\n" +
                     "                    <span class=\"d_r_two\">"+jsonData.createTime+"</span>\n" +
-                    "                    <span class=\"d_r_two\">文件</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.createTime+"</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.fileExt+"</span>\n" +
+                    "                    <span class=\"d_r_two\">"+jsonData.fileSimpleSize+"</span>\n" +
                     "                </li>");
-            //alert(jsonData);
         }
     });
+
 </script>
 </body>
 </html>

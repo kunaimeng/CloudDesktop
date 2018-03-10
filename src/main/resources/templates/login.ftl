@@ -93,7 +93,7 @@
             <!--密码-->
             <input type="password" placeholder="请输入密码" class="login-password">
             <!--登陆按钮-->
-            <input type="submit" value="登录" id="btn-login" class="login-submit"/>
+            <input type="button" value="登录" id="btn-login" class="login-submit"/>
         </form>
     </div>
 </div>
@@ -101,14 +101,15 @@
 <script src="./static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script>
     $("#btn-login").click(function () {
+        var phone= $(".login-username").val();
+        var passWd= $(".login-password").val();
         $.ajax({
             type: "post",
-            url: "/index",
-            data: {"id": id},
-            beforeSend:$(this).attr("value", "正在登陆中···");
+            url: "/userLogin.ftl",
+            data: {"userPhone": phone,"userPassword":passWd},
             dataType: "json",
             success: function (msg) {
-                if(msg.code){
+                if(msg.flag){
                     $(this).attr("value", "正在加载···");
                     window.location.href="/index";
                 }else{
@@ -116,7 +117,6 @@
                 }
             }
         });
-        return false;
     });
 </script>
 </html>

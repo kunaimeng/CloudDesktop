@@ -3,6 +3,8 @@ package com.mhqy.cloud.desktop.dao.CDUserMapper;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CDUserMapper {
     int deleteByPrimaryKey(Long userId);
@@ -16,4 +18,6 @@ public interface CDUserMapper {
     int updateByPrimaryKeySelective(CDUser record);
 
     int updateByPrimaryKey(CDUser record);
+
+    List<CDUser> selectByCDUser(CDUser record);
 }
