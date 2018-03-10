@@ -1,12 +1,11 @@
 package com.mhqy.cloud.desktop.controller.UserController;
 
-import com.mhqy.cloud.desktop.controller.ErrorController;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +38,7 @@ public class UserController {
     public Map<String, Object> userLogin(CDUser cdUser, HttpSession session) {
         Map<String, Object> map = null;
         try {
+            cdUser.setUserPassword(DigestUtils.md5DigestAsHex(cdUser.getUserPassword().getBytes()));
             map = userService.userLogin(cdUser);
             if ((boolean) map.get("flag")) {
                 String uid = map.get("Uid").toString();
@@ -46,7 +46,7 @@ public class UserController {
                 session.setAttribute("Uid", uid);
                 map.put("msg", "登录成功");
             } else {
-                logger.info("用户登录失败-->UName:{},UPassWd:{}", cdUser.getUserPhone(), cdUser.getUserPassword());
+                logger.info("用户登录失败-->UName:{}", cdUser.getUserPhone());
                 map.put("msg", "登录失败");
             }
         } catch (Exception e) {
