@@ -99,6 +99,8 @@
 </div>
 </body>
 <script src="./static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="./static/js/win10.js" type="text/javascript" ></script>
+<script src="./static/component/layer-v3.0.3/layer/layer.js" type="text/javascript"></script>
 <script>
     $("#btn-login").click(function () {
         var phone= $(".login-username").val();
@@ -110,10 +112,9 @@
             dataType: "json",
             success: function (msg) {
                 if(msg.flag){
-                    $(this).attr("value", "正在加载···");
                     window.location.href="/index";
                 }else{
-                    $(this).attr("value", "登录失败");
+                    layer.alert(Win10.lang('哎呀,好像登录失败了呢。','Ops...There seems to be a little problem.'));
                 }
             }
         });
