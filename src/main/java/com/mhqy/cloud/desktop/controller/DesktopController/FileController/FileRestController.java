@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Description:文件ajax请求
@@ -25,8 +26,9 @@ public class FileRestController {
     private CDFileService cdFileService;
 
     @RequestMapping("fileUpload")
-    public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) {
         CDFile cdFile = FileUpload.upload(file, request);
+        cdFile.setFileId((Long) session.getAttribute("Uid"));
         cdFileService.insert(cdFile);
         return cdFile;
     }
