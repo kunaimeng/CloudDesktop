@@ -75,6 +75,7 @@
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
 <!-- swfipload js -->
 <script type="text/javascript" src="./static/js/swfupload/upload/tz_upload.js"></script>
+<script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
     $.tmUpload({
         btnId:"upload",
@@ -86,13 +87,12 @@
             var jsonData = eval("("+serverData+")");
             $("#d_right .d_r_first").after("<li class=\"d_r_con\">\n" +
                     "                    <span class=\"d_r_one\">"+jsonData.fileName+"</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.createTime+"</span>\n" +
+                    "                    <span class=\"d_r_two\">"+fmtDate(jsonData.createTime)+"</span>\n" +
                     "                    <span class=\"d_r_two\">"+jsonData.fileExt+"</span>\n" +
                     "                    <span class=\"d_r_two\">"+jsonData.fileSimpleSize+"</span>\n" +
                     "                </li>");
         }
     });
-
 </script>
 </body>
 </html>
