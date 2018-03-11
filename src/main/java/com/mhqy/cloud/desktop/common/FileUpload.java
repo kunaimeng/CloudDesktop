@@ -41,7 +41,6 @@ public class FileUpload {
             cdFile.setFileType("2");
             cdFile.setFileParentId(0L);
             cdFile.setYn(new Byte("1"));
-            cdFile.setFileUserId(0L);
             cdFile.setCreateTime(new Date());
             cdFile.setUpdateTime(new Date());
             cdFile.setFileSimpleSize(FileUtil.countFileSize(file.getSize()));
