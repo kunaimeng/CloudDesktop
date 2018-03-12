@@ -37,6 +37,7 @@ public class MessageController {
 
     /**
      * 连接建立成功调用的方法
+     * @param session
      */
     @OnOpen
     public void onOpen(Session session) {
@@ -69,8 +70,8 @@ public class MessageController {
 
     /**
      * 收到客户端消息后调用的方法
-     *
-     * @param message 客户端发送过来的消息
+     * @param message
+     * @param session
      */
     @OnMessage
     public void onMessage(String message, Session session) {
@@ -105,6 +106,8 @@ public class MessageController {
 
     /**
      * 群发自定义消息
+     * @param message
+     * @throws IOException
      */
     public static void sendInfo(CDSocketMessage message) throws IOException {
         for (MessageController item : webSocketSet) {
