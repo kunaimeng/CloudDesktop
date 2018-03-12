@@ -20,7 +20,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@ServerEndpoint(value = "/websocket",encoders = { ServerEncoder.class })
+@ServerEndpoint(value = "/websocket", encoders = {ServerEncoder.class})
 @Component
 public class MessageController {
 
@@ -47,6 +47,7 @@ public class MessageController {
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
         try {
             for (int i = 0; i < 10; i++) {
+                cdSocketMessage.setTitle("消息" + i);
                 cdSocketMessage.setMessage("新消息来了" + i);
                 Thread.sleep(1000);
                 sendMessage(cdSocketMessage);
