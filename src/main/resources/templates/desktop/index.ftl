@@ -12,6 +12,7 @@
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <script type="text/javascript" src="./static/js/win10.js"></script>
+    <script type="text/javascript" src="./static/js/common/webSocket.js"></script>
     <style>
         * {
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu
@@ -37,10 +38,6 @@
                 'animated flip',
                 'animated bounceIn',
             ], 0.01);
-
-            setTimeout(function () {
-                Win10.newMsg('主人好', '主人，我是您的移动消息助手，可以记录您的任何事情。</a>')
-            }, 2500);
 
             setTimeout(function () {
                 Win10.openUrl('//win10ui.yuri2.cn/src/broadcast.html', '<i class="fa fa-newspaper-o icon red"></i>最新资讯', [['300px', '380px'], 'rt'])
@@ -161,7 +158,8 @@
                     </div>
                 </div>
                 <div loc="1,4" size="6,3" class="block">
-                    <div class="content" style="background: url('./static/img/presentation/1.png');background-size: auto">
+                    <div class="content"
+                         style="background: url('./static/img/presentation/1.png');background-size: auto">
                         <div style="line-height:132px;text-align: center;">显示图片</div>
                     </div>
                 </div>

@@ -4,8 +4,10 @@ import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 /**
  * @Description:首页Controller
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version: v1.0
  */
 @Controller
+@EnableScheduling
 public class BaseController {
 
     private final static Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -40,7 +43,7 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("index")
-    public String index(){
+    public String index() {
         return "desktop/index";
     }
 
@@ -51,7 +54,7 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("file")
-    public String file(){
+    public String file() {
         return "file/index";
     }
 
@@ -62,7 +65,7 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("music")
-    public String music(){
+    public String music() {
         return "music/index";
     }
 }
