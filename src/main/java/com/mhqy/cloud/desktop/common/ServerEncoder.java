@@ -1,10 +1,9 @@
 package com.mhqy.cloud.desktop.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
@@ -21,9 +20,7 @@ import javax.websocket.EndpointConfig;
 public class ServerEncoder implements Encoder.Text<CDSocketMessage> {
     @Override
     public String encode(CDSocketMessage messagepojo) throws EncodeException {
-        JsonObject jsonObject = Json.createObjectBuilder()
-                .add("content", (JsonObjectBuilder) messagepojo).build();
-        return jsonObject.toString();
+        return JSONObject.toJSONString(messagepojo);
     }
 
     @Override

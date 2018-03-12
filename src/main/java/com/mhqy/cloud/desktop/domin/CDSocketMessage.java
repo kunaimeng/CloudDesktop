@@ -1,6 +1,5 @@
 package com.mhqy.cloud.desktop.domin;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -19,6 +18,8 @@ public class CDSocketMessage {
     private String From;
     /*接受者*/
     private String To;
+    /*标题*/
+    private String title;
     /*消息*/
     private String message;
     /*数据*/
@@ -48,6 +49,14 @@ public class CDSocketMessage {
 
     public void setTo(String to) {
         To = to;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getMessage() {
