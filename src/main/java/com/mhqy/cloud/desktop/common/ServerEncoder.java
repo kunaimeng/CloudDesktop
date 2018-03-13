@@ -1,6 +1,6 @@
 package com.mhqy.cloud.desktop.common;
 
-import com.alibaba.fastjson.JSONObject;
+import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 
 
@@ -20,7 +20,7 @@ import javax.websocket.EndpointConfig;
 public class ServerEncoder implements Encoder.Text<CDSocketMessage> {
     @Override
     public String encode(CDSocketMessage messagepojo) throws EncodeException {
-        return JSONObject.toJSONString(messagepojo);
+        return BeanJsonUtil.bean2Json(messagepojo);
     }
 
     @Override

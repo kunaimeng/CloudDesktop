@@ -1,6 +1,6 @@
 package com.mhqy.cloud.desktop.controller.DesktopController.FileController;
 
-import com.mhqy.cloud.desktop.common.FileUpload;
+import com.mhqy.cloud.desktop.common.util.FileUpload;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import org.springframework.beans.factory.annotation.Autowired;

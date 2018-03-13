@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.common;
+package com.mhqy.cloud.desktop.common.util;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
