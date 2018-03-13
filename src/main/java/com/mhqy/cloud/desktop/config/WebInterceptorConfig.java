@@ -46,7 +46,7 @@ public class WebInterceptorConfig extends WebMvcConfigurerAdapter implements App
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截规则：除了login，其他都拦截判断
-        registry.addInterceptor(new Interceptor()).addPathPatterns("/**").excludePathPatterns("/");
+        registry.addInterceptor(new Interceptor()).addPathPatterns("/**").excludePathPatterns("/","userLogin");
         super.addInterceptors(registry);
     }
 }
