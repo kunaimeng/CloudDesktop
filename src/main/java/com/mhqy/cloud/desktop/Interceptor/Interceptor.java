@@ -22,7 +22,7 @@ public class Interceptor implements HandlerInterceptor {
         HttpSession session = httpServletRequest.getSession(true);
         //判断用户ID是否存在，不存在就跳转到登录界面
         if (session.getAttribute("Uid") == null) {
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/admin/login");
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
             return false;
         }
         return true;
