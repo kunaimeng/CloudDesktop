@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <!-- swfupload css -->
     <link href="./static/js/swfupload/upload/upload.css" rel="stylesheet" type="text/css" />
+    <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <style>
         *{font-size:12px;}
         ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
@@ -69,7 +70,7 @@
                 </li>
                 <#list content as con>
                 <li class="d_r_con">
-                    <span class="d_r_one">${con.fileName}</span>
+                    <span class="d_r_one"><i class="fa fa-comment-o"></i>${con.fileName}</span>
                     <span class="d_r_two">${(con.updateTime)?string("yyyy-MM-dd")}</span>
                     <span class="d_r_two">${con.fileExt}文件</span>
                     <span class="d_r_two">${con.fileSimpleSize}</span>
