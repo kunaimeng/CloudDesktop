@@ -6,6 +6,8 @@ import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service.CDFileService.Impl
  * @ClassName: CDFileServiceImpl
@@ -49,5 +51,10 @@ public class CDFileServiceImpl implements CDFileService {
     @Override
     public int updateByPrimaryKey(CDFile record) {
         return cdFileMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<CDFile> selectByFile(CDFile record){
+        return cdFileMapper.selectByFile(record);
     }
 }

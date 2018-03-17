@@ -67,6 +67,14 @@
                     <span class="d_r_two">类型</span>
                     <span class="d_r_two">大小</span>
                 </li>
+                <#list content as con>
+                <li class="d_r_con">
+                    <span class="d_r_one">${con.fileName}</span>
+                    <span class="d_r_two">${(con.updateTime)?string("yyyy-MM-dd")}</span>
+                    <span class="d_r_two">${con.fileExt}文件</span>
+                    <span class="d_r_two">${con.fileSimpleSize}</span>
+                </li>
+                </#list>
             </ul>
         </div>
     </div>

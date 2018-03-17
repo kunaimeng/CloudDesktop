@@ -1,12 +1,18 @@
 package com.mhqy.cloud.desktop.controller;
 
+import com.mhqy.cloud.desktop.domin.CDFile;
+import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 /**
@@ -24,6 +30,9 @@ public class BaseController {
 
     @Autowired
     private CDUserService userService;
+
+    @Autowired
+    private CDFileService cdFileService;
 
     /**
      * @Description:登录页跳转
@@ -54,7 +63,11 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("file")
-    public String file() {
+    public String file(Model model, HttpSession session) {
+        CDFile cdFile = new CDFile();
+        cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        List<CDFile> list = cdFileService.selectByFile(cdFile);
+        model.addAttribute("content",list);
         return "file/index";
     }
 

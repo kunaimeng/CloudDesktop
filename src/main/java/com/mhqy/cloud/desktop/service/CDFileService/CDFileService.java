@@ -3,6 +3,8 @@ package com.mhqy.cloud.desktop.service.CDFileService;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service
  * @ClassName: CDFileService
@@ -25,4 +27,7 @@ public interface CDFileService {
     int updateByPrimaryKeySelective(CDFile record);
 
     int updateByPrimaryKey(CDFile record);
+
+    List<CDFile> selectByFile(CDFile record);
+
 }

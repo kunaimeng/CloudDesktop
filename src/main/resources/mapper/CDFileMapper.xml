@@ -19,11 +19,58 @@
     file_id, file_user_id, file_parent_id, file_name, file_system_name, file_size, file_simple_size, 
     file_type, file_ext, create_time, update_time, yn
   </sql>
+  <sql id="Base_Search_List">
+    <where>
+      <if test="fileId != null and fileId !=''">
+        AND file_id = #{fileId,jdbcType=BIGINT}
+      </if>
+      <if test="fileUserId != null and fileUserId !=''">
+        AND file_user_id = #{fileUserId,jdbcType=VARCHAR}
+      </if>
+      <if test="fileParentId != null and fileParentId !=''">
+        AND file_parent_id = #{fileParentId,jdbcType=VARCHAR}
+      </if>
+      <if test="fileName != null and fileName !=''">
+        AND file_name = #{fileName,jdbcType=VARCHAR}
+      </if>
+      <if test="fileSystemName != null and fileSystemName !=''">
+        AND file_system_name = #{fileSystemName,jdbcType=VARCHAR}
+      </if>
+      <if test="fileSize != null and fileSize !=''">
+        AND file_size = #{fileSize,jdbcType=VARCHAR}
+      </if>
+      <if test="fileSimpleSize != null and fileSimpleSize !=''">
+        AND file_simple_size = #{fileSimpleSize,jdbcType=VARCHAR}
+      </if>
+      <if test="fileType != null and fileType !=''">
+        AND file_type = #{fileType,jdbcType=VARCHAR}
+      </if>
+      <if test="fileExt != null and fileExt !=''">
+        AND file_ext = #{fileExt,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="yn != null and yn!=''">
+        AND yn = #{yn,jdbcType=TINYINT}
+      </if>
+    </where>
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from c_d_file
     where file_id = #{fileId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByFile" resultMap="BaseResultMap" parameterType="com.mhqy.cloud.desktop.domin.CDFile" >
+    select
+    <include refid="Base_Column_List" />
+    from c_d_file
+    <include refid="Base_Search_List" />
+    ORDER by 1 desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_file

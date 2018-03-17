@@ -3,6 +3,8 @@ package com.mhqy.cloud.desktop.dao.CDFileMapper;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CDFileMapper {
     int deleteByPrimaryKey(Long fileId);
@@ -16,4 +18,6 @@ public interface CDFileMapper {
     int updateByPrimaryKeySelective(CDFile record);
 
     int updateByPrimaryKey(CDFile record);
+
+    List<CDFile> selectByFile(CDFile record);
 }
