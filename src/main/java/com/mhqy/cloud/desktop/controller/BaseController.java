@@ -66,6 +66,7 @@ public class BaseController {
     public String file(Model model, HttpSession session) {
         CDFile cdFile = new CDFile();
         cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        cdFile.setFileParentId(new Long(0));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
         model.addAttribute("content",list);
         return "file/index";

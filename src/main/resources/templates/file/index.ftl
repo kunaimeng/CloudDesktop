@@ -9,6 +9,7 @@
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <style>
         *{font-size:12px;}
+        body{-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
         ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
         #d_top{width: 99%;height: 40px;border-bottom: 3px solid #777;margin:0 auto;}
         #d_top .d_t_left{width:10%;height: 100%;float: left;}
@@ -39,11 +40,11 @@
         <div id="d_top">
             <div class="d_t_left">
                 <span>
-                    <i class="fa fa-plus">&nbsp;新建文件夹</i>
+                    <i class="fa fa-plus" data-id="0">&nbsp;新建文件夹</i>
                 </span>
             </div>
             <div class="d_t_center">
-                <span><i class="fa fa-list"></i>&nbsp;A盘</span>
+                <span><i class="fa fa-list"></i>&nbsp;根目录</span>
             </div>
             <div class="d_t_right">
                 <input type="text">
@@ -119,6 +120,30 @@
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
 
+    $("#d_top .d_t_center").on("click","span",function () {
+        var obj = $(this).attr("data-id");
+        var span = $(this);
+        $.ajax({
+            type: 'post',
+            url: "/queryFileList.ftl",
+            data: {"fileParentId":obj},
+            dataType: "json",
+            success: function (msg) {
+                if(msg.flag){
+                    span.nextAll().remove();
+                    $("#d_right ul .d_r_con").remove();
+                    $("#d_right ul .d_r_first").after(ViewOfList(msg));
+                }else{
+                    layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                }
+            },
+            error:function () {
+                layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+            }
+        });
+
+    });
+
     $("#d_right ul").on("dblclick",".Folder",function(){
         var obj = $(this).attr("data-id");
         var con = $(this).attr("data-name");
@@ -129,51 +154,9 @@
             dataType: "json",
             success: function (msg) {
                 if(msg.flag){
-                    $("#d_top .d_t_center").append("<span><i class=\"fa fa-list\"></i>&nbsp;"+con+"</span>");
+                    $("#d_top .d_t_center").append("<span data-id="+obj+"><i class=\"fa fa-list\"></i>&nbsp;"+con+"</span>");
                     $("#d_right ul .d_r_con").remove();
-                    var html = "";
-                    for(var i =0;i<msg.list.length;i++){
-                        if(msg.list[i].fileType==1){
-                            html = html+"<li class=\"d_r_con\">\n" +
-                                    "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+">&nbsp;\n" +
-                                    "                            <i class=\"fa fa-folder\"></i>\n" +
-                                    "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
-                                    "                    </span>\n" +
-                                    "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
-                                    "                    <span class=\"d_r_two\">\n" +
-                                    "                            文件夹\n" +
-                                    "                    </span>\n" +
-                                    "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
-                                    "                    <span class=\"d_r_two\">\n" +
-                                    "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
-                                    "                            <i class=\"fa fa-arrow-down\"></i>\n" +
-                                    "                        </a>\n" +
-                                    "                        &nbsp;&nbsp;\n" +
-                                    "                        <i class=\"fa fa-close\"></i>\n" +
-                                    "                    </span>\n" +
-                                    "                </li>";
-                        }else{
-                            html = html+" <li class=\"d_r_con\">\n" +
-                                    "                    <span class=\"d_r_one\">&nbsp;\n" +
-                                    "                            <i class=\"fa fa-file\"></i>\n" +
-                                    "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
-                                    "                    </span>\n" +
-                                    "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
-                                    "                    <span class=\"d_r_two\">\n" +
-                                    "                            "+msg.list[i].fileExt+"文件\n" +
-                                    "                    </span>\n" +
-                                    "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
-                                    "                    <span class=\"d_r_two\">\n" +
-                                    "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
-                                    "                            <i class=\"fa fa-arrow-down\"></i>\n" +
-                                    "                        </a>\n" +
-                                    "                        &nbsp;&nbsp;\n" +
-                                    "                        <i class=\"fa fa-close\"></i>\n" +
-                                    "                    </span>\n" +
-                                    "                </li>";
-                        }
-                    }
-                    $("#d_right ul .d_r_first").after(html);
+                    $("#d_right ul .d_r_first").after(ViewOfList(msg));
                 }else{
                     layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
                 }
@@ -183,6 +166,54 @@
             }
         });
     });
+
+    /*解析内容*/
+    function ViewOfList(msg) {
+        var html = "";
+        for(var i =0;i<msg.list.length;i++){
+            if(msg.list[i].fileType==1){
+                html = html+"<li class=\"d_r_con\">\n" +
+                        "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+">&nbsp;\n" +
+                        "                            <i class=\"fa fa-folder\"></i>\n" +
+                        "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                        "                    </span>\n" +
+                        "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                        "                    <span class=\"d_r_two\">\n" +
+                        "                            文件夹\n" +
+                        "                    </span>\n" +
+                        "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                        "                    <span class=\"d_r_two\">\n" +
+                        "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                        "                            <i class=\"fa fa-arrow-down\"></i>\n" +
+                        "                        </a>\n" +
+                        "                        &nbsp;&nbsp;\n" +
+                        "                        <i class=\"fa fa-close\"></i>\n" +
+                        "                    </span>\n" +
+                        "                </li>";
+            }else{
+                html = html+" <li class=\"d_r_con\">\n" +
+                        "                    <span class=\"d_r_one\">&nbsp;\n" +
+                        "                            <i class=\"fa fa-file\"></i>\n" +
+                        "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                        "                    </span>\n" +
+                        "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                        "                    <span class=\"d_r_two\">\n" +
+                        "                            "+msg.list[i].fileExt+"文件\n" +
+                        "                    </span>\n" +
+                        "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                        "                    <span class=\"d_r_two\">\n" +
+                        "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                        "                            <i class=\"fa fa-arrow-down\"></i>\n" +
+                        "                        </a>\n" +
+                        "                        &nbsp;&nbsp;\n" +
+                        "                        <i class=\"fa fa-close\"></i>\n" +
+                        "                    </span>\n" +
+                        "                </li>";
+            }
+        }
+        return html;
+
+    }
 
     $.tmUpload({
         btnId:"upload",
