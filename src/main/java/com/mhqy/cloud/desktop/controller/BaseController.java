@@ -67,6 +67,7 @@ public class BaseController {
         CDFile cdFile = new CDFile();
         cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
         cdFile.setFileParentId(new Long(0));
+        cdFile.setYn(new Byte("1"));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
         model.addAttribute("content",list);
         return "file/index";

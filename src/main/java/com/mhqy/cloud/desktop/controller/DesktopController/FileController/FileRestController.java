@@ -44,9 +44,30 @@ public class FileRestController {
     public Map<String,Object> queryFileList(CDFile cdFile){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
+            cdFile.setYn(new Byte("1"));
             List<CDFile> list = cdFileService.selectByFile(cdFile);
             map.put("flag",true);
             map.put("list",list);
+        }catch (Exception e){
+            logger.error("删除文件数据异常-->",e.getMessage());
+            map.put("flag",false);
+            map.put("msg",e.getMessage());
+        }finally {
+            return map;
+        }
+    }
+
+    @RequestMapping("updateFile")
+    public Map<String,Object> updateFile(CDFile cdFile){
+        Map<String,Object> map = new HashMap<String,Object>();
+        try{
+            int i = cdFileService.updateByPrimaryKeySelective(cdFile);
+            if(i==1){
+                map.put("msg","删除成功");
+            }else{
+                map.put("msg","删除失败");
+            }
+            map.put("flag",true);
         }catch (Exception e){
             logger.error("获取文件数据异常-->",e.getMessage());
             map.put("flag",false);

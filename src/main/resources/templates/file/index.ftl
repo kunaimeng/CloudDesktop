@@ -120,6 +120,30 @@
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
 
+    $("#d_right ul li .d_r_two").on("click",".fa-close",function () {
+        var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
+        var obj = $(this).parents(".d_r_con");
+        layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to close this page?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
+            $.ajax({
+                type: 'post',
+                url: "/updateFile.ftl",
+                data: {"fileId":id,"yn":0},
+                dataType: "json",
+                success: function (msg) {
+                    if(msg.flag){
+                        obj.remove();
+                        layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                    }else{
+                        layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                    }
+                },
+                error:function () {
+                    layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+                }
+            });
+        });
+    });
+
     $("#d_top .d_t_center").on("click","span",function () {
         var obj = $(this).attr("data-id");
         var span = $(this);
