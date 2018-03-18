@@ -135,7 +135,7 @@
                     for(var i =0;i<msg.list.length;i++){
                         if(msg.list[i].fileType==1){
                             html = html+"<li class=\"d_r_con\">\n" +
-                                    "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+"\">&nbsp;\n" +
+                                    "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+">&nbsp;\n" +
                                     "                            <i class=\"fa fa-folder\"></i>\n" +
                                     "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
                                     "                    </span>\n" +
