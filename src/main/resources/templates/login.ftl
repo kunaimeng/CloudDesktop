@@ -98,9 +98,9 @@
     </div>
 </div>
 </body>
-<script src="./static/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="./static/js/win10.js" type="text/javascript" ></script>
-<script src="./static/component/layer-v3.0.3/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="./static/js/win10.js"></script>
+<script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
 <script>
     $("#btn-login").click(function () {
         var phone= $(".login-username").val();

@@ -10,8 +10,10 @@
     <style>
         *{font-size:12px;}
         ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
-        #d_top{width: 99%;height: 40px;border: 1px solid #777;margin:0 auto;}
+        #d_top{width: 99%;height: 40px;border-bottom: 3px solid #777;margin:0 auto;}
         #d_top .d_t_left{width:10%;height: 100%;float: left;}
+        #d_top .d_t_left span{background: #2e8ded;height: 80%;margin-top:4px;width:80%;display: block;border-radius: 3px;text-align: center;margin-left: 10%;}
+        #d_top .d_t_left span i{font-size: 12px;color: #fff;margin-top: 10px;}
         #d_top .d_t_center{width:70%;height: 100%;float: left;}
         #d_top .d_t_center span{display:block;height: 100%;float: left;margin-right: 5px;padding:0 10px 0 10px;line-height: 40px;cursor: pointer;}
         #d_top .d_t_center span:hover{background: #2e8ded;transition: all 0.3s ease;color: #fff;}
@@ -22,12 +24,13 @@
         #d_left{width: 10%;height: auto;float: left;border-right: #3B3D3F;}
         #d_left ul{padding-left: 10%;}
         #d_left ul li:hover{padding-left: 4%;line-height:36px;transition: all 0.3s ease;border-left: 6px solid #1E9FFF;}
-        #d_right{width: 60%;height: auto;float: left;}
+        #d_right{width: 85%;height: auto;float: left;}
         #d_right ul{padding-left: 1%;}
         #d_right ul .d_r_con:hover{padding-left: 1%;transition: all 0.3s ease;border:1px solid #2e8ded;background:#4898d5;color: #fff;}
         #d_right ul li span{float: left;height: 30px;line-height: 30px;}
-        #d_right ul li .d_r_one{width: 40%;}
-        #d_right ul li .d_r_two{width: 20%;}
+        #d_right ul li span p{float: left;}
+        #d_right ul li .d_r_one{width: 60%;}
+        #d_right ul li .d_r_two{width: 10%;}
     </style>
 </head>
 <body>
@@ -35,13 +38,12 @@
     <div class="desktop">
         <div id="d_top">
             <div class="d_t_left">
-
+                <span>
+                    <i class="fa fa-plus">&nbsp;新建文件夹</i>
+                </span>
             </div>
             <div class="d_t_center">
-                <span>A盘</span>
-                <span>B盘</span>
-                <span>C盘</span>
-                <span>D盘</span>
+                <span><i class="fa fa-list"></i>&nbsp;A盘</span>
             </div>
             <div class="d_t_right">
                 <input type="text">
@@ -70,10 +72,38 @@
                 </li>
                 <#list content as con>
                 <li class="d_r_con">
-                    <span class="d_r_one"><i class="fa fa-comment-o"></i>${con.fileName}</span>
+                    <span class="d_r_one
+                        <#if con.fileType == "1">
+                            Folder
+                        </#if>"
+                          data-id="${con.fileId}" data-name="${con.fileName}">&nbsp;
+                        <#if con.fileType == "1">
+                            <i class="fa fa-folder"></i>
+                        <#else>
+                            <i class="fa fa-file"></i>
+                        </#if>
+                        &nbsp;&nbsp;${con.fileName}
+                    </span>
                     <span class="d_r_two">${(con.updateTime)?string("yyyy-MM-dd")}</span>
-                    <span class="d_r_two">${con.fileExt}文件</span>
+                    <span class="d_r_two">
+                        <#if con.fileType == "1">
+                            文件夹
+                        <#else>
+                            ${con.fileExt}文件
+                        </#if>
+                    </span>
                     <span class="d_r_two">${con.fileSimpleSize}</span>
+                    <span class="d_r_two">
+                        <a href="./static/upload/${con.fileSystemName}">
+                            <i class="fa fa-arrow-down"></i>
+                        </a>
+                        &nbsp;&nbsp;
+                        <i class="fa fa-close"></i>
+                        <#if con.fileType == "1">
+                        &nbsp;&nbsp;
+                        <i class="fa fa-folder-open-o"></i>
+                        </#if>
+                    </span>
                 </li>
                 </#list>
             </ul>
@@ -82,10 +112,78 @@
 </div>
 <div id="console"></div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="./static/js/win10.js"></script>
+<script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
 <!-- swfipload js -->
 <script type="text/javascript" src="./static/js/swfupload/upload/tz_upload.js"></script>
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
+
+    $("#d_right ul").on("dblclick",".Folder",function(){
+        var obj = $(this).attr("data-id");
+        var con = $(this).attr("data-name");
+        $.ajax({
+            type: 'post',
+            url: "/queryFileList.ftl",
+            data: {"fileParentId":obj},
+            dataType: "json",
+            success: function (msg) {
+                if(msg.flag){
+                    $("#d_top .d_t_center").append("<span><i class=\"fa fa-list\"></i>&nbsp;"+con+"</span>");
+                    $("#d_right ul .d_r_con").remove();
+                    var html = "";
+                    for(var i =0;i<msg.list.length;i++){
+                        if(msg.list[i].fileType==1){
+                            html = html+"<li class=\"d_r_con\">\n" +
+                                    "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+"\">&nbsp;\n" +
+                                    "                            <i class=\"fa fa-folder\"></i>\n" +
+                                    "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                                    "                    </span>\n" +
+                                    "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                                    "                    <span class=\"d_r_two\">\n" +
+                                    "                            文件夹\n" +
+                                    "                    </span>\n" +
+                                    "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                                    "                    <span class=\"d_r_two\">\n" +
+                                    "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                                    "                            <i class=\"fa fa-arrow-down\"></i>\n" +
+                                    "                        </a>\n" +
+                                    "                        &nbsp;&nbsp;\n" +
+                                    "                        <i class=\"fa fa-close\"></i>\n" +
+                                    "                    </span>\n" +
+                                    "                </li>";
+                        }else{
+                            html = html+" <li class=\"d_r_con\">\n" +
+                                    "                    <span class=\"d_r_one\">&nbsp;\n" +
+                                    "                            <i class=\"fa fa-file\"></i>\n" +
+                                    "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                                    "                    </span>\n" +
+                                    "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                                    "                    <span class=\"d_r_two\">\n" +
+                                    "                            "+msg.list[i].fileExt+"文件\n" +
+                                    "                    </span>\n" +
+                                    "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                                    "                    <span class=\"d_r_two\">\n" +
+                                    "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                                    "                            <i class=\"fa fa-arrow-down\"></i>\n" +
+                                    "                        </a>\n" +
+                                    "                        &nbsp;&nbsp;\n" +
+                                    "                        <i class=\"fa fa-close\"></i>\n" +
+                                    "                    </span>\n" +
+                                    "                </li>";
+                        }
+                    }
+                    $("#d_right ul .d_r_first").after(html);
+                }else{
+                    layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                }
+            },
+            error:function () {
+                layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+            }
+        });
+    });
+
     $.tmUpload({
         btnId:"upload",
         url:"/fileUpload.ftl",
