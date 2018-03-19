@@ -323,7 +323,7 @@
             <div class="mainOuther">
                 <div class="albumCover">
                     <a href="#">
-                        <img src="images/2.jpg" id="canvas1">
+                        <img src="./static/img/music/images/2.jpg" id="canvas1">
                     </a>
                 </div>
                 <div class="albumSale">

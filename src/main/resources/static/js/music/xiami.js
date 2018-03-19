@@ -77,7 +77,7 @@ $(function(){
 		$(".manyou").remove();
 		$(".songList").css("background-color","#f5f5f5");
 		$(this).css({
-			"background":'url("css/images/T1X4JEFq8qXXXaYEA_-11-12.gif") no-repeat',
+			"background":'url("./static/css/images/T1X4JEFq8qXXXaYEA_-11-12.gif") no-repeat',
 			"color":"transparent"
 		});
 		$(this).parent().parent().parent().append(html);
@@ -190,7 +190,7 @@ function updateProgress(ev){
 	$(".dian").css("left",llef);
 }
 function audioPlay(ev){
-	$(".iplay").css("background",'url("css/images/T1oHFEFwGeXXXYdLba-18-18.gif") 0 0');
+	$(".iplay").css("background",'url("./static/css/images/T1oHFEFwGeXXXYdLba-18-18.gif") 0 0');
 	$(".playBtn").css("background-position","0 -30px");
 	$(".playBtn").attr("isplay","1");
 }
