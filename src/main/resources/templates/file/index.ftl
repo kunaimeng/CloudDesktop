@@ -123,7 +123,7 @@
     $("#d_right ul li .d_r_two").on("click",".fa-close",function () {
         var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
         var obj = $(this).parents(".d_r_con");
-        layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to delete this file?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
+        layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to delete this filr?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
             $.ajax({
                 type: 'post',
                 url: "/updateFile.ftl",
