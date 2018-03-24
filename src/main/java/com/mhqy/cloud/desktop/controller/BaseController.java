@@ -3,6 +3,8 @@ package com.mhqy.cloud.desktop.controller;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
+import com.mhqy.cloud.desktop.service.WeatherService.WeatherService;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class BaseController {
 
     @Autowired
     private CDFileService cdFileService;
+
+    @Autowired
+    private WeatherService weatherService;
 
     /**
      * @Description:登录页跳转
@@ -92,6 +97,8 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather() {
+        Document  document = weatherService.getDocByUrl("http://www.weather.com.cn/textFC/hb.shtml");
+        weatherService.getProvinceUrl(document);
         return "weather/index";
     }
 }
