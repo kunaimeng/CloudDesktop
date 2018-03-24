@@ -83,4 +83,15 @@ public class BaseController {
     public String music() {
         return "music/index";
     }
+
+    /**
+     * @Description:天气
+     * @author: peiqiankun
+     * @date: 2018/3/24 14:30
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("weather")
+    public String weather() {
+        return "weather/index";
+    }
 }
