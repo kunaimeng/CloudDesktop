@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.controller;
 
+import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,7 +76,7 @@ public class BaseController {
         cdFile.setFileParentId(new Long(0));
         cdFile.setYn(new Byte("1"));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
-        model.addAttribute("content",list);
+        model.addAttribute("content", list);
         return "file/index";
     }
 
@@ -97,8 +99,32 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather() {
-        Document  document = weatherService.getDocByUrl("http://www.weather.com.cn/textFC/hb.shtml");
-        weatherService.getProvinceUrl(document);
+        //获取新闻top doc
+        Document document = weatherService.getDocByUrl("http://www.weather.com.cn/textFC/hb.shtml");
+        //获取各省的url
+        List<String> list = weatherService.getProvinceUrl(document);
+        //各省的doc ist
+        List<Document> documentList = new ArrayList<>();
+        for (String provinceUrl : list) {
+            documentList.add(weatherService.getDocByUrl(provinceUrl));
+        }
+
+        //各市的url
+        List<String> cityUrl = new ArrayList<>();
+        for (Document cityDoc : documentList) {
+            List<String> cityPartUrl = weatherService.getCity(cityDoc);
+            for (String url : cityPartUrl) {
+                cityUrl.add(url);
+            }
+        }
+
+        for(String url:cityUrl){
+            Document doc = weatherService.getDocByUrl(url);
+            weatherService.getWeather(doc);
+
+        }
+
+        logger.info(BeanJsonUtil.bean2Json(cityUrl));
         return "weather/index";
     }
 }

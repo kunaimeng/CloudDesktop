@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.service.WeatherService;
 
+import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import org.jsoup.nodes.Document;
 
 import java.util.List;
@@ -37,4 +38,11 @@ public interface WeatherService {
      */
     Document getDocByUrl(String url);
 
+    /**
+     * @Description:查询天气
+     * @author: peiqiankun
+     * @date: 2018/3/25 13:38
+     * @mail: peiqiankun@jd.com
+     */
+    CDWeather getWeather(Document document);
 }
