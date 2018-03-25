@@ -99,31 +99,6 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather() {
-        //获取新闻top doc
-        Document document = weatherService.getDocByUrl("http://www.weather.com.cn/textFC/hb.shtml");
-        //获取各省的url
-        List<String> list = weatherService.getProvinceUrl(document);
-        //各省的doc ist
-        List<Document> documentList = new ArrayList<>();
-        for (String provinceUrl : list) {
-            documentList.add(weatherService.getDocByUrl(provinceUrl));
-        }
-
-        //各市的url
-        List<String> cityUrl = new ArrayList<>();
-        for (Document cityDoc : documentList) {
-            List<String> cityPartUrl = weatherService.getCity(cityDoc);
-            for (String url : cityPartUrl) {
-                cityUrl.add(url);
-            }
-        }
-
-        for(String url:cityUrl){
-            Document doc = weatherService.getDocByUrl(url);
-            weatherService.getWeather(doc);
-        }
-
-        logger.info(BeanJsonUtil.bean2Json(cityUrl));
         return "weather/index";
     }
 }
