@@ -121,7 +121,6 @@ public class BaseController {
         for(String url:cityUrl){
             Document doc = weatherService.getDocByUrl(url);
             weatherService.getWeather(doc);
-
         }
 
         logger.info(BeanJsonUtil.bean2Json(cityUrl));

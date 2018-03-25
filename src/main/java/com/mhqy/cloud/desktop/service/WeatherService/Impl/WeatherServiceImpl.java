@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,7 +74,7 @@ public class WeatherServiceImpl implements WeatherService {
         CDWeather cdWeather = new CDWeather();
         cdWeather.setProvince(document.getElementsByClass("ctop").first().select("a").text());
         cdWeather.setCity(document.getElementsByClass("ctop").first().select("span").last().text());
-        cdWeather.setUpdateTime(document.getElementsByClass("ctop").last().text());
+        cdWeather.setUpdateTime(new SimpleDateFormat("dd号 HH:mm:ss").format(new Date()));
         cdWeather.setFrom("中央气象台");
         Elements elements = document.getElementById("7d").getElementsByClass("t").first().getElementsByClass("sky");
         for (Element element : elements) {
