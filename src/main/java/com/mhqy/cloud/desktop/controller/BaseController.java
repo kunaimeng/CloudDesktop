@@ -2,6 +2,7 @@ package com.mhqy.cloud.desktop.controller;
 
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.domin.CDFile;
+import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
 import com.mhqy.cloud.desktop.service.CDUserService.CDUserService;
 import com.mhqy.cloud.desktop.service.WeatherService.WeatherService;
@@ -9,6 +10,7 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,6 +93,10 @@ public class BaseController {
         return "music/index";
     }
 
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * @Description:天气
      * @author: peiqiankun
@@ -98,7 +104,29 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("weather")
-    public String weather() {
+    public String weather(Model model) {
+        List<CDWeather> list = new ArrayList<>();
+        CDWeather cdWeather101010100 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101010100").toString(), CDWeather.class);
+        CDWeather cdWeather101220101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101220101").toString(), CDWeather.class);
+        CDWeather cdWeather101040100 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101040100").toString(), CDWeather.class);
+        CDWeather cdWeather101230101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101230101").toString(), CDWeather.class);
+        CDWeather cdWeather101160101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101160101").toString(), CDWeather.class);
+        CDWeather cdWeather101280101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101280101").toString(), CDWeather.class);
+        CDWeather cdWeather101180101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101180101").toString(), CDWeather.class);
+        CDWeather cdWeather101150101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101150101").toString(), CDWeather.class);
+        CDWeather cdWeather101140101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101140101").toString(), CDWeather.class);
+        CDWeather cdWeather101290101 = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("101290101").toString(), CDWeather.class);
+        list.add(cdWeather101010100);
+        list.add(cdWeather101220101);
+        list.add(cdWeather101040100);
+        list.add(cdWeather101230101);
+        list.add(cdWeather101160101);
+        list.add(cdWeather101280101);
+        list.add(cdWeather101180101);
+        list.add(cdWeather101150101);
+        list.add(cdWeather101140101);
+        list.add(cdWeather101290101);
+        model.addAttribute("content", list);
         return "weather/index";
     }
 }

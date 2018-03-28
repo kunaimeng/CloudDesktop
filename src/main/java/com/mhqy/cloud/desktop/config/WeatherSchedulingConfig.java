@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.config;
 
+import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.WeatherService.WeatherService;
 import org.jsoup.nodes.Document;
@@ -7,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -28,6 +30,9 @@ public class WeatherSchedulingConfig {
 
     @Autowired
     private WeatherService weatherService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Scheduled(cron = "0 0 0/1 * * ?")
     public void getWeather() {
@@ -54,6 +59,8 @@ public class WeatherSchedulingConfig {
                 Document doc = weatherService.getDocByUrl(url);
                 //天气结果
                 CDWeather cdWeather = weatherService.getWeather(doc);
+                logger.info("开始存入redis天气信息 key:{},value:{}", cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
+                redisTemplate.opsForValue().set(cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
             }
         } catch (Exception e) {
             logger.error("天气定时任务执行出现异常：{}", e.getMessage());

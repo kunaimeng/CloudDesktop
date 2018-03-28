@@ -61,7 +61,7 @@ public class WeatherServiceImpl implements WeatherService {
     public Document getDocByUrl(String url) {
         Document doc = null;
         try {
-            doc = Jsoup.connect(url).userAgent("Chrome/26.0.1410.64").timeout(3000).get();
+            doc = Jsoup.connect(url).userAgent("Chrome/26.0.1410.64").timeout(30000).get();
         } catch (IOException e) {
             logger.error("连接:{}出现异常,原因：{}", url, e.getMessage());
         }
@@ -70,8 +70,10 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public CDWeather getWeather(Document document) {
+        String str;
         List<Weather> list = new ArrayList<>();
         CDWeather cdWeather = new CDWeather();
+        cdWeather.setAddressId(document.location().substring(document.location().lastIndexOf("/") + 1, document.location().lastIndexOf(".")));
         cdWeather.setProvince(document.getElementsByClass("ctop").first().select("a").text());
         cdWeather.setCity(document.getElementsByClass("ctop").first().select("span").last().text());
         cdWeather.setUpdateTime(new SimpleDateFormat("dd号 HH:mm:ss").format(new Date()));
@@ -79,8 +81,9 @@ public class WeatherServiceImpl implements WeatherService {
         Elements elements = document.getElementById("7d").getElementsByClass("t").first().getElementsByClass("sky");
         for (Element element : elements) {
             Weather weather = new Weather();
-            weather.setDate(element.select("h1").text());
-            weather.setWeek(element.select("h1").text());
+            str = element.select("h1").text();
+            weather.setDate(str.substring(0,str.indexOf("（")));
+            weather.setWeek(str.substring(str.indexOf("（")+1,str.indexOf("）")));
             weather.setWeatherDesc(element.select(".wea").text());
             weather.setMaxTemp(element.select(".tem").select("span").text());
             weather.setMinTemp(element.select(".tem").select("i").text());

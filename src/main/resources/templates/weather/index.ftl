@@ -10,9 +10,34 @@
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./static/weather/js/modernizr.custom.js"></script>
     <style>
-        .main .search input{border: 1px solid #2e8ded;width: 80%;height: 48px;float: left;margin-top: 16px;padding-left: 5px;font-size: 18px;}
-        .main .search span{display: block;float: left;width: 20%;height: 48px;margin-top: 16px;background: #31c27c;color: #fff;line-height: 48px;text-align: center;cursor: pointer;}
-        .main .search span:hover{background:#31C250;transition: all 0.3s ease-in;color:#f9f9f9;}
+        .main .search input {
+            border: 1px solid #2e8ded;
+            width: 80%;
+            height: 48px;
+            float: left;
+            margin-top: 16px;
+            padding-left: 5px;
+            font-size: 18px;
+        }
+
+        .main .search span {
+            display: block;
+            float: left;
+            width: 20%;
+            height: 48px;
+            margin-top: 16px;
+            background: #31c27c;
+            color: #fff;
+            line-height: 48px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .main .search span:hover {
+            background: #31C250;
+            transition: all 0.3s ease-in;
+            color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -26,10 +51,24 @@
             </span>
         </div>
         <ul id="rb-grid" class="rb-grid clearfix">
+            <#list content as con>
+             <li class="icon-clima-2">
+                 <h3>${con.province}</h3><span class="rb-temp">${con.city}</span>
+                 <div class="rb-overlay">
+                     <span class="rb-close"></span>
+                     <div class="rb-week">
+                         <div><span class="rb-city">${con.province}</span><span class="icon-clima-2"></span><span>11°C</span></div>
+                         <#list con.weathers as week>
+                             <div><span>${week.date}</span><span class="icon-clima-1"></span><span>${week.minTemp}</span></div>
+                         </#list>
+                     </div>
+                 </div>
+             </li>
+            </#list>
             <li class="icon-clima-2">
                 <h3>Paris</h3><span class="rb-temp">11°C</span>
                 <div class="rb-overlay">
-                    <span class="fa fa-close">close</span>
+                    <span class="rb-close"></span>
                     <div class="rb-week">
                         <div><span class="rb-city">Paris</span><span class="icon-clima-2"></span><span>11°C</span></div>
                         <div><span>Mon</span><span class="icon-clima-1"></span><span>12°C</span></div>

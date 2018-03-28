@@ -10,6 +10,8 @@ import java.util.List;
  * @version: v1.0
  */
 public class CDWeather {
+    /*地区id*/
+    private String addressId;
     /*更新时间*/
     private String updateTime;
     /*省*/
@@ -20,6 +22,14 @@ public class CDWeather {
     private List<Weather> weathers;
     /*来源*/
     private String from;
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
 
     public String getUpdateTime() {
         return updateTime;
