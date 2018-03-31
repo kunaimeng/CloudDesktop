@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--mysql 连接数据库jar 这里选择自己本地位置-->
-    <classPathEntry location="D:\git_repository\loan-erp\loan-sustain-web\target\loan-sustain-web\WEB-INF\lib\mysql-connector-java-5.1.12.jar" />
+    <classPathEntry location="D:\work2016\YunPan_kun\WebRoot\WEB-INF\lib\mysql-connector-java-5.0.8-bin.jar" />
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -46,13 +46,16 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table tableName="c_d_desktop" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+        <!--<table tableName="c_d_desktop" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
+        <!--&lt;!&ndash; 指定数据库表 &ndash;&gt;-->
+        <!--<table tableName="c_d_file" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
+        <!--&lt;!&ndash; 指定数据库表 &ndash;&gt;-->
+        <!--<table tableName="c_d_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
         <!-- 指定数据库表 -->
-        <table tableName="c_d_file" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
-        <!-- 指定数据库表 -->
-        <table tableName="c_d_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+        <table tableName="c_d_address" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>

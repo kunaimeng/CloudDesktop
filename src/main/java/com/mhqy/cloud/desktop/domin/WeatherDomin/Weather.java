@@ -1,7 +1,7 @@
 package com.mhqy.cloud.desktop.domin.WeatherDomin;
 
 /**
- * @Description:
+ * @Description:天气
  * @author: peiqiankun
  * @date: 2018/3/25
  * @mail: peiqiankun@jd.com
