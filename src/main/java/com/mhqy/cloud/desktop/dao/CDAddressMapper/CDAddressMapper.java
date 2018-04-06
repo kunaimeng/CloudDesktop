@@ -27,4 +27,12 @@ public interface CDAddressMapper {
      * @mail: peiqiankun@jd.com
      */
     List<CDAddress> selectByRand();
+
+    /**
+     * @Description:查询所有数据
+     * @author: peiqiankun
+     * @date: 2018/4/5 17:41
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDAddress> selectAllContent();
 }

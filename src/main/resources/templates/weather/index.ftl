@@ -10,18 +10,32 @@
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./static/weather/js/modernizr.custom.js"></script>
     <style>
-        .main .search input {border: 1px solid #2e8ded;width: 80%;height: 48px;float: left;margin-top: 16px;padding-left: 5px;font-size: 18px;}
+        .main .search .m_s_content{width: 80%;height: 48px;float: left;margin-top: 16px;}
+        .main .search .m_s_content input {border: 1px solid #2e8ded;width:100%;height:100%;padding-left: 5px;font-size: 18px;display: block;}
+        .main .search .m_s_content .m_s_c_address{width:100%;height:400px;overflow-x:auto;position: relative;top:0;left:0;z-index: 999;display: none;}
+        .main .search .m_s_content .m_s_c_address ul li{list-style: none;font-size:12px;height: 40px;width: 100%;border:1px solid #2e8ded;border-top:none;padding-left: 15px;background:#f9f9f9;line-height: 40px;cursor: pointer;}
+        .main .search .m_s_content .m_s_c_address ul li:hover{background: #1E9FFF;color: #fff;transition: all 0.3s ease-in;}
         .main .search span {display: block;float: left;width: 20%;height: 48px;margin-top: 16px;background: #31c27c;color: #fff;line-height: 48px;text-align: center;cursor: pointer;}
         .main .search span:hover {background: #31C250;transition: all 0.3s ease-in;color: #f9f9f9;}
         #rb-grid li .rb-week .date {height: 70px !important;}
         #rb-grid li .rb-week .desc {font-size: 10px !important;height: 40px !important;}
+        #rb-grid li .rb-week .desc i{cursor: pointer;}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="main">
         <div class="search" style="width: 100%;height: 80px;">
-            <input type="text"/>
+            <div class="m_s_content">
+                <input type="text" class="m_s_c_input"/>
+                <div class="m_s_c_address">
+                    <ul>
+                        <#list address as addre>
+                         <li data-addressPlatId="${addre.addressPlatId}" data-address="${addre.addressProvince}">${addre.addressProvince}&nbsp;${addre.addressCity}</li>
+                        </#list>
+                    </ul>
+                </div>
+            </div>
             <span>
              <i class="fa fa-search"></i>
                 查询
@@ -39,7 +53,12 @@
                 <h3>${con.province}</h3>
                 <span class="rb-temp">${con.city}</span>
                 <br>
-                <span>${con.weathers[0].minTemp}~${con.weathers[0].maxTemp}</span>
+                <span>
+                    ${con.weathers[0].minTemp}
+                     <#if con.weathers[0].maxTemp!="">
+                         ~${con.weathers[0].maxTemp}
+                     </#if>
+                </span>
                 <div class="rb-overlay">
                     <span class="rb-close"></span>
                     <div class="rb-week">
@@ -87,6 +106,11 @@
                                  <span class="desc">${week.weatherDesc}</span>
                                  <span class="desc">${week.windFrom}~${week.winTo}</span>
                                  <span class="desc">${week.windSpeed}</span>
+                                 <span class="desc">
+                                     <i class="fa fa-star fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <i class="fa fa-share-alt fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <i class="fa fa-info-circle fa-lg"></i>
+                                 </span>
                              </div>
                          </#list>
                     </div>
@@ -102,6 +126,19 @@
 <script type="text/javascript">
     $(function () {
         Boxgrid.init();
+
+        $(".m_s_c_input").focus(function(){
+            $(".main .search .m_s_content .m_s_c_address").show();
+        });
+
+        $(".main .search .m_s_content .m_s_c_address ul li").click(function () {
+            $(".m_s_c_input").val($(this).attr("data-address"));
+            $(".main .search .m_s_content .m_s_c_address").hide();
+        });
+
+        $("#rb-grid").click(function(){
+            $(".main .search .m_s_content .m_s_c_address").hide();
+        });
     });
 </script>
 </body>

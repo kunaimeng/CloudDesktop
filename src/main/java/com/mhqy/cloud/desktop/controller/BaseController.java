@@ -93,6 +93,17 @@ public class BaseController {
     }
 
     /**
+     * @Description:游戏
+     * @author: peiqiankun
+     * @date: 2018/4/1 20:50
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("game")
+    public String game() {
+        return "game/index";
+    }
+
+    /**
      * @Description:天气
      * @author: peiqiankun
      * @date: 2018/3/24 14:30
@@ -111,6 +122,9 @@ public class BaseController {
                 }
             }
             model.addAttribute("content", result);
+            //查询所有地址
+            List<CDAddress> addressList = addressService.selectAllContent();
+            model.addAttribute("address", addressList);
         } catch (Exception e) {
             logger.error("查询天气异常：{}", e.getMessage());
         } finally {

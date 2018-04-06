@@ -97,4 +97,15 @@ public class CDAddressServiceImpl implements CDAddressService {
     public List<CDAddress> selectByRand() {
         return cdAddressMapper.selectByRand();
     }
+
+    /**
+     * @Description:查询所有数据
+     * @author: peiqiankun
+     * @date: 2018/4/5 17:41
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDAddress> selectAllContent() {
+        return cdAddressMapper.selectAllContent();
+    }
 }

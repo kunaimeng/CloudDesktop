@@ -122,4 +122,10 @@
     from c_d_address
     ORDER BY  RAND() LIMIT 31
   </select>
+  <!--读取所有数据-->
+  <select id="selectAllContent" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from c_d_address
+  </select>
 </mapper>
