@@ -82,6 +82,28 @@ public class BaseController {
     }
 
     /**
+     * @Description:时钟
+     * @author: peiqiankun
+     * @date: 2018/4/7 15:00
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("clock")
+    public String clock(){
+        return "desktop/clock";
+    }
+
+    /**万年历
+     * @Description:
+     * @author: peiqiankun
+     * @date: 2018/4/7 15:35
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("date")
+    public String date(){
+        return "desktop/date";
+    }
+
+    /**
      * @Description:音乐跳转
      * @author: peiqiankun
      * @date: 2018/3/4 15:38
@@ -110,21 +132,28 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("weather")
-    public String weather(Model model) {
+    public String weather(Model model,CDWeather cdWeather) {
         List<CDWeather> result = new ArrayList<>();
+        logger.info("天气搜索参数-->{}", BeanJsonUtil.bean2Json(cdWeather));
+        CDWeather cdWeatherResult;
         try {
-            List<CDAddress> list = addressService.selectByRand();
-            if (ListUtil.isNotEmpty(list)) {
-                CDWeather cdWeather;
-                for (CDAddress cdAddress : list) {
-                    cdWeather = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdAddress.getAddressPlatId().toString()).toString(), CDWeather.class);
-                    result.add(cdWeather);
+            if(cdWeather.getAddressId()!=null){
+                cdWeatherResult = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdWeather.getAddressId()).toString(), CDWeather.class);
+                result.add(cdWeatherResult);
+            }else{
+                List<CDAddress> list = addressService.selectByRand();
+                if (ListUtil.isNotEmpty(list)) {
+                    for (CDAddress cdAddress : list) {
+                        cdWeatherResult = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdAddress.getAddressPlatId().toString()).toString(), CDWeather.class);
+                        result.add(cdWeatherResult);
+                    }
                 }
             }
             model.addAttribute("content", result);
             //查询所有地址
             List<CDAddress> addressList = addressService.selectAllContent();
             model.addAttribute("address", addressList);
+            model.addAttribute("search", cdWeather);
         } catch (Exception e) {
             logger.error("查询天气异常：{}", e.getMessage());
         } finally {

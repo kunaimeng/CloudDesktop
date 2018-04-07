@@ -412,7 +412,7 @@ window.Win10 = {
             var date=myDate.getDate();
             var hours=myDate.getHours();
             var mins=myDate.getMinutes();if (mins<10){mins='0'+mins}
-            $("#win10_btn_time").html(hours+':'+mins+'<br/>'+year+'/'+month+'/'+date);
+            $("#win10_btn_time").html('<a onclick="Win10.openUrl(\'/clock\',\'时钟\')">'+hours+':'+mins+'</a><br/><a onclick="Win10.openUrl(\'/date\',\'万年历\')">'+year+'/'+month+'/'+date+'</a>');
         },1000);
         Win10.buildList();//预处理左侧菜单
         Win10._startAnimate();//动画处理

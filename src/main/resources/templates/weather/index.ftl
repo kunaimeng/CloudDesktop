@@ -25,22 +25,25 @@
 <body>
 <div class="container">
     <div class="main">
-        <div class="search" style="width: 100%;height: 80px;">
-            <div class="m_s_content">
-                <input type="text" class="m_s_c_input"/>
-                <div class="m_s_c_address">
-                    <ul>
+        <form id="search" method="post" action="weather.htm">
+            <div class="search" style="width: 100%;height: 80px;">
+                <div class="m_s_content">
+                    <input type="text" class="m_s_c_input" name="province" value="${search.province!}"/>
+                    <input type="hidden" name="addressId" class="addressId" value="${search.addressId!}">
+                    <div class="m_s_c_address">
+                        <ul>
                         <#list address as addre>
-                         <li data-addressPlatId="${addre.addressPlatId}" data-address="${addre.addressProvince}">${addre.addressProvince}&nbsp;${addre.addressCity}</li>
+                            <li data-addressPlatId="${addre.addressPlatId?c}" data-address="${addre.addressProvince}">${addre.addressProvince}&nbsp;${addre.addressCity}</li>
                         </#list>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <span>
+                <span class="m_s_searcch">
              <i class="fa fa-search"></i>
                 查询
             </span>
-        </div>
+            </div>
+        </form>
         <ul id="rb-grid" class="rb-grid clearfix">
             <#list content as con>
                 <#if con_index==0>
@@ -125,6 +128,7 @@
 <script type="text/javascript" src="./static/weather/js/boxgrid.example2.js"></script>
 <script type="text/javascript">
     $(function () {
+
         Boxgrid.init();
 
         $(".m_s_c_input").focus(function(){
@@ -133,11 +137,19 @@
 
         $(".main .search .m_s_content .m_s_c_address ul li").click(function () {
             $(".m_s_c_input").val($(this).attr("data-address"));
+            $(".addressId").val($(this).attr("data-addressPlatId"));
             $(".main .search .m_s_content .m_s_c_address").hide();
         });
 
         $("#rb-grid").click(function(){
             $(".main .search .m_s_content .m_s_c_address").hide();
+        });
+        
+        $(".m_s_searcch").click(function () {
+            var addressId = $(".addressId").val();
+            if(addressId!=undefined&&addressId!=""){
+                $("#search").submit();
+            }
         });
     });
 </script>
