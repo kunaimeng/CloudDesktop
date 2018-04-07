@@ -951,11 +951,8 @@
                     if (typeof RiLi.CallBack.afterInit === "function") {
                         RiLi.CallBack.afterInit();
                     }
-
                 });
             </script>
-
-
         </li>
     </ul>
 </div><!-- END #main -->
