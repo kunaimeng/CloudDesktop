@@ -572,22 +572,17 @@
                     T && n(T, "click", S)
                 }
             }
-        }()</script>
+        }()
+    </script>
 </head>
 <body>
 <!-- BEGIN #main -->
 <div id="main">
-
-
     <div id="so_top">
-
-
     </div>
     <ul id="m-result" class="result">
         <li id="first" class="res-list">
             <div id="mohe-rili" class="g-mohe" data-mohe-type="rili">
-
-
                 <div class="mh-rili-wap mh-rili-only " data-mgd='{"b":"rili-body"}'>
                     <div class="mh-tips">
                         <div class="mh-loading">
@@ -596,7 +591,6 @@
                         <div class="mh-err-tips">亲，出了点问题~ 您可<a href="#reload" class="mh-js-reload">重试</a></div>
                     </div>
                     <div class="mh-rili-widget">
-
                         <div class="mh-doc-bd mh-calendar">
                             <div class="mh-hint-bar gclearfix">
                                 <div class="mh-control-bar">
@@ -663,14 +657,11 @@
                                 </div>
                             </div>
                         </div>
-
                         <span id="mh-date-y" style="display:none;">2015</span>
-
                         <script>
                             /*
                         2015节假日清单，一年一改
                         */
-
                             (function () {
                                 window.OB = window.OB || {}, window.OB.RiLi = window.OB.RiLi || {}, window.OB.RiLi.dateRest = ["0101", "0102", "0103", "0218", "0219", "0220", "0221", "0222", "0223", "0224", "0404", "0405", "0406", "0501", "0502", "0503", "0620", "0621", "0622", "0903", "0904", "0905", "0926", "0927", "1001", "1002", "1003", "1004", "1005", "1006", "1007"], window.OB.RiLi.dateWork = ["0104", "0215", "0228", "0906", "1010"], window.OB.RiLi.dateFestival = ["20150101||元旦", "20150219||春节", "20150405||清明节", "20150501||劳动节", "20150620||端午节", "20150903||抗战纪念日", "20150927||中秋节", "20151001||国庆节"], window.OB.RiLi.dateAllFestival = ["正月初一|v,春节", "正月十五|v,元宵节", "二月初二|v,龙头节", "五月初五|v,端午节", "七月初七|v,七夕节", "七月十五|v,中元节", "八月十五|v,中秋节", "九月初九|v,重阳节", "十月初一|i,寒衣节", "十月十五|i,下元节", "腊月初八|i,腊八节", "腊月廿三|i,祭灶节", "0202|i,世界湿地日,1996", "0214|v,西洋情人节", "0308|i,国际妇女节,1975", "0315|i,国际消费者权益日,1983", "0422|i,世界地球日,1990", "0501|v,国际劳动节,1889", "0512|i,国际护士节,1912", "0518|i,国际博物馆日,1977", "0605|i,世界环境日,1972", "0623|i,国际奥林匹克日,1948", "0624|i,世界骨质疏松日,1997", "1117|i,世界学生日,1942", "1201|i,世界艾滋病日,1988", "0101|v,元旦", "0312|i,植树节,1979", "0504|i,五四青年节,1939", "0601|v,儿童节,1950", "0701|v,建党节,1941", "0801|v,建军节,1933", "0903|v,抗战胜利纪念日", "0910|v,教师节,1985", "1001|v,国庆节,1949", "1224|v,平安夜", "1225|v,圣诞节", "w:0520|v,母亲节,1913", "w:0630|v,父亲节", "w:1144|v,感恩节(美国)", "w:1021|v,感恩节(加拿大)"];
                                 var e = "https://s.ssl.qhimg.com/!97be6a4c/data/"/*本地老黄历库在lhl文件夹，此处是官网调用的*/;
@@ -701,10 +692,8 @@
                                     }
                                 }
                             })()</script>
-
                     </div>
                 </div>
-
                 <div class="mh-rili-foot">
                 </div>
                 <select class="mh-holiday-data" style="display:none;">
@@ -722,114 +711,82 @@
                 <input type="hidden" id="mh-rili-params" value="action=query&year=2015&month=09&day=04"/>
 
             </div>
-            <script>_loader.use("jquery", function () {
-                function l() {
-                    t.slideDown(), r.slideDown(), i == "1" && $.ajax({
-                        url: v("https://open.onebox.haosou.com/dataApi"),
-                        dataType: "jsonp",
-                        data: {
-                            query: "日历",
-                            url: "日历",
-                            type: "rili",
-                            user_tpl: "ajax/rili/html",
-                            selectorPrefix: s,
-                            asynLoading: i,
-                            src: "onebox",
-                            tpl: "1"
-                        },
-                        timeout: 5e3,
-                        success: function (t) {
-                            t && t.html ? (e.find(".mh-rili-widget").html(t.html), n.hide().addClass("mh-err"), i = "0") : d()
-                        },
-                        error: function () {
-                            d()
-                        }
-                    })
-                }
-
-                function c(t, n) {
-                    t = t.replace("\u6e05\u660e", "\u6e05\u660e\u8282").replace("\u56fd\u9645\u52b3\u52a8\u8282", "\u52b3\u52a8\u8282");
-                    var r = new RegExp(u);
-                    f = f || e.find("#mh-date-y").html(), u && n == f && r.test(t) ? a = !0 : a = !1, o.val(t).trigger("change")
-                }
-
-                function h() {
-                    $.each(o.find("option"), function (e, t) {
-                        var n = $(this);
-                        n.data("desc") && n.val() && (u += n.val() + "|")
-                    }), u = u.substring(0, u.length - 2)
-                }
-
-                function p() {
-                    n.hide()
-                }
-
-                function d() {
-                    n.addClass("mh-err")
-                }
-
-                function v(e) {
-                    return location.protocol == "https:" ? "https://open.onebox.haosou.com/api/proxy?__url__=" + encodeURIComponent(e) : e
-                }
-
-                jQuery.curCSS = jQuery.css;
-                var e = $("#mohe-rili"), t = $(".mh-rili-wap", e), n = $(".mh-tips", e), r = $(".mh-rili-foot", e),
-                        i = "0", s = "#mohe-rili .mh-rili-widget", o = e.find(".mh-holiday-data"), u = "", a = !1,
-                        f = e.find("#mh-date-y").html();
-                h(), e.on("click", ".mh-op a", function (e) {
-                    e.preventDefault();
-                    var n = $(this).closest(".mh-op");
-                    n.hasClass("mh-op-less") ? (t.slideUp(), r.slideUp()) : l(), n.toggleClass("mh-op-less")
-                }).on("click", ".mh-js-reload", function (e) {
-                    e.preventDefault(), l()
-                }).on("change", ".mh-holiday-data", function () {
-                    var e = $(this), t = e.val(), n = e.find("option:selected"), i = n.attr("data-desc") || "",
-                            s = n.attr("data-gl") || "";
-                    if (!a || t == "0" || i === "" && s === "") r.html(""); else {
-                        var o = '<div class="mh-rili-holiday">[holidayDetail][holidaySug]</div>';
-                        i && (i = "<p>" + i + "</p>"), s && (s = "<p><span>\u4f11\u5047\u653b\u7565\uff1a</span>" + s + "</p>"), o = o.replace("[holidayDetail]", i).replace("[holidaySug]", s), r.html(o)
+            <script>
+                _loader.use("jquery", function () {
+                    function l() {
+                        t.slideDown(), r.slideDown(), i == "1" && $.ajax({
+                            url: v("https://open.onebox.haosou.com/dataApi"),
+                            dataType: "jsonp",
+                            data: {
+                                query: "日历",
+                                url: "日历",
+                                type: "rili",
+                                user_tpl: "ajax/rili/html",
+                                selectorPrefix: s,
+                                asynLoading: i,
+                                src: "onebox",
+                                tpl: "1"
+                            },
+                            timeout: 5e3,
+                            success: function (t) {
+                                t && t.html ? (e.find(".mh-rili-widget").html(t.html), n.hide().addClass("mh-err"), i = "0") : d()
+                            },
+                            error: function () {
+                                d()
+                            }
+                        })
                     }
-                }), window.OB = window.OB || {}, window.OB.RiLi = window.OB.RiLi || {}, window.OB.RiLi.rootSelector = "#mohe-rili ", window.OB.RiLi.CallBack = {
-                    afterInit: p,
-                    holiday: c
-                }
-            })</script>
 
+                    function c(t, n) {
+                        t = t.replace("\u6e05\u660e", "\u6e05\u660e\u8282").replace("\u56fd\u9645\u52b3\u52a8\u8282", "\u52b3\u52a8\u8282");
+                        var r = new RegExp(u);
+                        f = f || e.find("#mh-date-y").html(), u && n == f && r.test(t) ? a = !0 : a = !1, o.val(t).trigger("change")
+                    }
+
+                    function h() {
+                        $.each(o.find("option"), function (e, t) {
+                            var n = $(this);
+                            n.data("desc") && n.val() && (u += n.val() + "|")
+                        }), u = u.substring(0, u.length - 2)
+                    }
+
+                    function p() {
+                        n.hide()
+                    }
+
+                    function d() {
+                        n.addClass("mh-err")
+                    }
+
+                    function v(e) {
+                        return location.protocol == "https:" ? "https://open.onebox.haosou.com/api/proxy?__url__=" + encodeURIComponent(e) : e
+                    }
+
+                    jQuery.curCSS = jQuery.css;
+                    var e = $("#mohe-rili"), t = $(".mh-rili-wap", e), n = $(".mh-tips", e), r = $(".mh-rili-foot", e),
+                            i = "0", s = "#mohe-rili .mh-rili-widget", o = e.find(".mh-holiday-data"), u = "", a = !1,
+                            f = e.find("#mh-date-y").html();
+                    h(), e.on("click", ".mh-op a", function (e) {
+                        e.preventDefault();
+                        var n = $(this).closest(".mh-op");
+                        n.hasClass("mh-op-less") ? (t.slideUp(), r.slideUp()) : l(), n.toggleClass("mh-op-less")
+                    }).on("click", ".mh-js-reload", function (e) {
+                        e.preventDefault(), l()
+                    }).on("change", ".mh-holiday-data", function () {
+                        var e = $(this), t = e.val(), n = e.find("option:selected"), i = n.attr("data-desc") || "",
+                                s = n.attr("data-gl") || "";
+                        if (!a || t == "0" || i === "" && s === "") r.html(""); else {
+                            var o = '<div class="mh-rili-holiday">[holidayDetail][holidaySug]</div>';
+                            i && (i = "<p>" + i + "</p>"), s && (s = "<p><span>\u4f11\u5047\u653b\u7565\uff1a</span>" + s + "</p>"), o = o.replace("[holidayDetail]", i).replace("[holidaySug]", s), r.html(o)
+                        }
+                    }), window.OB = window.OB || {}, window.OB.RiLi = window.OB.RiLi || {}, window.OB.RiLi.rootSelector = "#mohe-rili ", window.OB.RiLi.CallBack = {
+                        afterInit: p,
+                        holiday: c
+                    }
+                })
+            </script>
 
             <script>
-
-                /**
-                 * 描述：本脚本是从360好搜扒下来的，别说我如何如何无耻，360扒的百度，百度扒的谷歌，就是这么屌！
-                 rili-widget 所包含的JS文件们
-                 * 共包含15个JS文件，由于彼此间存在依赖关系，它们的顺序必须依次是：
-                 *        1.jquery-ui-1.10.3.custom
-                 *        2.msg_config    // 配置事件消息
-                 *
-                 *        3.mediator      //库，基于事件的异步编程
-                 *        4.calendar    //日历类
-                 *        5.lunar       //农历
-                 *
-                 *        6.cachesvc    //window. appdata依赖它
-                 *        7.appdata     //window. 时间矫正
-                 *        8.timesvc     //window.TimeSVC  时间同步服务
-                 *
-                 *        9.huochepiao    //购票（无用）
-                 *
-                 *        10.fakeSelect    //$-ui  年份月份下拉选择器
-                 *        11.speCalendar   //$-ui 日历单元格的特殊内容
-                 *        12.webCalendar   //$-ui 日历单元格
-                 *        13.dayDetail     //$-ui 日历右侧的详情（黄历 忌宜）
-                 *
-                 *        14.xianhao      //注册事件：日历上方的操作工具条：年月日节假日 返回今天
-                 *        15.dispatcher   //提取参数，初始化日历
-                 *
-                 * 最后拼接的顺序是 jquery-ui-1.10.3.custom,msg_config,mediator,calendar,lunar,cachesvc,appdata,timesvc,huochepiao,fakeSelect,speCalendar,webCalendar,dayDetail,xianhao,dispatcher
-                 *
-                 * edit by @gaosong 2015-08-31
-                 *
-                 * 代码从导航日历迁移过来，
-                 */
-
                 _loader.remove && _loader.remove("rili-widget");
                 _loader.add("rili-widget", "../static/js/wnl/wnl.js");//上述JS文件们已让我压缩成wnl.js
                 _loader.use("jquery, rili-widget", function () {

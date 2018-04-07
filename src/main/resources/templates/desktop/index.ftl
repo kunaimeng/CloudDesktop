@@ -201,7 +201,6 @@
         </div>
         <div id="win10_btn_group_middle" class="btn_group"></div>
         <div id="win10_btn_group_right" class="btn_group">
-            <#--<div class="btn" onclick="Win10.openUrl('/date','万年历')">万年历</div>-->
             <div class="btn" id="win10_btn_time"></div>
             <div class="btn" id="win10_btn_command"><span id="win10-msg-nof" class="fa fa-comment-o"></span></div>
             <div class="btn" id="win10_btn_show_desktop"></div>
