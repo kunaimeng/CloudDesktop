@@ -65,9 +65,14 @@
                 <div class="title">天气</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/game','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>游戏')">
+                 onclick="Win10.openUrl('/game/dadishu','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>打地鼠')">
                 <img class="icon" src="./static/img/icon/win10.png"/>
-                <div class="title">游戏</div>
+                <div class="title">打地鼠</div>
+            </div>
+            <div class="shortcut"
+                 onclick="Win10.openUrl('/game/buyvdaren','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>捕鱼达人')">
+                <img class="icon" src="./static/img/icon/win10.png"/>
+                <div class="title">捕鱼达人</div>
             </div>
             <div class="shortcut"
                  onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'./static/img/icon/doc.png\'/>在线文档')">

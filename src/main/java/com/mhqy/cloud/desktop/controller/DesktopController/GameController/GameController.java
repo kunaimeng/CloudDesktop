@@ -14,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GameController {
 
     @RequestMapping("game/dadishu")
-    public String dadishu(){
+    public String dadishu() {
         return "game/allGame/dadishu/index";
     }
+
+    @RequestMapping("game/buyvdaren")
+    public String buyvdaren() {
+        return "game/allGame/buyvdaren/index";
+    }
+
 }
