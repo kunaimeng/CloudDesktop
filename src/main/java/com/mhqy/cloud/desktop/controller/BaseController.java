@@ -115,6 +115,17 @@ public class BaseController {
     }
 
     /**
+     * @Description:视频播放器
+     * @author: peiqiankun
+     * @date: 2018/4/22 16:44
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("video")
+    public String video() {
+        return "video/index";
+    }
+
+    /**
      * @Description:游戏
      * @author: peiqiankun
      * @date: 2018/4/1 20:50
@@ -186,5 +197,10 @@ public class BaseController {
         } finally {
             return "禁止调用初始化地址数据库";
         }
+    }
+
+    @RequestMapping("explorer")
+    public String explorer(){
+        return "explorer/index";
     }
 }
