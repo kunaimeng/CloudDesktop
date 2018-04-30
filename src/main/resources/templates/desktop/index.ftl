@@ -55,7 +55,7 @@
                 <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('http://www.baidu.com','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>云桌面浏览器')">
+                 onclick="Win10.openUrl('/explorer','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>云桌面浏览器')">
                 <img class="icon" src="./static/img/icon/win10.png"/>
                 <div class="title">云桌面浏览器</div>
             </div>
