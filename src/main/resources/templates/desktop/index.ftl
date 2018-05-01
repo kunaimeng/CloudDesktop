@@ -7,7 +7,7 @@
     <title>云桌面</title>
     <link rel='Shortcut Icon' type='image/x-icon' href='./static/img/windows.ico'>
     <link href="./static/css/animate.css" rel="stylesheet">
-    <link rel="stylesheet" href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="./static/css/default.css" rel="stylesheet">
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
@@ -219,7 +219,6 @@
             <div class="btn" id="win10_btn_time"></div>
             <div class="btn" id="win10_btn_command"><span id="win10-msg-nof" class="fa fa-comment-o"></span></div>
             <div class="btn" id="win10_btn_show_desktop"></div>
-
         </div>
     </div>
 </div>

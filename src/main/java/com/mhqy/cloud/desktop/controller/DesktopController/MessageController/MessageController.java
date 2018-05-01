@@ -36,8 +36,10 @@ public class MessageController {
     private Session session;
 
     /**
-     * 连接建立成功调用的方法
-     * @param session
+     * @Description:连接建立成功调用的方法
+     * @author: peiqiankun
+     * @date: 2018/5/1 9:23
+     * @mail: peiqiankun@jd.com
      */
     @OnOpen
     public void onOpen(Session session) {
@@ -59,7 +61,10 @@ public class MessageController {
     }
 
     /**
-     * 连接关闭调用的方法
+     * @Description:连接关闭调用的方法
+     * @author: peiqiankun
+     * @date: 2018/5/1 9:23
+     * @mail: peiqiankun@jd.com
      */
     @OnClose
     public void onClose() {
@@ -88,7 +93,12 @@ public class MessageController {
         }
     }
 
-
+    /**
+     * @Description:发生错误
+     * @author: peiqiankun
+     * @date: 2018/5/1 9:23
+     * @mail: peiqiankun@jd.com
+     */
     @OnError
     public void onError(Session session, Throwable error) {
         logger.error("发生错误-->{}", error.getMessage());
@@ -101,13 +111,13 @@ public class MessageController {
         } catch (Exception e) {
             logger.error("发送消息异常-->", e.getMessage());
         }
-
     }
 
     /**
-     * 群发自定义消息
-     * @param message
-     * @throws IOException
+     * @Description:群发自定义消息
+     * @author: peiqiankun
+     * @date: 2018/5/1 9:24
+     * @mail: peiqiankun@jd.com
      */
     public static void sendInfo(CDSocketMessage message) throws IOException {
         for (MessageController item : webSocketSet) {
