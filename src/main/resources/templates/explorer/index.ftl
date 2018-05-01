@@ -28,9 +28,14 @@
             </div>
         </div>
         <hr style="height:1px;border:none;border-top:1px solid #444;"/>
-        <section id="tab1" title="新标签页">
+        <section id="tab1" title="百度一下，你就知道 ">
             <p>
                 <iframe src="http://www.baidu.com" style="width: 100%;" frameborder="0"></iframe>
+            </p>
+        </section>
+        <section id="tab2" title="新标签页">
+            <p>
+                <iframe src="http://www.qq.com" style="width: 100%;" frameborder="0"></iframe>
             </p>
         </section>
     </div>
@@ -41,6 +46,24 @@
         $(function () {
             $('.tab-group').tabify();
             $("section p iframe").css("height", ($("body").height() - 115) + "px");
+
+            //输入框回车
+            $(".search .s_input input").keydown(function (e) {
+                if (e.keyCode == 13) {
+                    var tabId = $(".container  .tab-group .tab-nav .active a").attr("href");
+                    $(tabId + " p iframe").attr("src", $(".search .s_input input").val());
+                }
+            });
+
+            //刷新按钮
+            $(".search .s_btn .fa-refresh").click(function () {
+                var tabId = $(".container  .tab-group .tab-nav .active a").attr("href");
+                $(tabId + " p iframe").attr("src", $(tabId + " p iframe").attr("src"));
+            });
+
+            $(".tab-nav .fa-times").click(function () {
+                $(this).parent().remove();
+            });
         })
     </script>
 </body>
