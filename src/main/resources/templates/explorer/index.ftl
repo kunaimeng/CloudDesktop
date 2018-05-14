@@ -43,6 +43,7 @@
             content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
         }).setActTab("#" + idValue + i + "");
 
+        //新增标签页
         $(".fa-plus").click(function () {
             i++;
             nthTabs.addTab({
@@ -51,7 +52,6 @@
                 content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
             }).setActTab("#" + idValue + i + "");
         });
-
     });
 
     var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
@@ -64,7 +64,6 @@
     $(".fa-refresh").click(function () {
         show();
     });
-
 
     //刷新  回车
     function show() {
