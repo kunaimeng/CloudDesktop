@@ -5,66 +5,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title>云桌面</title>
-    <link type="text/css" rel="stylesheet" href="./static/css/animate.css">
-    <link type="text/css" rel="stylesheet" href="./static/css/default.css">
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
-    <script type="text/javascript" src="./static/js/win10.js"></script>
+    <script type="text/javascript" src="./static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./static/js/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="./static/js/jquery-tab.js"></script>
     <link type="text/css" rel="stylesheet" href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="./static/css/jquery.scrollbar.min.css">
     <link type="text/css" rel="stylesheet" href="./static/css/explorer.css">
 <body>
-<div class="container explorer">
-    <div class="tab-group">
+<div id="win10">
+    <div id="win10-shortcuts" class="shortcuts-hidden">
         <div class="search">
-            <div class="s_btn">
-                <i class="fa fa-arrow-left"></i>
-                <i class="fa fa-arrow-right"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-folder-open"></i>
-                <i class="fa fa-refresh"></i>
-            </div>
             <div class="s_input">
-                <input type="text">
+                <input type="text" value="https://">
+            </div>
+            <div class="s_btn">
+                <i class="fa fa-refresh" title="刷新"></i>
+                <i class="fa fa-plus" title="新建标签页"></i>
             </div>
         </div>
-        <hr style="height:1px;border:none;border-top:1px solid #444;"/>
-        <section id="tab1" title="百度一下，你就知道 ">
-            <p>
-                <iframe src="http://www.baidu.com" style="width: 100%;" frameborder="0"></iframe>
-            </p>
-        </section>
-        <section id="tab2" title="新标签页">
-            <p>
-                <iframe src="http://www.qq.com" style="width: 100%;" frameborder="0"></iframe>
-            </p>
-        </section>
+        <div>
+            <div class="nth-tabs" id="editor-tabs"></div>
+        </div>
     </div>
-    <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="./static/js/prefixfree.min.js"></script>
-    <script type="text/javascript" src="./static/js/jquery-tab.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('.tab-group').tabify();
-            $("section p iframe").css("height", ($("body").height() - 115) + "px");
+</div>
+<script>
+    var nthTabs;
+    var idValue = 'ID';
+    var i = 0;
+    $(function () {
+        nthTabs = $("#editor-tabs").nthTabs();
+        nthTabs.addTab({
+            id: idValue + i,
+            title: '新标签页',
+            content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
+        }).setActTab("#" + idValue + i + "");
 
-            //输入框回车
-            $(".search .s_input input").keydown(function (e) {
-                if (e.keyCode == 13) {
-                    var tabId = $(".container  .tab-group .tab-nav .active a").attr("href");
-                    $(tabId + " p iframe").attr("src", $(".search .s_input input").val());
-                }
-            });
+        $(".fa-plus").click(function () {
+            i++;
+            nthTabs.addTab({
+                id: idValue + i,
+                title: '新标签页',
+                content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
+            }).setActTab("#" + idValue + i + "");
+        });
 
-            //刷新按钮
-            $(".search .s_btn .fa-refresh").click(function () {
-                var tabId = $(".container  .tab-group .tab-nav .active a").attr("href");
-                $(tabId + " p iframe").attr("src", $(tabId + " p iframe").attr("src"));
-            });
+    });
 
-            $(".tab-nav .fa-times").click(function () {
-                $(this).parent().remove();
-            });
-        })
-    </script>
+    var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+    $('.s_input input').on('keypress', function (event) {
+        if (event.keyCode == 13) {
+            show();
+        }
+    });
+
+    $(".fa-refresh").click(function () {
+        show();
+    });
+
+
+    //刷新  回车
+    function show() {
+        var url = $('.s_input input').val();
+        if (!reg.test(url)) {
+            layer.alert('亲，经检测，您输入的不是网址呦！', 'Ops...There seems to be a little problem.');
+        } else {
+            $(".content-tabs-container .nav-tabs .active a span").html(url);
+            $(".tab-content .active iframe").attr("src", url);
+        }
+    }
+</script>
 </body>
 </html>

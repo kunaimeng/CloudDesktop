@@ -19,6 +19,7 @@ public class ErrorPageConfig {
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {
+            @Override
             public void customize(ConfigurableEmbeddedServletContainer container) {
                 ErrorPage error400Page = new ErrorPage(HttpStatus.BAD_REQUEST, "/ErrorPage/400");
                 ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/ErrorPage/401");
