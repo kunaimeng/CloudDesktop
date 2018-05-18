@@ -1,0 +1,129 @@
+.search .m_s_content {
+    width: 80%;
+    height: 48px;
+    float: left;
+    margin-top: 16px;
+}
+
+.search .m_s_content input {
+    border: 1px solid #2e8ded;
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    font-size: 12px;
+    display: block;
+}
+
+.search span {
+    display: block;
+    float: left;
+    width: 20%;
+    height: 48px;
+    margin-top: 16px;
+    background: #31c27c;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.search span:hover {
+    background: #31C250;
+    transition: all 0.3s ease-in;
+    color: #f9f9f9;
+}
+
+i:hover {
+    color: #1E9FFF;
+    transition: all 0.3s ease;
+}
+
+.win10-left {
+    width: 45%;
+    height: auto;
+    float: left;
+}
+
+.win10-left ul {
+    margin-left: -40px;
+}
+
+.win10-left ul li {
+    list-style: none;
+    font-size: 12px;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    border-top: none;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.win10-left ul li p {
+    float: left;
+    width: 90%;
+    margin: 0 !important;
+}
+
+.win10-left ul li:hover {
+    border-bottom: 1px solid #1E9FFF;
+    transition: all 0.3s ease-in;
+}
+
+.win10-left ul li i {
+    width: 10%;
+    float: left;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+.m_title {
+    margin: 0 !important;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 15px;
+    height: 40px;
+    line-height: 40px;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.win10-right {
+    width: 55%;
+    height: auto;
+    float: left;
+}
+
+.m_play {
+    width: 100%;
+    height: 100px;
+}
+
+.m_p_title {
+    width: 100%;
+    height: 30px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.m_p_but {
+    margin: 10px 30% 20px 30%;
+    text-align: center;
+}
+
+.m_p_but .fa {
+    font-size: 20px;
+    margin: 0 10% 0 10%;
+}
+
+.m_p_but .btn {
+    font-size: 28px;
+}
+
+.m_lrc {
+    padding: 5px;
+    text-align: center;
+    height: 650px;
+    overflow-y: scroll
+}
