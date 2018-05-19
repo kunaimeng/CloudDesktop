@@ -3,42 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>天气</title>
-    <link rel="stylesheet" type="text/css" href="./static/weather/css/default.css"/>
-    <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="./static/css/search.css" rel="stylesheet" type="text/css">
-    <style>
-        #column span {
-            width: 48px;
-            text-align: left;
-            color: #565656;
-            float: left;
-            font-weight: bold;
-        }
-
-        #column a {
-            height: 22px;
-            line-height: 22px;
-            padding: 0 7px;
-            margin: 2px 0;
-            display: block;
-            float: left;
-            font-size: 14px;
-            border-radius: 2px;
-            color: #565656;
-        }
-
-        #column a:hover {
-            background-color: #00a2ff;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-        #column .active{
-            background-color: #00a2ff;
-            color: #fff;
-        }
-        #photo li{list-style: none;width:18%;float: left;margin:5px 1% 5px 1%;}
-        #photo li img{width:100%;}
-    </style>
+    <link href="./static/weather/css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./static/css/search.css" rel="stylesheet" type="text/css"/>
+    <link href="./static/css/wallpaper.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container">
@@ -90,8 +58,6 @@
         var pic = $(this).find("img").attr("src");
         Win10_parent.setBgUrl({main:pic});
     });
-
-
 </script>
 </body>
 </html>
