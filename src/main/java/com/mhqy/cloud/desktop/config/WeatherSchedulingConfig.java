@@ -65,6 +65,7 @@ public class WeatherSchedulingConfig {
                 CDWeather cdWeather = weatherService.getWeather(doc);
                 logger.info("开始存入redis天气信息 key:{},value:{}", cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
                 redisTemplate.opsForValue().set(cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
+                Thread.sleep(3000);
             }
         } catch (Exception e) {
             logger.error("天气定时任务执行出现异常：{}", e.getMessage());

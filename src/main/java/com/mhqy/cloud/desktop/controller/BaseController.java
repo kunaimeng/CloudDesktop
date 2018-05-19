@@ -223,42 +223,15 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("wallpaper")
-    public String wallpaper(String href, String keyWord, Model model) {
-        List<Map<String, String>> column = new ArrayList<>();
-        Document document = internetService.getDocByUrl("http://www.5857.com/list-9-0-3366-0-3395-0-1.html");
-        Elements elements = document.getElementsByClass("first");
-        for (Element element : elements) {
-            Elements ahrefs = element.getElementsByTag("a");
-            for (Element ahref : ahrefs) {
-                Map<String, String> map = new HashMap<>();
-                map.put("href", ahref.attr("href"));
-                map.put("title", ahref.text());
-                column.add(map);
-            }
+    public String wallpaper(String href, Model model) {
+        List<Map<String, String>> list = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("column").toString(), List.class);
+        model.addAttribute("column", list);
+        if (href == null && !list.isEmpty()) {
+            href = list.get(0).get("href");
         }
-        model.addAttribute("column", column);
-
-        List<Map<String, String>> photoList = new ArrayList<>();
-        if(!column.isEmpty()){
-            Map<String, String> map = column.get(0);
-            Document doc = internetService.getDocByUrl(map.get("href"));
-            Elements docElementsByClass = doc.getElementsByClass("piclist");
-            for (Element element : docElementsByClass) {
-                Elements elementsByTags = element.getElementsByClass("listbox");
-                for (Element tag:elementsByTags){
-                    doc = internetService.getDocByUrl(tag.select("a").attr("href"));
-                    Elements photoElements = doc.getElementsByClass("photo-a");
-                    for(Element photo:photoElements){
-                        Map<String, String> photoMap = new HashMap<>();
-                        photoMap.put("src",photo.select("img").attr("src"));
-                        photoMap.put("title",photo.select("img").attr("alt"));
-                        photoList.add(photoMap);
-                    }
-                }
-            }
-        }
-
+        List<Map<String, String>> photoList = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(href).toString(), List.class);
         model.addAttribute("photoList", photoList);
+        model.addAttribute("href", href);
         return "wallpaper/index";
     }
 }

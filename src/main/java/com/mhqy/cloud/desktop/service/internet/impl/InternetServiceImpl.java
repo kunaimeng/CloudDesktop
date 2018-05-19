@@ -31,7 +31,7 @@ public class InternetServiceImpl implements InternetService{
     public Document getDocByUrl(String url) {
         Document doc = null;
         try {
-            doc = Jsoup.connect(url).userAgent("Chrome/26.0.1410.64").timeout(30000).get();
+            doc = Jsoup.connect(url).userAgent("Chrome/26.0.1410.64").timeout(3000000).get();
         } catch (IOException e) {
             logger.error("连接:{}出现异常,原因：{}", url, e.getMessage());
         }

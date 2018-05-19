@@ -5,27 +5,22 @@
     <title>天气</title>
     <link href="./static/weather/css/default.css" rel="stylesheet" type="text/css"/>
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="./static/css/search.css" rel="stylesheet" type="text/css"/>
     <link href="./static/css/wallpaper.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container">
     <div class="main">
-        <form id="search" method="post" action="weather.htm">
-            <div class="search" style="width: 100%;height: 80px;">
-                <div class="m_s_content">
-                    <input type="text" class="m_s_c_input" name="province"/>
-                </div>
-                <span class="m_s_searcch">
-             <i class="fa fa-search"></i>
-                获取
-            </span>
-            </div>
-        </form>
+        <br>
+        <br>
         <div id="column">
             <span>分类：</span>
+            <form method="post" action="wallpaper.html" id="searchForm">
+                <input type="hidden" name="href" id="href">
+            </form>
             <#list column as col>
-                <#if col_index==0>
+                <#if col_index==0&&href=="">
+                    <a href="#" class="active" data-url="${col["href"]}">${col["title"]}</a>
+                <#elseif href!=""&&href==col["href"]>
                     <a href="#" class="active" data-url="${col["href"]}">${col["title"]}</a>
                 <#else >
                     <a href="#" class="" data-url="${col["href"]}">${col["title"]}</a>
@@ -52,6 +47,8 @@
     $("#column a").click(function () {
         $("#column a").attr("class", "");
         $(this).attr("class", "active");
+        $("#href").val($(this).attr("data-url"));
+        $("#searchForm").submit();
     });
 
     $("#photo li").click(function(){
