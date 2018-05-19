@@ -5,3 +5,4 @@
 .main .search .m_s_content .m_s_c_address ul li:hover{background: #1E9FFF;color: #fff;transition: all 0.3s ease-in;}
 .main .search span {display: block;float: left;width: 20%;height: 48px;margin-top: 16px;background: #31c27c;color: #fff;line-height: 48px;text-align: center;cursor: pointer;}
 .main .search span:hover {background: #31C250;transition: all 0.3s ease-in;color: #f9f9f9;}
+.m_s_c_input{font-size: 14px;}

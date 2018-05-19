@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.Interceptor;
+package com.mhqy.cloud.desktop.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -6,7 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.Interceptor

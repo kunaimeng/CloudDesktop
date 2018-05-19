@@ -1,6 +1,6 @@
 package com.mhqy.cloud.desktop.config;
 
-import com.mhqy.cloud.desktop.Interceptor.Interceptor;
+import com.mhqy.cloud.desktop.interceptor.Interceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
