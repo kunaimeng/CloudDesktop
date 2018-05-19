@@ -9,6 +9,8 @@
     <link href="./static/css/animate.css" rel="stylesheet">
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="./static/css/default.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./static/weather/css/climacons.css"/>
+    <link rel="stylesheet" type="text/css" href="./static/weather/css/component2.css"/>
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <script type="text/javascript" src="./static/js/win10.js"></script>
@@ -55,33 +57,38 @@
                 <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/explorer','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>云桌面浏览器')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/explorer","<i class=\"fa fa-internet-explorer icon blue\"></i>云桌面浏览器")'>
+                <i class="fa fa-internet-explorer icon blue"></i>
                 <div class="title">云桌面浏览器</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/video','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>视频播放器')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/video","<i class=\"fa fa-caret-square-o-right icon blue\"></i>视频播放器")'>
+                <i class="fa fa-caret-square-o-right icon blue"></i>
                 <div class="title">视频播放器</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/music','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>音乐')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/music","<i class=\"fa fa-music icon blue\"></i>音乐")'>
+                <i class="fa fa-music icon blue"></i>
                 <div class="title">音乐</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/weather','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>天气')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/weather","<i class=\"icon-clima-1 icon blue\"></i>天气")'>
+                <i class="icon-clima-1 icon blue"></i>
                 <div class="title">天气</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/game/dadishu','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>打地鼠')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>壁纸")'>
+                <i class="fa fa-photo icon blue"></i>
+                <div class="title">壁纸</div>
+            </div>
+            <div class="shortcut"
+                 onclick='Win10.openUrl("/game/dadishu","<i class=\"fa fa-gavel icon blue\"></i>打地鼠")'>
+                <i class="fa fa-gavel icon blue"></i>
                 <div class="title">打地鼠</div>
             </div>
             <div class="shortcut"
-                 onclick="Win10.openUrl('/game/buyvdaren','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>捕鱼达人')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/game/buyvdaren","<i class=\"fa fa-gg-circle icon blue\"></i>捕鱼达人")'>
+                <i class="fa fa-gg-circle icon blue"></i>
                 <div class="title">捕鱼达人</div>
             </div>
             <div class="shortcut"
@@ -90,8 +97,8 @@
                 <div class="title">在线文档</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears  icon purple\"></i>设置")'>
-                <i class="fa fa-gears  icon purple"></i>
+                 onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears icon purple\"></i>设置")'>
+                <i class="fa fa-gears icon purple"></i>
                 <div class="title">设置</div>
             </div>
         </div>

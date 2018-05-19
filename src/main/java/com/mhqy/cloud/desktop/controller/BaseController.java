@@ -5,8 +5,8 @@ import com.mhqy.cloud.desktop.common.util.ListUtil;
 import com.mhqy.cloud.desktop.domin.CDAddress;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
-import com.mhqy.cloud.desktop.service.CDAddressService.CDAddressService;
-import com.mhqy.cloud.desktop.service.CDFileService.CDFileService;
+import com.mhqy.cloud.desktop.service.address.CDAddressService;
+import com.mhqy.cloud.desktop.service.file.CDFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,15 +143,15 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("weather")
-    public String weather(Model model,CDWeather cdWeather) {
+    public String weather(Model model, CDWeather cdWeather) {
         List<CDWeather> result = new ArrayList<>();
         logger.info("天气搜索参数-->{}", BeanJsonUtil.bean2Json(cdWeather));
         CDWeather cdWeatherResult;
         try {
-            if(cdWeather.getAddressId()!=null){
+            if (cdWeather.getAddressId() != null) {
                 cdWeatherResult = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdWeather.getAddressId()).toString(), CDWeather.class);
                 result.add(cdWeatherResult);
-            }else{
+            } else {
                 List<CDAddress> list = addressService.selectByRand();
                 if (ListUtil.isNotEmpty(list)) {
                     for (CDAddress cdAddress : list) {
@@ -199,8 +199,26 @@ public class BaseController {
         }
     }
 
+    /**
+     * @Description:浏览器
+     * @author: peiqiankun
+     * @date: 2018/5/18 17:56
+     * @mail: peiqiankun@jd.com
+     */
     @RequestMapping("explorer")
     public String explorer(){
         return "explorer/index";
+    }
+
+    /**
+     * @Description:壁纸
+     * @author: peiqiankun
+     * @date: 2018/5/18 17:55
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("wallpaper")
+    public String wallpaper(String keyWord){
+
+        return "wallpaper/index";
     }
 }
