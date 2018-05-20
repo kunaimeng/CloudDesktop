@@ -31,7 +31,8 @@ public class RedisCacheConfig {
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
         redisTemplate.setConnectionFactory(factory);
-        RedisSerializer<String> redisSerializer = new StringRedisSerializer();// Long类型不可以会出现异常信息;
+        //Long类型不可以会出现异常信息;
+        RedisSerializer<String> redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
         redisTemplate.setHashKeySerializer(redisSerializer);
         return redisTemplate;
