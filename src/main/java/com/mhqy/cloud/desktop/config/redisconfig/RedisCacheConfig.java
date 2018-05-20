@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.config.RedisConfig;
+package com.mhqy.cloud.desktop.config.redisconfig;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

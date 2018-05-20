@@ -27,10 +27,11 @@
         #d_left ul li:hover{padding-left: 4%;line-height:36px;transition: all 0.3s ease;border-left: 6px solid #1E9FFF;}
         #d_right{width: 85%;height: auto;float: left;}
         #d_right ul{padding-left: 1%;}
-        #d_right ul .d_r_con:hover{padding-left: 1%;transition: all 0.3s ease;border:1px solid #2e8ded;background:#4898d5;color: #fff;}
+        #d_right ul .d_r_con:hover{transition: all 0.3s ease;background:#4898d5;color: #fff;}
         #d_right ul li span{float: left;height: 30px;line-height: 30px;}
         #d_right ul li span p{float: left;}
         #d_right ul li .d_r_one{width: 60%;}
+        #d_right ul li .d_r_one input{width:70%;height:28px;}
         #d_right ul li .d_r_two{width: 10%;}
     </style>
 </head>
@@ -44,7 +45,7 @@
                 </span>
             </div>
             <div class="d_t_center">
-                <span><i class="fa fa-list"></i>&nbsp;根目录</span>
+                <span data-id="0"><i class="fa fa-list"></i>&nbsp;根目录</span>
             </div>
             <div class="d_t_right">
                 <input type="text">
@@ -64,15 +65,15 @@
             </ul>
         </div>
         <div id="d_right">
+            <div class="d_r_first">
+                <span class="d_r_one">名称</span>
+                <span class="d_r_two">修改日期</span>
+                <span class="d_r_two">类型</span>
+                <span class="d_r_two">大小</span>
+            </div>
             <ul>
-                <li class="d_r_first">
-                    <span class="d_r_one">名称</span>
-                    <span class="d_r_two">修改日期</span>
-                    <span class="d_r_two">类型</span>
-                    <span class="d_r_two">大小</span>
-                </li>
                 <#list content as con>
-                <li class="d_r_con">
+                    <li class="d_r_con">
                     <span class="d_r_one
                         <#if con.fileType == "1">
                             Folder
@@ -85,16 +86,16 @@
                         </#if>
                         &nbsp;&nbsp;${con.fileName}
                     </span>
-                    <span class="d_r_two">${(con.updateTime)?string("yyyy-MM-dd")}</span>
-                    <span class="d_r_two">
+                        <span class="d_r_two">${(con.updateTime)?string("yyyy-MM-dd")}</span>
+                        <span class="d_r_two">
                         <#if con.fileType == "1">
                             文件夹
                         <#else>
                             ${con.fileExt}文件
                         </#if>
-                    </span>
-                    <span class="d_r_two">${con.fileSimpleSize}</span>
-                    <span class="d_r_two">
+                        </span>
+                        <span class="d_r_two">${con.fileSimpleSize}</span>
+                        <span class="d_r_two">
                         <a href="./static/upload/${con.fileSystemName}">
                             <i class="fa fa-arrow-down"></i>
                         </a>
@@ -105,7 +106,7 @@
                         <i class="fa fa-folder-open-o"></i>
                         </#if>
                     </span>
-                </li>
+                    </li>
                 </#list>
             </ul>
         </div>
@@ -126,7 +127,7 @@
         layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to delete this filr?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
             $.ajax({
                 type: 'post',
-                url: "/updateFile.ftl",
+                url: "/updateFile.html",
                 data: {"fileId":id,"yn":0},
                 dataType: "json",
                 success: function (msg) {
@@ -156,7 +157,7 @@
                 if(msg.flag){
                     span.nextAll().remove();
                     $("#d_right ul .d_r_con").remove();
-                    $("#d_right ul .d_r_first").after(ViewOfList(msg));
+                    $("#d_right ul").append(ViewOfList(msg));
                 }else{
                     layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
                 }
@@ -173,14 +174,14 @@
         var con = $(this).attr("data-name");
         $.ajax({
             type: 'post',
-            url: "/queryFileList.ftl",
+            url: "/queryFileList.html",
             data: {"fileParentId":obj},
             dataType: "json",
             success: function (msg) {
                 if(msg.flag){
                     $("#d_top .d_t_center").append("<span data-id="+obj+"><i class=\"fa fa-list\"></i>&nbsp;"+con+"</span>");
                     $("#d_right ul .d_r_con").remove();
-                    $("#d_right ul .d_r_first").after(ViewOfList(msg));
+                    $("#d_right ul").append(ViewOfList(msg));
                 }else{
                     layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
                 }
@@ -236,25 +237,65 @@
             }
         }
         return html;
-
     }
 
     $.tmUpload({
         btnId:"upload",
-        url:"/fileUpload.ftl",
+        url:"/fileUpload.html",
         limitSize:"100 MB",
         fileTypes:"*.*",
         multiple:true,
         callback:function(serverData,file){
             var jsonData = eval("("+serverData+")");
             $("#d_right .d_r_first").after("<li class=\"d_r_con\">\n" +
-                    "                    <span class=\"d_r_one\">"+jsonData.fileName+"</span>\n" +
+                    "                    <span class=\"d_r_one\">&nbsp;\n" +
+                    "                            <i class=\"fa fa-file\"></i>\n" +
+                    "                        &nbsp;&nbsp;"+jsonData.fileName+"\n" +
+                    "                    </span>\n" +
                     "                    <span class=\"d_r_two\">"+fmtDate(jsonData.createTime)+"</span>\n" +
                     "                    <span class=\"d_r_two\">"+jsonData.fileExt+"</span>\n" +
                     "                    <span class=\"d_r_two\">"+jsonData.fileSimpleSize+"</span>\n" +
+                    "                    <span class=\"d_r_two\">\n" +
+                    "                        <a href=\"./static/upload/"+jsonData.fileSystemName+"\">\n" +
+                    "                            <i class=\"fa fa-arrow-down\"></i>\n" +
+                    "                        </a>\n" +
+                    "                        &nbsp;&nbsp;\n" +
+                    "                        <i class=\"fa fa-close\"></i>\n" +
+                    "                    </span>\n" +
                     "                </li>");
         }
     });
+
+    $("#d_top .d_t_left span").click(function () {
+        $("#d_right ul li").first().before("<li class=\"d_r_input\">\n" +
+                "                    <span class=\"d_r_one\">\n" +
+                "                        <i class=\"fa fa-folder\"></i>\n" +
+                "                        &nbsp;&nbsp;\n" +
+                "                        <input>\n" +
+                "                        &nbsp;&nbsp;\n" +
+                "                        <i class=\"fa fa-check\"></i>\n" +
+                "                        &nbsp;&nbsp;\n" +
+                "                        <i class=\"fa fa-close\"></i>\n" +
+                "                    </span>\n" +
+                "                    <span class=\"d_r_two\"></span>\n" +
+                "                    <span class=\"d_r_two\">\n" +
+                "                        文件夹\n" +
+                "                    </span>\n" +
+                "                    <span class=\"d_r_two\"></span>\n" +
+                "                    <span class=\"d_r_two\"></span>\n" +
+                "                </li>");
+    });
+
+
+    $("#d_right ul li .d_r_one").on("click",".fa-check",function(){
+        alert("123");
+    });
+
+    $("#d_right ul .d_r_input .d_r_one").on("click",".fa-close",function () {
+        alert(123);
+        $(this).parents(".d_r_input").remove();
+    });
+
 </script>
 </body>
 </html>

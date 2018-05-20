@@ -57,8 +57,8 @@
                 <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("/explorer","<i class=\"fa fa-internet-explorer icon blue\"></i>云桌面浏览器")'>
-                <i class="fa fa-internet-explorer icon blue"></i>
+                 onclick='Win10.openUrl("/explorer","<i class=\"fa fa-edge icon blue\"></i>云桌面浏览器")'>
+                <i class="fa fa-edge icon blue"></i>
                 <div class="title">云桌面浏览器</div>
             </div>
             <div class="shortcut"
