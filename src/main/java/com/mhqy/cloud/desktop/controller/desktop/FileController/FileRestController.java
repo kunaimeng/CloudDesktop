@@ -35,6 +35,12 @@ public class FileRestController {
     @Autowired
     private FileUploadService fileUploadService;
 
+    /**
+     * @Description:文件上传
+     * @author: peiqiankun
+     * @date: 2018/5/21 15:36
+     * @mail: peiqiankun@jd.com
+     */
     @RequestMapping("fileUpload")
     public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) {
         CDFile cdFile = fileUploadService.upload(file, request);
@@ -43,6 +49,12 @@ public class FileRestController {
         return cdFile;
     }
 
+    /**
+     * @Description:查询文件信息
+     * @author: peiqiankun
+     * @date: 2018/5/21 15:36
+     * @mail: peiqiankun@jd.com
+     */
     @RequestMapping("queryFileList")
     public Map<String,Object> queryFileList(CDFile cdFile){
         Map<String,Object> map = new HashMap<String,Object>();
@@ -51,31 +63,37 @@ public class FileRestController {
             List<CDFile> list = cdFileService.selectByFile(cdFile);
             map.put("flag",true);
             map.put("list",list);
-        }catch (Exception e){
-            logger.error("删除文件数据异常-->",e.getMessage());
-            map.put("flag",false);
-            map.put("msg",e.getMessage());
-        }finally {
             return map;
-        }
-    }
-
-    @RequestMapping("updateFile")
-    public Map<String,Object> updateFile(CDFile cdFile){
-        Map<String,Object> map = new HashMap<String,Object>();
-        try{
-            int i = cdFileService.updateByPrimaryKeySelective(cdFile);
-            if(i==1){
-                map.put("msg","删除成功");
-            }else{
-                map.put("msg","删除失败");
-            }
-            map.put("flag",true);
         }catch (Exception e){
             logger.error("获取文件数据异常-->",e.getMessage());
             map.put("flag",false);
             map.put("msg",e.getMessage());
-        }finally {
+            return map;
+        }
+    }
+
+    /**
+     * @Description:更新文件信息
+     * @author: peiqiankun
+     * @date: 2018/5/21 15:35
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("updateFile")
+    public Map<String, Object> updateFile(CDFile cdFile) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int i = cdFileService.updateByPrimaryKeySelective(cdFile);
+            if (i == 1) {
+                map.put("msg", "操作成功");
+            } else {
+                map.put("msg", "操作失败");
+            }
+            map.put("flag", true);
+            return map;
+        } catch (Exception e) {
+            logger.error("更新文件数据异常-->", e.getMessage());
+            map.put("flag", false);
+            map.put("msg", e.getMessage());
             return map;
         }
     }

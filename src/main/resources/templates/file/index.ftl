@@ -127,7 +127,7 @@
         layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to delete this filr?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
             $.ajax({
                 type: 'post',
-                url: "/updateFile.html",
+                url: "/updateFile",
                 data: {"fileId":id,"yn":0},
                 dataType: "json",
                 success: function (msg) {
