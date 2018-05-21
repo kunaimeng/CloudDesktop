@@ -124,7 +124,7 @@
     $("#d_right ul li .d_r_two").on("click",".fa-close",function () {
         var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
         var obj = $(this).parents(".d_r_con");
-        layer.confirm(Win10.lang('确认要删除吗?','Are you sure you want to delete this filr?'), {icon: 3, title:Win10.lang('提示','Prompt')}, function(index){
+        layer.confirm('确认要删除吗?', {icon: 3, title:"提示"}, function(index){
             $.ajax({
                 type: 'post',
                 url: "/updateFile",
@@ -133,13 +133,13 @@
                 success: function (msg) {
                     if(msg.flag){
                         obj.remove();
-                        layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                        layer.alert(msg.msg);
                     }else{
-                        layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                        layer.alert(msg.msg);
                     }
                 },
                 error:function () {
-                    layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+                    layer.alert("出错了，请稍后重试");
                 }
             });
         });
@@ -159,11 +159,11 @@
                     $("#d_right ul .d_r_con").remove();
                     $("#d_right ul").append(ViewOfList(msg));
                 }else{
-                    layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                    layer.alert(msg.msg);
                 }
             },
             error:function () {
-                layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+                layer.alert("出错了，请稍后重试");
             }
         });
 
@@ -183,11 +183,11 @@
                     $("#d_right ul .d_r_con").remove();
                     $("#d_right ul").append(ViewOfList(msg));
                 }else{
-                    layer.alert(Win10.lang(msg.msg,'Ops...There seems to be a little problem.'));
+                    layer.alert(msg.msg);
                 }
             },
             error:function () {
-                layer.alert(Win10.lang("出错了，请稍后重试",'Ops...There seems to be a little problem.'));
+                layer.alert("出错了，请稍后重试");
             }
         });
     });
@@ -287,15 +287,32 @@
     });
 
 
-    $("#d_right ul li .d_r_one").on("click",".fa-check",function(){
-        alert("123");
+    $("#d_top .d_t_right input").bind('keypress',function(event){
+        if(event.keyCode == "13") {
+            var obj = $(this).val();
+            if (obj == "" || obj == null || obj == "undefined") {
+                layer.alert("您没输入任何搜索内容！");
+            }else{
+                $.ajax({
+                    type: 'post',
+                    url: "/queryFileList",
+                    data: {"fileName":obj,"fileType":2},
+                    dataType: "json",
+                    success: function (msg) {
+                        if(msg.flag){
+                            $("#d_right ul .d_r_con").remove();
+                            $("#d_right ul").append(ViewOfList(msg));
+                        }else{
+                            layer.alert(msg.msg);
+                        }
+                    },
+                    error:function () {
+                        layer.alert("出错了，请稍后重试");
+                    }
+                });
+            }
+        }
     });
-
-    $("#d_right ul .d_r_input .d_r_one").on("click",".fa-close",function () {
-        alert(123);
-        $(this).parents(".d_r_input").remove();
-    });
-
 </script>
 </body>
 </html>
