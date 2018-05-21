@@ -8,7 +8,6 @@
     <link href="./static/js/swfupload/upload/upload.css" rel="stylesheet" type="text/css"/>
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="./static/css/file.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 <div id="win10">
@@ -91,7 +90,6 @@
 </div>
 <div id="console"></div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="./static/js/win10.js"></script>
 <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
 <!-- swfipload js -->
 <script type="text/javascript" src="./static/js/swfupload/upload/tz_upload.js"></script>
