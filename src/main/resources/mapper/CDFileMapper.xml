@@ -72,6 +72,16 @@
     <include refid="Base_Search_List" />
     ORDER by 1 desc
   </select>
+  <select id="selectPhonoByUser" resultMap="BaseResultMap" parameterType="com.mhqy.cloud.desktop.domin.CDFile">
+    select
+    <include refid="Base_Column_List" />
+    from c_d_file
+    WHERE file_user_id = #{fileUserId,jdbcType=BIGINT}
+    AND file_ext IN ('JPG','JPEG','PNG','GIF','jpg','jpeg','png','gif')
+    AND yn = 1
+    AND file_type = 2
+    ORDER BY create_time DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_file
     where file_id = #{fileId,jdbcType=BIGINT}

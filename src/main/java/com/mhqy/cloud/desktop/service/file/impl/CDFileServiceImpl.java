@@ -57,4 +57,15 @@ public class CDFileServiceImpl implements CDFileService {
     public List<CDFile> selectByFile(CDFile record){
         return cdFileMapper.selectByFile(record);
     }
+
+    /**
+     * @Description:根据用户查询相册信息
+     * @author: peiqiankun
+     * @date: 2018/5/20 20:53
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDFile> listPhonoByUser(CDFile record){
+        return cdFileMapper.selectPhonoByUser(record);
+    }
 }

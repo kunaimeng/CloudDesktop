@@ -131,6 +131,7 @@ body {
 
 #win10_btn_group_right{
     float: right;
+    float: right;
     max-width:200px;
     overflow: auto;
 }

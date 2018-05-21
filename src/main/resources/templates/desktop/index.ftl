@@ -82,6 +82,11 @@
                 <div class="title">壁纸</div>
             </div>
             <div class="shortcut"
+                 onclick='Win10.openUrl("/picture","<i class=\"fa fa-picture-o icon blue\"></i>相册")'>
+                <i class="fa fa-picture-o icon blue"></i>
+                <div class="title">相册</div>
+            </div>
+            <div class="shortcut"
                  onclick='Win10.openUrl("/game/dadishu","<i class=\"fa fa-gavel icon blue\"></i>打地鼠")'>
                 <i class="fa fa-gavel icon blue"></i>
                 <div class="title">打地鼠</div>

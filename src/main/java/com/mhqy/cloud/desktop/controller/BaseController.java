@@ -8,9 +8,6 @@ import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.InternetService;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
+
 
 
 /**
@@ -84,6 +82,7 @@ public class BaseController {
         cdFile.setYn(new Byte("1"));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
         model.addAttribute("content", list);
+
         return "file/index";
     }
 
@@ -233,5 +232,20 @@ public class BaseController {
         model.addAttribute("photoList", photoList);
         model.addAttribute("href", href);
         return "wallpaper/index";
+    }
+
+    /**
+     * @Description:相册
+     * @author: peiqiankun
+     * @date: 2018/5/21 9:55
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("picture")
+    public String picture(Model model,HttpSession session){
+        CDFile cdFile = new CDFile();
+        cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        List<CDFile> photoList = cdFileService.listPhonoByUser(cdFile);
+        model.addAttribute("photoList",photoList);
+        return "picture/index";
     }
 }

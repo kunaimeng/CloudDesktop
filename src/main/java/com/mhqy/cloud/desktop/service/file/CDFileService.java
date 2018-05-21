@@ -29,4 +29,12 @@ public interface CDFileService {
 
     List<CDFile> selectByFile(CDFile record);
 
+    /**
+     * @Description:根据用户查询相册信息
+     * @author: peiqiankun
+     * @date: 2018/5/20 20:53
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDFile> listPhonoByUser(CDFile record);
+
 }

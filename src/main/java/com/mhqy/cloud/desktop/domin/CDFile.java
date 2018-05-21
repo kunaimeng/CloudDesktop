@@ -10,29 +10,56 @@ import java.util.Date;
  * @version: v1.0
  */
 public class CDFile {
-    /*文件id*/
+    /**
+     * 文件id
+     */
     private Long fileId;
-    /*所属者*/
+    /**
+     * 所属者
+     */
     private Long fileUserId;
-    /*父目录*/
+    /**
+     * 父目录
+     */
     private Long fileParentId;
     /*文件名*/
+    /**
+     * 文件id
+     */
     private String fileName;
-    /*文件唯一码*/
+    /**
+     * 文件唯一码
+     */
     private String fileSystemName;
     /*字节大小*/
+    /**
+     * 文件id
+     */
     private String fileSize;
-    /*多少兆*/
+    /**
+     * 多少兆
+     */
     private String fileSimpleSize;
-    /*1文件夹 2文件*/
+    /**
+     * 1文件夹 2文件
+     */
     private String fileType;
     /*文件后缀*/
+    /**
+     * 文件id
+     */
     private String fileExt;
-    /*创建时间*/
+    /**
+     * 创建时间
+     */
     private Date createTime;
-    /*更新时间*/
+    /**
+     * 更新时间
+     */
     private Date updateTime;
-    /*是否删除  1正常  2回收站  3已经删除*/
+    /**
+     * 是否删除  1正常  2回收站  3已经删除
+     */
     private Byte yn;
 
     public Long getFileId() {
