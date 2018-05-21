@@ -52,6 +52,11 @@ public class CDFile {
      * 文件描述
      */
     private String fileDesc;
+
+    /**
+     * 引用次数
+     */
+    private Integer fileQuote;
     /**
      * 创建时间
      */
@@ -143,6 +148,14 @@ public class CDFile {
 
     public void setFileDesc(String fileDesc) {
         this.fileDesc = fileDesc;
+    }
+
+    public Integer getFileQuote() {
+        return fileQuote;
+    }
+
+    public void setFileQuote(Integer fileQuote) {
+        this.fileQuote = fileQuote;
     }
 
     public Date getCreateTime() {

@@ -12,13 +12,14 @@
     <result column="file_type" property="fileType" jdbcType="VARCHAR" />
     <result column="file_ext" property="fileExt" jdbcType="VARCHAR" />
     <result column="file_desc" property="fileDesc" jdbcType="VARCHAR" />
+    <result column="file_quote" property="fileQuote" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="yn" property="yn" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
     file_id, file_user_id, file_parent_id, file_name, file_system_name, file_size, file_simple_size, 
-    file_type, file_ext,file_desc, create_time, update_time, yn
+    file_type, file_ext,file_desc,file_quote, create_time, update_time, yn
   </sql>
   <sql id="Base_Search_List">
     <where>
@@ -51,6 +52,9 @@
       </if>
       <if test="fileDesc != null and fileDesc !=''">
         AND file_desc = #{fileDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="fileQuote != null and fileQuote !=''">
+        AND file_quote = #{fileQuote,jdbcType=VARCHAR}
       </if>
       <if test="createTime != null">
         AND create_time = #{createTime,jdbcType=TIMESTAMP}
@@ -94,14 +98,14 @@
     insert into c_d_file (file_id, file_user_id, file_parent_id, 
       file_name, file_system_name, file_size, 
       file_simple_size, file_type, file_ext, 
-      file_desc, create_time, update_time,
+      file_desc,file_quote, create_time, update_time,
       yn
       )
     values (#{fileId,jdbcType=BIGINT}, #{fileUserId,jdbcType=BIGINT}, #{fileParentId,jdbcType=BIGINT}, 
       #{fileName,jdbcType=VARCHAR}, #{fileSystemName,jdbcType=VARCHAR}, #{fileSize,jdbcType=VARCHAR}, 
       #{fileSimpleSize,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, #{fileExt,jdbcType=VARCHAR}, 
-      #{fileDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
-      #{yn,jdbcType=TINYINT}
+      #{fileDesc,jdbcType=VARCHAR},#{fileQuote,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},#{yn,jdbcType=TINYINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDFile" >
@@ -136,6 +140,9 @@
       </if>
       <if test="fileDesc != null" >
         file_desc,
+      </if>
+      <if test="fileQuote != null" >
+        file_quote,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -178,6 +185,9 @@
       <if test="fileDesc != null" >
         #{fileDesc,jdbcType=VARCHAR},
       </if>
+      <if test="fileQuote != null" >
+        #{fileQuote,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -219,6 +229,9 @@
       <if test="fileDesc != null" >
         file_desc = #{fileDesc,jdbcType=VARCHAR},
       </if>
+      <if test="fileQuote != null" >
+        file_quote = #{fileQuote,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -242,6 +255,7 @@
       file_type = #{fileType,jdbcType=VARCHAR},
       file_ext = #{fileExt,jdbcType=VARCHAR},
       file_desc = #{fileDesc,jdbcType=VARCHAR},
+      file_quote = #{fileQuote,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       yn = #{yn,jdbcType=TINYINT}
