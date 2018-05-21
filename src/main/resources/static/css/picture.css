@@ -285,3 +285,28 @@ img.thumb {
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
+
+section article span{
+	font-size: 12px;
+	margin:5px 0 5px 0;
+	cursor: pointer;
+	display: block;
+	padding: 3px;
+	color:#010101;
+	border: 1px solid #1d7db1;
+	border-radius: 3px;
+	width: 100%;
+	text-align: center;
+}
+
+section article p{
+	color:#101010;
+	color:#fff;
+	font-size: 12px !important;
+}
+
+section article span:hover{
+	background:#1d7db1;
+	color:#fff;
+	transition: all 0.3s ease;
+}

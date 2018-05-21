@@ -12,25 +12,22 @@
     <![endif]-->
 </head>
 <body>
-
 <section id="gallery-wrapper">
     <#list photoList as photo>
         <article class="white-panel">
             <img src="${photo.fileSystemName}" class="thumb" alt="${photo.fileName}">
-            <h1>
+            <span>
                 ${photo.fileDesc!"点击添加描述"}
-            </h1>
-            <p>${photo.fileName}</p>
+            </span>
         </article>
     </#list>
 </section>
-
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="./static/js/pinterest_grid.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#gallery-wrapper").pinterest_grid({
-            no_columns: 4,
+            no_columns: 5,
             padding_x: 10,
             padding_y: 10,
             margin_bottom: 50,
