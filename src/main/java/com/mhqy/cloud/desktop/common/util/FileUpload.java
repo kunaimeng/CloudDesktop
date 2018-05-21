@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.common.util;
 
+import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.controller.BaseController;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class FileUpload {
     public static CDFile upload(MultipartFile file, HttpServletRequest request) {
         CDFile cdFile = new CDFile();
         try {
-            String realPath = request.getSession().getServletContext().getRealPath("/") + "\\" + "upload\\";
+            String realPath = Constant.getName(1);
             File dirPath = new File(realPath);
             //自动创建上传的upload目录
             if (!dirPath.exists()) dirPath.mkdirs();

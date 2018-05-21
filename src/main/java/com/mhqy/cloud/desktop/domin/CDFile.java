@@ -44,11 +44,14 @@ public class CDFile {
      * 1文件夹 2文件
      */
     private String fileType;
-    /*文件后缀*/
     /**
-     * 文件id
+     * 文件后缀
      */
     private String fileExt;
+    /**
+     * 文件描述
+     */
+    private String fileDesc;
     /**
      * 创建时间
      */
@@ -132,6 +135,14 @@ public class CDFile {
 
     public void setFileExt(String fileExt) {
         this.fileExt = fileExt == null ? null : fileExt.trim();
+    }
+
+    public String getFileDesc() {
+        return fileDesc;
+    }
+
+    public void setFileDesc(String fileDesc) {
+        this.fileDesc = fileDesc;
     }
 
     public Date getCreateTime() {

@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.controller;
 
+import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.common.util.ListUtil;
 import com.mhqy.cloud.desktop.domin.CDAddress;
@@ -11,13 +12,19 @@ import com.mhqy.cloud.desktop.service.internet.InternetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -44,7 +51,7 @@ public class BaseController {
     private CDAddressService addressService;
 
     @Autowired
-    private InternetService internetService;
+    private ResourceLoader resourceLoader;
 
     /**
      * @Description:登录页跳转
@@ -234,6 +241,7 @@ public class BaseController {
         return "wallpaper/index";
     }
 
+
     /**
      * @Description:相册
      * @author: peiqiankun
@@ -247,5 +255,21 @@ public class BaseController {
         List<CDFile> photoList = cdFileService.listPhonoByUser(cdFile);
         model.addAttribute("photoList",photoList);
         return "picture/index";
+    }
+
+    /**
+     * @Description:文件展示 下载
+     * @author: peiqiankun
+     * @date: 2018/5/21 10:52
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<?> getFile(@PathVariable String filename) {
+        try {
+            return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(Constant.getName(1), filename).toString()));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>天气</title>
-    <link href="./static/weather/css/default.css" rel="stylesheet" type="text/css"/>
-    <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="./static/css/wallpaper.css" rel="stylesheet" type="text/css"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相册</title>
+    <link rel="stylesheet" href="./static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/picture.css">
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<div class="container">
-    <div class="main">
-        <div>
-            <ul id="photo" class="clearfix">
-             <#list photoList as photo>
-                 <li>${photo.fileName}
-                     <img src="${photo.fileSystemName}" alt="${photo.fileName}">
-                 </li>
-             </#list>
-            </ul>
-        </div>
-    </div>
-</div>
+
+<section id="gallery-wrapper">
+    <#list photoList as photo>
+        <article class="white-panel">
+            <img src="${photo.fileSystemName}" class="thumb" alt="${photo.fileName}">
+            <h1>
+                ${photo.fileDesc!"点击添加描述"}
+            </h1>
+            <p>${photo.fileName}</p>
+        </article>
+    </#list>
+</section>
+
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="./static/js/pinterest_grid.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#gallery-wrapper").pinterest_grid({
+            no_columns: 4,
+            padding_x: 10,
+            padding_y: 10,
+            margin_bottom: 50,
+            single_column_breakpoint: 700
+        });
+    });
+</script>
 </body>
 </html>
+
