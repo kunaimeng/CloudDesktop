@@ -8,35 +8,41 @@ package com.mhqy.cloud.desktop.common;
  * @version: v1.0
  */
 public enum Constant {
-    FILE_UPLOAD_TMP_PATH("D:\\upload",1);
+    FILE_UPLOAD_TMP_PATH("D:\\upload", "1");
     // 成员变量
-    private String name;
-    private int index;
+    private String key;
+    private String value;
+
     // 构造方法
-    private Constant(String name, int index) {
-        this.name = name;
-        this.index = index;
+    private Constant(String key, String value) {
+        this.key = key;
+        this.value = value;
     }
+
     // 普通方法
-    public static String getName(int index) {
+    public static String getName(String value) {
         for (Constant c : Constant.values()) {
-            if (c.getIndex() == index) {
-                return c.name;
+            if (c.getValue() == value) {
+                return c.key;
             }
         }
         return null;
     }
     // get set 方法
-    public String getName() {
-        return name;
+
+    public String getKey() {
+        return key;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setKey(String key) {
+        this.key = key;
     }
-    public int getIndex() {
-        return index;
+
+    public String getValue() {
+        return value;
     }
-    public void setIndex(int index) {
-        this.index = index;
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

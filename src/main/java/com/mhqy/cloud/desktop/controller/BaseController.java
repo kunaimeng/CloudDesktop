@@ -1,6 +1,5 @@
 package com.mhqy.cloud.desktop.controller;
 
-import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.common.util.ListUtil;
 import com.mhqy.cloud.desktop.domin.CDAddress;
@@ -8,11 +7,10 @@ import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
-import com.mhqy.cloud.desktop.service.internet.InternetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +50,9 @@ public class BaseController {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Value("${file.upload.path}")
+    private String File_UPLOAN_PATH;
 
     /**
      * @Description:登录页跳转
@@ -267,7 +268,7 @@ public class BaseController {
     @ResponseBody
     public ResponseEntity<?> getFile(@PathVariable String filename) {
         try {
-            return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(Constant.getName(1), filename).toString()));
+            return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(File_UPLOAN_PATH, filename).toString()));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }

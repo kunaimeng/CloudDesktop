@@ -1,6 +1,6 @@
 package com.mhqy.cloud.desktop.controller.desktop.FileController;
 
-import com.mhqy.cloud.desktop.common.util.FileUpload;
+import com.mhqy.cloud.desktop.service.fileupload.FileUploadService;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import org.slf4j.Logger;
@@ -32,9 +32,12 @@ public class FileRestController {
     @Autowired
     private CDFileService cdFileService;
 
+    @Autowired
+    private FileUploadService fileUploadService;
+
     @RequestMapping("fileUpload")
     public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) {
-        CDFile cdFile = FileUpload.upload(file, request);
+        CDFile cdFile = fileUploadService.upload(file, request);
         cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
         cdFileService.insert(cdFile);
         return cdFile;
