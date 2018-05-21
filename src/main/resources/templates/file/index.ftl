@@ -5,35 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <!-- swfupload css -->
-    <link href="./static/js/swfupload/upload/upload.css" rel="stylesheet" type="text/css" />
+    <link href="./static/js/swfupload/upload/upload.css" rel="stylesheet" type="text/css"/>
     <link href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <style>
-        *{font-size:12px;}
-        body{-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
-        ul li{list-style: none;width: 98%;height: 30px;line-height: 30px;cursor: pointer;color: rgba(49, 49, 50, 0.94);}
-        #d_top{width: 99%;height: 40px;border-bottom: 3px solid #777;margin:0 auto;}
-        #d_top .d_t_left{width:10%;height: 100%;float: left;}
-        #d_top .d_t_left span{background: #2e8ded;height: 80%;margin-top:4px;width:80%;display: block;border-radius: 3px;text-align: center;margin-left: 10%;}
-        #d_top .d_t_left span i{font-size: 12px;color: #fff;margin-top: 10px;}
-        #d_top .d_t_center{width:70%;height: 100%;float: left;}
-        #d_top .d_t_center span{display:block;height: 100%;float: left;margin-right: 5px;padding:0 10px 0 10px;line-height: 40px;cursor: pointer;}
-        #d_top .d_t_center span:hover{background: #2e8ded;transition: all 0.3s ease;color: #fff;}
-        #d_top .d_t_right{width: 10%;height: 100%;float: left;text-align: center;}
-        #d_top .d_t_right input{width: 90%;height: 25px;margin-top: 5px;border-radius: 3px;padding-left: 3px;}
-        #d_top .d_t_upload{width: 10%;float: left;text-align: center;}
-        #d_top .d_t_upload .swfupload{margin-top: 4px;}
-        #d_left{width: 10%;height: auto;float: left;border-right: #3B3D3F;}
-        #d_left ul{padding-left: 10%;}
-        #d_left ul li:hover{padding-left: 4%;line-height:36px;transition: all 0.3s ease;border-left: 6px solid #1E9FFF;}
-        #d_right{width: 85%;height: auto;float: left;}
-        #d_right ul{padding-left: 1%;}
-        #d_right ul .d_r_con:hover{transition: all 0.3s ease;background:#4898d5;color: #fff;}
-        #d_right ul li span{float: left;height: 30px;line-height: 30px;}
-        #d_right ul li span p{float: left;}
-        #d_right ul li .d_r_one{width: 60%;}
-        #d_right ul li .d_r_one input{width:70%;height:28px;}
-        #d_right ul li .d_r_two{width: 10%;}
-    </style>
+    <link href="./static/css/file.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div id="win10">
@@ -65,13 +40,15 @@
             </ul>
         </div>
         <div id="d_right">
-            <div class="d_r_first">
-                <span class="d_r_one">名称</span>
-                <span class="d_r_two">修改日期</span>
-                <span class="d_r_two">类型</span>
-                <span class="d_r_two">大小</span>
-            </div>
             <ul>
+                <div class="d_r_first">
+                    <span class="d_r_one"><i class="fa fa-th" style="margin-left: 10px;"></i>&nbsp;&nbsp名称</span>
+                    <span class="d_r_two"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;修改日期</span>
+                    <span class="d_r_two"><i class="fa fa-tasks"></i>&nbsp;&nbsp;类型</span>
+                    <span class="d_r_two"><i class="fa fa-pie-chart"></i>&nbsp;&nbsp;大小</span>
+                    <span class="d_r_two"><i class="fa fa-gears"></i>&nbsp;&nbsp;操作</span>
+                </div>
+                <div style="clear:both"></div>
                 <#list content as con>
                     <li class="d_r_con">
                     <span class="d_r_one
@@ -121,72 +98,72 @@
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
 
-    $("#d_right ul li .d_r_two").on("click",".fa-close",function () {
+    $("#d_right ul li .d_r_two").on("click", ".fa-close", function () {
         var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
         var obj = $(this).parents(".d_r_con");
-        layer.confirm('确认要删除吗?', {icon: 3, title:"提示"}, function(index){
+        layer.confirm('确认要删除吗?', {icon: 3, title: "提示"}, function (index) {
             $.ajax({
                 type: 'post',
                 url: "/updateFile",
-                data: {"fileId":id,"yn":0},
+                data: {"fileId": id, "yn": 0},
                 dataType: "json",
                 success: function (msg) {
-                    if(msg.flag){
+                    if (msg.flag) {
                         obj.remove();
                         layer.alert(msg.msg);
-                    }else{
+                    } else {
                         layer.alert(msg.msg);
                     }
                 },
-                error:function () {
+                error: function () {
                     layer.alert("出错了，请稍后重试");
                 }
             });
         });
     });
 
-    $("#d_top .d_t_center").on("click","span",function () {
+    $("#d_top .d_t_center").on("click", "span", function () {
         var obj = $(this).attr("data-id");
         var span = $(this);
         $.ajax({
             type: 'post',
             url: "/queryFileList.ftl",
-            data: {"fileParentId":obj},
+            data: {"fileParentId": obj},
             dataType: "json",
             success: function (msg) {
-                if(msg.flag){
+                if (msg.flag) {
                     span.nextAll().remove();
                     $("#d_right ul .d_r_con").remove();
                     $("#d_right ul").append(ViewOfList(msg));
-                }else{
+                } else {
                     layer.alert(msg.msg);
                 }
             },
-            error:function () {
+            error: function () {
                 layer.alert("出错了，请稍后重试");
             }
         });
 
     });
 
-    $("#d_right ul").on("dblclick",".Folder",function(){
+    $("#d_right ul").on("dblclick", ".Folder", function () {
         var obj = $(this).attr("data-id");
         var con = $(this).attr("data-name");
         $.ajax({
             type: 'post',
             url: "/queryFileList.html",
-            data: {"fileParentId":obj},
+            data: {"fileParentId": obj},
             dataType: "json",
             success: function (msg) {
-                if(msg.flag){
-                    $("#d_top .d_t_center").append("<span data-id="+obj+"><i class=\"fa fa-list\"></i>&nbsp;"+con+"</span>");
+                if (msg.flag) {
+                    $("#d_top .d_t_center").append("<span data-id=" + obj + "><i class=\"fa fa-list\"></i>&nbsp;" + con + "</span>");
                     $("#d_right ul .d_r_con").remove();
                     $("#d_right ul").append(ViewOfList(msg));
-                }else{
+                } else {
                     layer.alert(msg.msg);
                 }
             },
-            error:function () {
+            error: function () {
                 layer.alert("出错了，请稍后重试");
             }
         });
@@ -195,39 +172,39 @@
     /*解析内容*/
     function ViewOfList(msg) {
         var html = "";
-        for(var i =0;i<msg.list.length;i++){
-            if(msg.list[i].fileType==1){
-                html = html+"<li class=\"d_r_con\">\n" +
-                        "                    <span class=\"d_r_one Folder\" data-id="+msg.list[i].fileId+" data-name="+msg.list[i].fileName+">&nbsp;\n" +
+        for (var i = 0; i < msg.list.length; i++) {
+            if (msg.list[i].fileType == 1) {
+                html = html + "<li class=\"d_r_con\">\n" +
+                        "                    <span class=\"d_r_one Folder\" data-id=" + msg.list[i].fileId + " data-name=" + msg.list[i].fileName + ">&nbsp;\n" +
                         "                            <i class=\"fa fa-folder\"></i>\n" +
-                        "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                        "                        &nbsp;&nbsp;" + msg.list[i].fileName + "\n" +
                         "                    </span>\n" +
-                        "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                        "                    <span class=\"d_r_two\">" + fmtDate(msg.list[i].updateTime) + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
                         "                            文件夹\n" +
                         "                    </span>\n" +
-                        "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                        "                    <span class=\"d_r_two\">" + msg.list[i].fileSimpleSize + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
-                        "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                        "                        <a href=\"./static/upload/" + msg.list[i].fileSystemName + "\">\n" +
                         "                            <i class=\"fa fa-arrow-down\"></i>\n" +
                         "                        </a>\n" +
                         "                        &nbsp;&nbsp;\n" +
                         "                        <i class=\"fa fa-close\"></i>\n" +
                         "                    </span>\n" +
                         "                </li>";
-            }else{
-                html = html+" <li class=\"d_r_con\">\n" +
+            } else {
+                html = html + " <li class=\"d_r_con\">\n" +
                         "                    <span class=\"d_r_one\">&nbsp;\n" +
                         "                            <i class=\"fa fa-file\"></i>\n" +
-                        "                        &nbsp;&nbsp;"+msg.list[i].fileName+"\n" +
+                        "                        &nbsp;&nbsp;" + msg.list[i].fileName + "\n" +
                         "                    </span>\n" +
-                        "                    <span class=\"d_r_two\">"+fmtDate(msg.list[i].updateTime)+"</span>\n" +
+                        "                    <span class=\"d_r_two\">" + fmtDate(msg.list[i].updateTime) + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
-                        "                            "+msg.list[i].fileExt+"文件\n" +
+                        "                            " + msg.list[i].fileExt + "文件\n" +
                         "                    </span>\n" +
-                        "                    <span class=\"d_r_two\">"+msg.list[i].fileSimpleSize+"</span>\n" +
+                        "                    <span class=\"d_r_two\">" + msg.list[i].fileSimpleSize + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
-                        "                        <a href=\"./static/upload/"+msg.list[i].fileSystemName+"\">\n" +
+                        "                        <a href=\"./static/upload/" + msg.list[i].fileSystemName + "\">\n" +
                         "                            <i class=\"fa fa-arrow-down\"></i>\n" +
                         "                        </a>\n" +
                         "                        &nbsp;&nbsp;\n" +
@@ -240,23 +217,23 @@
     }
 
     $.tmUpload({
-        btnId:"upload",
-        url:"/fileUpload.html",
-        limitSize:"100 MB",
-        fileTypes:"*.*",
-        multiple:true,
-        callback:function(serverData,file){
-            var jsonData = eval("("+serverData+")");
+        btnId: "upload",
+        url: "/fileUpload.html",
+        limitSize: "100 MB",
+        fileTypes: "*.*",
+        multiple: true,
+        callback: function (serverData, file) {
+            var jsonData = eval("(" + serverData + ")");
             $("#d_right .d_r_first").after("<li class=\"d_r_con\">\n" +
                     "                    <span class=\"d_r_one\">&nbsp;\n" +
                     "                            <i class=\"fa fa-file\"></i>\n" +
-                    "                        &nbsp;&nbsp;"+jsonData.fileName+"\n" +
+                    "                        &nbsp;&nbsp;" + jsonData.fileName + "\n" +
                     "                    </span>\n" +
-                    "                    <span class=\"d_r_two\">"+fmtDate(jsonData.createTime)+"</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.fileExt+"</span>\n" +
-                    "                    <span class=\"d_r_two\">"+jsonData.fileSimpleSize+"</span>\n" +
+                    "                    <span class=\"d_r_two\">" + fmtDate(jsonData.createTime) + "</span>\n" +
+                    "                    <span class=\"d_r_two\">" + jsonData.fileExt + "</span>\n" +
+                    "                    <span class=\"d_r_two\">" + jsonData.fileSimpleSize + "</span>\n" +
                     "                    <span class=\"d_r_two\">\n" +
-                    "                        <a href=\"./static/upload/"+jsonData.fileSystemName+"\">\n" +
+                    "                        <a href=\"./static/upload/" + jsonData.fileSystemName + "\">\n" +
                     "                            <i class=\"fa fa-arrow-down\"></i>\n" +
                     "                        </a>\n" +
                     "                        &nbsp;&nbsp;\n" +
@@ -287,26 +264,26 @@
     });
 
 
-    $("#d_top .d_t_right input").bind('keypress',function(event){
-        if(event.keyCode == "13") {
+    $("#d_top .d_t_right input").bind('keypress', function (event) {
+        if (event.keyCode == "13") {
             var obj = $(this).val();
             if (obj == "" || obj == null || obj == "undefined") {
                 layer.alert("您没输入任何搜索内容！");
-            }else{
+            } else {
                 $.ajax({
                     type: 'post',
                     url: "/queryFileList",
-                    data: {"fileName":obj,"fileType":2},
+                    data: {"fileName": obj, "fileType": 2},
                     dataType: "json",
                     success: function (msg) {
-                        if(msg.flag){
+                        if (msg.flag) {
                             $("#d_right ul .d_r_con").remove();
                             $("#d_right ul").append(ViewOfList(msg));
-                        }else{
+                        } else {
                             layer.alert(msg.msg);
                         }
                     },
-                    error:function () {
+                    error: function () {
                         layer.alert("出错了，请稍后重试");
                     }
                 });
