@@ -37,7 +37,7 @@ public class WallpaperSchedulingConfig {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(cron = "0 0 8 * * ?")
     public void getWallpaper() {
         logger.info("桌面壁纸任务开始执行");
         try {

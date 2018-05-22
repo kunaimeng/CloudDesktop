@@ -38,7 +38,7 @@ public class WeatherSchedulingConfig {
     @Autowired
     private InternetService internetService;
 
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(cron = "0 0 9 * * ?")
     public void getWeather() {
         logger.info("天气定时任务开始执行");
         try {

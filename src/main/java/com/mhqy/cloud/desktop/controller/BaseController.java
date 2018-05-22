@@ -4,6 +4,7 @@ import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.common.util.ListUtil;
 import com.mhqy.cloud.desktop.domin.CDAddress;
 import com.mhqy.cloud.desktop.domin.CDFile;
+import com.mhqy.cloud.desktop.domin.CDNews;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
@@ -274,5 +275,18 @@ public class BaseController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    /**
+     * @Description:新闻数据
+     * @author: peiqiankun
+     * @date: 2018/5/22 21:59
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("news")
+    public String news(Model model){
+        List<CDNews> news = (List<CDNews>)BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("news").toString(),List.class);
+        model.addAttribute("news",news);
+        return "news/index";
     }
 }

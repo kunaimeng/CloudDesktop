@@ -42,7 +42,7 @@
             ], 0.01);
 
             setTimeout(function () {
-                Win10.openUrl('//win10ui.yuri2.cn/src/broadcast.html', '<i class="fa fa-newspaper-o icon red"></i>最新资讯', [['300px', '380px'], 'rt'])
+                Win10.openUrl('/news', '<i class="fa fa-newspaper-o icon red"></i>最新资讯', [['500px', '380px'], 'rt'])
             }, 2000);
         });
     </script>
