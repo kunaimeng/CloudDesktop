@@ -121,9 +121,17 @@ ul li {
     float: left;
 }
 
+#d_right ul .d_r_input i{
+    margin:0 6px 0 6px;
+}
+
 #d_right .d_r_first {
     width: 98%;
     font-weight: bold;
+}
+
+#d_right .d_r_input {
+   display: none;
 }
 
 #d_right .d_r_first span {

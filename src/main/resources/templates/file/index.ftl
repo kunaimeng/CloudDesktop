@@ -48,6 +48,19 @@
                     <span class="d_r_two"><i class="fa fa-gears"></i>&nbsp;&nbsp;操作</span>
                 </div>
                 <div style="clear:both"></div>
+
+                <li class="d_r_input">
+                        <span class="d_r_one">
+                        <i class="fa fa-folder"></i>
+                        <input>
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-close"></i>
+                        </span>
+                    <span class="d_r_two"></span>
+                    <span class="d_r_two"></span>
+                    <span class="d_r_two"></span>
+                    <span class="d_r_two"></span>
+                </li>
                 <#list content as con>
                     <li class="d_r_con">
                     <span class="d_r_one
@@ -72,11 +85,14 @@
                         </span>
                         <span class="d_r_two">${con.fileSimpleSize}</span>
                         <span class="d_r_two">
-                        <a href="./static/upload/${con.fileSystemName}">
-                            <i class="fa fa-arrow-down"></i>
-                        </a>
-                        &nbsp;&nbsp;
-                        <i class="fa fa-close"></i>
+                            <#if con.fileType == "1">
+                            <#else>
+                               <a href="./static/upload/${con.fileSystemName}">
+                                    <i class="fa fa-arrow-down"></i>
+                                </a>
+                            </#if>
+                            &nbsp;&nbsp;
+                            <i class="fa fa-close"></i>
                         <#if con.fileType == "1">
                         &nbsp;&nbsp;
                         <i class="fa fa-folder-open-o"></i>
@@ -84,6 +100,7 @@
                     </span>
                     </li>
                 </#list>
+                </div>
             </ul>
         </div>
     </div>
@@ -95,6 +112,38 @@
 <script type="text/javascript" src="./static/js/swfupload/upload/tz_upload.js"></script>
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
+
+    //新建文件夹操作
+    $(".d_r_input .d_r_one").on('click', '.fa-check', function (event) {
+        var obj = $("#d_right .d_r_input input").val();
+        var fileParentId = $("#d_top .d_t_center span").last().attr("data-id");
+        if (obj == "" || obj == null || obj == "undefined") {
+            layer.alert('亲，描述不合法呦！', 'Ops...There seems to be a little problem.');
+            return false;
+        } else {
+            $.ajax({
+                type: 'post',
+                url: "/newBuildFolder",
+                data: {"fileParentId": fileParentId, "fileName": obj},
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.flag) {
+                        layer.alert(msg.msg);
+                    } else {
+                        layer.alert(msg.msg);
+                    }
+                },
+                error: function () {
+                    layer.alert("出错了，请稍后重试");
+                }
+            });
+        }
+    });
+
+    //隐藏输入框操作
+    $(".d_r_input .d_r_one").on('click','.fa-close', function (event) {
+        $(this).parents(".d_r_input").hide();
+    });
 
     $("#d_right ul li .d_r_two").on("click", ".fa-close", function () {
         var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
@@ -125,7 +174,7 @@
         var span = $(this);
         $.ajax({
             type: 'post',
-            url: "/queryFileList.ftl",
+            url: "/queryFileList",
             data: {"fileParentId": obj},
             dataType: "json",
             success: function (msg) {
@@ -149,7 +198,7 @@
         var con = $(this).attr("data-name");
         $.ajax({
             type: 'post',
-            url: "/queryFileList.html",
+            url: "/queryFileList",
             data: {"fileParentId": obj},
             dataType: "json",
             success: function (msg) {
@@ -216,7 +265,7 @@
 
     $.tmUpload({
         btnId: "upload",
-        url: "/fileUpload.html",
+        url: "/fileUpload",
         limitSize: "100 MB",
         fileTypes: "*.*",
         multiple: true,
@@ -242,23 +291,7 @@
     });
 
     $("#d_top .d_t_left span").click(function () {
-        $("#d_right ul li").first().before("<li class=\"d_r_input\">\n" +
-                "                    <span class=\"d_r_one\">\n" +
-                "                        <i class=\"fa fa-folder\"></i>\n" +
-                "                        &nbsp;&nbsp;\n" +
-                "                        <input>\n" +
-                "                        &nbsp;&nbsp;\n" +
-                "                        <i class=\"fa fa-check\"></i>\n" +
-                "                        &nbsp;&nbsp;\n" +
-                "                        <i class=\"fa fa-close\"></i>\n" +
-                "                    </span>\n" +
-                "                    <span class=\"d_r_two\"></span>\n" +
-                "                    <span class=\"d_r_two\">\n" +
-                "                        文件夹\n" +
-                "                    </span>\n" +
-                "                    <span class=\"d_r_two\"></span>\n" +
-                "                    <span class=\"d_r_two\"></span>\n" +
-                "                </li>");
+        $("#d_right .d_r_input").show();
     });
 
 

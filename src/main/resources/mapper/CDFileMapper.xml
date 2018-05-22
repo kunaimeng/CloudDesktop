@@ -23,14 +23,14 @@
   </sql>
   <sql id="Base_Search_List">
     <where>
-      <if test="fileId != null and fileId !=''">
+      <if test="fileId != null">
         AND file_id = #{fileId,jdbcType=BIGINT}
       </if>
-      <if test="fileUserId != null and fileUserId !=''">
-        AND file_user_id = #{fileUserId,jdbcType=VARCHAR}
+      <if test="fileUserId != null">
+        AND file_user_id = #{fileUserId,jdbcType=BIGINT}
       </if>
-      <if test="fileParentId != null and fileParentId !=''">
-        AND file_parent_id = #{fileParentId,jdbcType=VARCHAR}
+      <if test="fileParentId != null">
+        AND file_parent_id = #{fileParentId,jdbcType=BIGINT}
       </if>
       <if test="fileName != null and fileName !=''">
         AND file_name LIKE "%"#{fileName,jdbcType=VARCHAR}"%"
@@ -144,12 +144,8 @@
       <if test="fileQuote != null" >
         file_quote,
       </if>
-      <if test="createTime != null" >
         create_time,
-      </if>
-      <if test="updateTime != null" >
         update_time,
-      </if>
       <if test="yn != null" >
         yn,
       </if>
@@ -188,12 +184,8 @@
       <if test="fileQuote != null" >
         #{fileQuote,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+        now(),
+        now(),
       <if test="yn != null" >
         #{yn,jdbcType=TINYINT},
       </if>

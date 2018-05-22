@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +93,37 @@ public class FileRestController {
             return map;
         } catch (Exception e) {
             logger.error("更新文件数据异常-->", e.getMessage());
+            map.put("flag", false);
+            map.put("msg", e.getMessage());
+            return map;
+        }
+    }
+
+    /**
+     * @Description:新建文件夹
+     * @author: peiqiankun
+     * @date: 2018/5/22 10:25
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("newBuildFolder")
+    public Map<String, Object> newBuildFolder(CDFile cdFile,HttpSession session) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+            cdFile.setYn(new Byte("1"));
+            cdFile.setFileType("1");
+            cdFile.setCreateTime(new Date());
+            cdFile.setCreateTime(new Date());
+            int i = cdFileService.insertSelective(cdFile);
+            if (i == 1) {
+                map.put("msg", "操作成功");
+            } else {
+                map.put("msg", "操作失败");
+            }
+            map.put("flag", true);
+            return map;
+        } catch (Exception e) {
+            logger.error("新建文件夹异常-->", e.getMessage());
             map.put("flag", false);
             map.put("msg", e.getMessage());
             return map;

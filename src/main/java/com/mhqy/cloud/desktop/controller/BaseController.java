@@ -89,7 +89,6 @@ public class BaseController {
         cdFile.setYn(new Byte("1"));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
         model.addAttribute("content", list);
-
         return "file/index";
     }
 

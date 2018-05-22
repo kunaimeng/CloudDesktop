@@ -22,18 +22,16 @@ public class CDFile {
      * 父目录
      */
     private Long fileParentId;
-    /*文件名*/
     /**
-     * 文件id
+     * 文件名
      */
     private String fileName;
     /**
      * 文件唯一码
      */
     private String fileSystemName;
-    /*字节大小*/
     /**
-     * 文件id
+     * 字节大小
      */
     private String fileSize;
     /**
