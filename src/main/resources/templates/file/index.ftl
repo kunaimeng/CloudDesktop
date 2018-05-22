@@ -48,7 +48,6 @@
                     <span class="d_r_two"><i class="fa fa-gears"></i>&nbsp;&nbsp;操作</span>
                 </div>
                 <div style="clear:both"></div>
-
                 <li class="d_r_input">
                         <span class="d_r_one">
                         <i class="fa fa-folder"></i>
@@ -87,7 +86,7 @@
                         <span class="d_r_two">
                             <#if con.fileType == "1">
                             <#else>
-                               <a href="./static/upload/${con.fileSystemName}">
+                               <a href="${con.fileSystemName}" download="${con.fileName}">
                                     <i class="fa fa-arrow-down"></i>
                                 </a>
                             &nbsp;&nbsp;
@@ -145,7 +144,7 @@
         $(this).parents(".d_r_input").hide();
     });
 
-    $("#d_right ul li .d_r_two").on("click", ".fa-close", function () {
+    $("#d_right ul .d_r_con .d_r_two").on("click", ".fa-close", function () {
         var id = $(this).parents(".d_r_con").find(".d_r_one").attr("data-id");
         var obj = $(this).parents(".d_r_con");
         layer.confirm('确认要删除吗?', {icon: 3, title: "提示"}, function (index) {
@@ -249,7 +248,7 @@
                         "                    </span>\n" +
                         "                    <span class=\"d_r_two\">" + msg.list[i].fileSimpleSize + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
-                        "                        <a href=\"./static/upload/" + msg.list[i].fileSystemName + "\">\n" +
+                        "                        <a href=\"" + msg.list[i].fileSystemName + "\"download="+msg.list[i].fileName+">\n" +
                         "                            <i class=\"fa fa-arrow-down\"></i>\n" +
                         "                        </a>\n" +
                         "                        &nbsp;&nbsp;\n" +
@@ -270,7 +269,7 @@
         multiple: true,
         callback: function (serverData, file) {
             var jsonData = eval("(" + serverData + ")");
-            $("#d_right .d_r_first").after("<li class=\"d_r_con\">\n" +
+            $("#d_right .d_r_input").after("<li class=\"d_r_con\">\n" +
                     "                    <span class=\"d_r_one\">&nbsp;\n" +
                     "                            <i class=\"fa fa-file\"></i>\n" +
                     "                        &nbsp;&nbsp;" + jsonData.fileName + "\n" +
@@ -279,7 +278,7 @@
                     "                    <span class=\"d_r_two\">" + jsonData.fileExt + "</span>\n" +
                     "                    <span class=\"d_r_two\">" + jsonData.fileSimpleSize + "</span>\n" +
                     "                    <span class=\"d_r_two\">\n" +
-                    "                        <a href=\"./static/upload/" + jsonData.fileSystemName + "\">\n" +
+                    "                        <a href=\"" +jsonData.fileSystemName + "\"download="+jsonData.fileName+">\n" +
                     "                            <i class=\"fa fa-arrow-down\"></i>\n" +
                     "                        </a>\n" +
                     "                        &nbsp;&nbsp;\n" +
