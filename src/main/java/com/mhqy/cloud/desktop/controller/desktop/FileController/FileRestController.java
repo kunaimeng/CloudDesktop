@@ -43,11 +43,12 @@ public class FileRestController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("fileUpload")
-    public CDFile upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) {
-        CDFile cdFile = fileUploadService.upload(file, request);
-        cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
-        cdFileService.insert(cdFile);
-        return cdFile;
+    public CDFile upload(@RequestParam("file") MultipartFile file, CDFile cdFile,HttpServletRequest request, HttpSession session) {
+        CDFile cdFile1 = fileUploadService.upload(file, request);
+        cdFile1.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        cdFile1.setFileParentId(cdFile.getFileParentId());
+        cdFileService.insertSelective(cdFile1);
+        return cdFile1;
     }
 
     /**

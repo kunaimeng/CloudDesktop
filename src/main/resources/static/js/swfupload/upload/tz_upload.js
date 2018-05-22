@@ -30,6 +30,7 @@ $.tmUpload = function(options){
 			//queue_complete_handler : queueComplete,	
 			file_dialog_complete_handler : function(numFilesSelected, numFilesQueued){
 				$("#aspupload").find(".bar_total").html("共"+numFilesSelected+"个文件 ，还剩余<span class='number'>"+numFilesQueued+"</span>个");
+                this.setPostParams({"fileParentId":foldId});
 				this.startUpload();
 			},
 			file_queue_error_handler : fileQueueError,

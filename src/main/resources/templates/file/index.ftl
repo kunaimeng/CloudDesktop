@@ -110,6 +110,7 @@
 <script type="text/javascript" src="./static/js/common/common.js"></script>
 <script type="text/javascript">
 
+    var foldId=0;
     //新建文件夹操作
     $(".d_r_input .d_r_one").on('click', '.fa-check', function (event) {
         var obj = $("#d_right .d_r_input input").val();
@@ -170,6 +171,7 @@
 
     $("#d_top .d_t_center").on("click", "span", function () {
         var obj = $(this).attr("data-id");
+        foldId = obj;
         var span = $(this);
         $.ajax({
             type: 'post',
@@ -194,6 +196,7 @@
 
     $("#d_right ul").on("dblclick", ".Folder", function () {
         var obj = $(this).attr("data-id");
+        foldId = obj;
         var con = $(this).attr("data-name");
         $.ajax({
             type: 'post',
@@ -262,6 +265,7 @@
         btnId: "upload",
         url: "/fileUpload",
         limitSize: "100 MB",
+        params:{"fileParentId":foldId},
         fileTypes: "*.*",
         multiple: true,
         callback: function (serverData, file) {
