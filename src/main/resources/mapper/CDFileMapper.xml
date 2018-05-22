@@ -109,6 +109,9 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDFile" >
+    <selectKey keyProperty="fileId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into c_d_file
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="fileId != null" >

@@ -90,20 +90,17 @@
                                <a href="./static/upload/${con.fileSystemName}">
                                     <i class="fa fa-arrow-down"></i>
                                 </a>
-                            </#if>
                             &nbsp;&nbsp;
+                            </#if>
+
                             <i class="fa fa-close"></i>
-                        <#if con.fileType == "1">
-                        &nbsp;&nbsp;
-                        <i class="fa fa-folder-open-o"></i>
-                        </#if>
-                    </span>
+                        </span>
                     </li>
                 </#list>
-                </div>
-            </ul>
         </div>
+        </ul>
     </div>
+</div>
 </div>
 <div id="console"></div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
@@ -127,7 +124,9 @@
                 data: {"fileParentId": fileParentId, "fileName": obj},
                 dataType: "json",
                 success: function (msg) {
+                    $(".d_r_input").hide();
                     if (msg.flag) {
+                        appendFolder(msg);
                         layer.alert(msg.msg);
                     } else {
                         layer.alert(msg.msg);
@@ -141,7 +140,7 @@
     });
 
     //隐藏输入框操作
-    $(".d_r_input .d_r_one").on('click','.fa-close', function (event) {
+    $(".d_r_input .d_r_one").on('click', '.fa-close', function (event) {
         $(this).parents(".d_r_input").hide();
     });
 
@@ -232,10 +231,6 @@
                         "                    </span>\n" +
                         "                    <span class=\"d_r_two\">" + msg.list[i].fileSimpleSize + "</span>\n" +
                         "                    <span class=\"d_r_two\">\n" +
-                        "                        <a href=\"./static/upload/" + msg.list[i].fileSystemName + "\">\n" +
-                        "                            <i class=\"fa fa-arrow-down\"></i>\n" +
-                        "                        </a>\n" +
-                        "                        &nbsp;&nbsp;\n" +
                         "                        <i class=\"fa fa-close\"></i>\n" +
                         "                    </span>\n" +
                         "                </li>";
@@ -321,6 +316,24 @@
             }
         }
     });
+
+    function appendFolder(data) {
+        var html = "<li class=\"d_r_con\">\n" +
+                "                    <span class=\"d_r_one Folder\" data-id=" + data.fileId + " data-name=" + data.fileName + ">&nbsp;\n" +
+                "                            <i class=\"fa fa-folder\"></i>\n" +
+                "                        &nbsp;&nbsp;" + data.fileName +
+                "                    </span>\n" +
+                "                    <span class=\"d_r_two\">"+fmtDate(new Date())+"</span>\n" +
+                "                    <span class=\"d_r_two\">\n" +
+                "                            文件夹\n" +
+                "                    </span>\n" +
+                "                    <span class=\"d_r_two\">0.00</span>\n" +
+                "                    <span class=\"d_r_two\">\n" +
+                "                        <i class=\"fa fa-close\"></i>\n" +
+                "                    </span>\n" +
+                "                </li>";
+        $("#d_right ul").append(html);
+    }
 </script>
 </body>
 </html>

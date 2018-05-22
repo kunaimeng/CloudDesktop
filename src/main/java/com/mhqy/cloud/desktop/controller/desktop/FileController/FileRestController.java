@@ -112,10 +112,10 @@ public class FileRestController {
             cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
             cdFile.setYn(new Byte("1"));
             cdFile.setFileType("1");
-            cdFile.setCreateTime(new Date());
-            cdFile.setCreateTime(new Date());
             int i = cdFileService.insertSelective(cdFile);
             if (i == 1) {
+                map.put("fileId", cdFile.getFileId());
+                map.put("fileName", cdFile.getFileName());
                 map.put("msg", "操作成功");
             } else {
                 map.put("msg", "操作失败");
