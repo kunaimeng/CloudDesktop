@@ -1,0 +1,14 @@
+*{font-size: 12px;}
+ul{margin-left: -25px;}
+ul li{list-style: none;
+    width:100%;
+    height:30px;
+    display: block;
+    line-height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;}
+ul li i{margin:3px;}
