@@ -121,7 +121,9 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("music")
-    public String music() {
+    public String music(Model model) {
+        List<CDFile> list = cdFileService.listMusic();
+        model.addAttribute("musicList",list);
         return "music/index";
     }
 
@@ -132,7 +134,9 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("video")
-    public String video() {
+    public String video(Model model) {
+        List<CDFile> list = cdFileService.listMovie();
+        model.addAttribute("movieList",list);
         return "video/index";
     }
 

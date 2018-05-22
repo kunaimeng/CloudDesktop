@@ -37,4 +37,20 @@ public interface CDFileService {
      */
     List<CDFile> listPhonoByUser(CDFile record);
 
+    /**
+     * @Description:查询音乐信息
+     * @author: peiqiankun
+     * @date: 2018/5/22 17:15
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDFile> listMusic();
+
+    /**
+     * @Description:查询视频信息
+     * @author: peiqiankun
+     * @date: 2018/5/22 17:30
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDFile> listMovie();
+
 }

@@ -90,6 +90,24 @@
     AND file_type = 2
     ORDER BY create_time DESC
   </select>
+  <select id="selectMusic" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from c_d_file
+    WHERE  yn = 1
+    AND file_ext IN ('mp3','MP3','ogg','OGG','wav','WAV')
+    AND file_type = 2
+    ORDER BY file_quote,create_time DESC
+  </select>
+  <select id="selectMovie" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from c_d_file
+    WHERE  yn = 1
+    AND file_ext IN ('mp4','MP4')
+    AND file_type = 2
+    ORDER BY file_quote,create_time DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_file
     where file_id = #{fileId,jdbcType=BIGINT}

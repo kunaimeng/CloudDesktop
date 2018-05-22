@@ -26,7 +26,13 @@
         <div class="col-sm-9">
             <div id="willesPlay">
                 <div class="playHeader">
-                    <div class="videoName">Tara - 懂的那份感觉</div>
+                    <div class="videoName">
+                        <#list movieList as movie>
+                            <#if movie_index==0>
+                                ${movie.fileName}
+                            </#if>
+                        </#list>
+                    </div>
                 </div>
                 <div class="playContent">
                     <div class="turnoff">
@@ -38,7 +44,11 @@
                         </ul>
                     </div>
                     <video width="100%" id="playVideo">
-                        <source src="" type="video/mp4"></source>
+                        <#list movieList as movie>
+                            <#if movie_index==0>
+                                 <source src="${movie.fileSystemName}" type="video/mp4"></source>
+                            </#if>
+                        </#list>
                         当前浏览器不支持 video直接播放，点击这里下载视频： <a href="/">下载视频</a>
                     </video>
                     <div class="playTip glyphicon glyphicon-play"></div>
@@ -72,62 +82,12 @@
             <div id="movieList">
                 <p class="m_title"><i class="fa fa-fire"></i>&nbsp;&nbsp;热点播放</p>
                 <ul>
-                    <li>
-                        <p class="m_con">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
-                    <li>
-                        <p class="m_con">哈哈哈哈</p>
-                        <i class="fa fa-play-circle-o"></i>
-                    </li>
+                    <#list movieList as movie>
+                       <li data-movieUrl="${movie.fileSystemName}" data-movieName="${movie.fileName}">
+                           <p class="m_con">${movie.fileName}</p>
+                           <i class="fa fa-play-circle-o"></i>
+                       </li>
+                    </#list>
                 </ul>
             </div>
         </div>
@@ -200,6 +160,13 @@
     $(".m_s_searcch").click(function(){
         var url = $(".m_s_c_input").val();
         $("#playVideo").attr("src",url);
+    });
+
+    $("#movieList ul li").click(function(){
+        var movieName = $(this).attr("data-movieName");
+        var movieUrl = $(this).attr("data-movieUrl");
+        $("#playVideo").attr("src",movieUrl);
+        $(".videoName").html(movieName);
     });
 </script>
 </body>
