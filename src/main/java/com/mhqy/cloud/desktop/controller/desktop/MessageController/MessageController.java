@@ -2,8 +2,10 @@ package com.mhqy.cloud.desktop.controller.desktop.MessageController;
 
 import com.mhqy.cloud.desktop.common.ServerEncoder;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
+import com.mhqy.cloud.desktop.service.message.CDSocketMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -14,6 +16,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.controller.DesktopController.MessageController
  * @ClassName: MessageController
+ * @ServerEndpoint(value = "/websocket", encoders = {ServerEncoder.class},configurator = SpringConfigurator.class)
  * @Description:消息
  * @author: peiqiankun
  * @date: 2018-03-12 11:22
@@ -35,6 +38,13 @@ public class MessageController {
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
 
+    //此处是解决无法注入的关键
+    private static ApplicationContext applicationContext;
+    private CDSocketMessageService cdSocketMessageService;
+    public static void setApplicationContext(ApplicationContext applicationContext) {
+        MessageController.applicationContext = applicationContext;
+    }
+
     /**
      * @Description:连接建立成功调用的方法
      * @author: peiqiankun
@@ -42,19 +52,16 @@ public class MessageController {
      * @mail: peiqiankun@jd.com
      */
     @OnOpen
-    public void onOpen(Session sessions) {
+    public void onOpen(Session session) {
         this.session = session;
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
         logger.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
-        CDSocketMessage cdSocketMessage = new CDSocketMessage();
         try {
-            for (int i = 0; i < 10; i++) {
-                cdSocketMessage.setTitle("消息" + i);
-                cdSocketMessage.setMessage("新消息来了" + i);
-                Thread.sleep(1000);
-                sendMessage(cdSocketMessage);
-            }
+            //此处是解决无法注入的关键
+            cdSocketMessageService = applicationContext.getBean(CDSocketMessageService.class);
+            CDSocketMessage cdSocketMessage =  cdSocketMessageService.getPrompt();
+            sendMessage(cdSocketMessage);
         } catch (Exception e) {
             logger.error("IO异常-->{}", e);
         }
@@ -75,6 +82,7 @@ public class MessageController {
 
     /**
      * 收到客户端消息后调用的方法
+     *
      * @param message
      * @param session
      */

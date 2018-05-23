@@ -12,19 +12,33 @@ import java.util.Date;
  * @version: v1.0
  */
 public class CDSocketMessage {
-    /*状态码*/
+    /**
+     * 状态码
+     */
     private String code;
-    /*发送者*/
+    /**
+     * 发送者
+     */
     private String From;
-    /*接受者*/
+    /**
+     * 接受者
+     */
     private String To;
-    /*标题*/
+    /**
+     * 标题
+     */
     private String title;
-    /*消息*/
+    /**
+     * 消息
+     */
     private String message;
-    /*数据*/
+    /**
+     * 数据
+     */
     private Object data;
-    /*时间*/
+    /**
+     * 时间
+     */
     private Date date;
 
     public String getCode() {
