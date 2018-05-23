@@ -12,8 +12,8 @@ $('.conLeft li').on('click',function(){
 			$('#dope').val('');
 		var str='';
 		str+='<li>'+
-				'<div class="nesHead"><img src="img/6.jpg"/></div>'+
-				'<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg">'+news+'</div>'+
+				'<div class="nesHead"><img src="./static/img/qq/6.jpg"/></div>'+
+				'<div class="news"><img class="jiao" src="./static/img/qq/20170926103645_03_02.jpg">'+news+'</div>'+
 			'</li>';
 		$('.newsList').append(str);
 		setTimeout(answers,1000); 
@@ -27,8 +27,8 @@ $('.conLeft li').on('click',function(){
 		var aa=Math.floor((Math.random()*arr.length));
 		var answer='';
 		answer+='<li>'+
-					'<div class="answerHead"><img src="img/tou.jpg"/></div>'+
-					'<div class="answers"><img class="jiao" src="img/jiao.jpg">'+arr[aa]+'</div>'+
+					'<div class="answerHead"><img src="./static/img/qq/tou.jpg"/></div>'+
+					'<div class="answers"><img class="jiao" src="./static/img/qq/jiao.jpg">'+arr[aa]+'</div>'+
 				'</li>';
 		$('.newsList').append(answer);	
 		$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
@@ -43,8 +43,8 @@ $('.conLeft li').on('click',function(){
 		var imgSrc=$(this).children('img').attr('src');
 		var str="";
 		str+='<li>'+
-				'<div class="nesHead"><img src="img/6.jpg"/></div>'+
-				'<div class="news"><img class="jiao" src="img/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
+				'<div class="nesHead"><img src="./static/img/qq/6.jpg"/></div>'+
+				'<div class="news"><img class="jiao" src="./static/img/qq/20170926103645_03_02.jpg"><img class="Expr" src="'+imgSrc+'"></div>'+
 			'</li>';
 		$('.newsList').append(str);
 		$('.emjon').hide();

@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="qqBox">
-    <div class="BoxHead" style="background: url(./static/img/qq/20170926103645_01.jpg) no-repeat;">
+    <div class="BoxHead" style="background-image: url(./static/img/qq/20170926103645_01.jpg);background-size:100% 100%;">
         <div class="headImg">
             <img src="./static/img/qq/6.jpg"/>
         </div>
