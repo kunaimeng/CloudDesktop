@@ -98,15 +98,15 @@ public class InitController {
     @ResponseBody
     @RequestMapping(value = "promptSchedule", produces = "application/json;charset=utf-8")
     public String promptSchedule(CDSocketMessage cdSocketMessage) {
-        LOGGER.info("[初始化提示用语]");
+        LOGGER.info("[初始化提示用语]内容：{}",BeanJsonUtil.bean2Json(cdSocketMessage));
         try {
-            Assert.notNull(cdSocketMessage.getDate(), "数据内容不能为空");
+            Assert.notNull(cdSocketMessage.getMessage(), "数据内容不能为空");
             Assert.notNull(cdSocketMessage.getTitle(), "标题内容不能为空");
             redisTemplate.opsForValue().set("prompt", BeanJsonUtil.bean2Json(cdSocketMessage));
-            return "[初始化提示用语]title:" + cdSocketMessage.getTitle() + "-data:" + cdSocketMessage.getDate() + "-成功";
+            return "[初始化提示用语]成功"+BeanJsonUtil.bean2Json(cdSocketMessage);
         } catch (Exception e) {
             LOGGER.error("[初始化提示用语]失败：con:{}，msg:{}", BeanJsonUtil.bean2Json(cdSocketMessage), e);
-            return "[初始化提示用语]title:" + cdSocketMessage.getTitle() + "-data:" + cdSocketMessage.getDate() + "-失败";
+            return "[初始化提示用语]失败:"+BeanJsonUtil.bean2Json(cdSocketMessage);
         }
     }
 }

@@ -40,6 +40,7 @@ public class MessageController {
 
     //此处是解决无法注入的关键
     private static ApplicationContext applicationContext;
+
     private CDSocketMessageService cdSocketMessageService;
     public static void setApplicationContext(ApplicationContext applicationContext) {
         MessageController.applicationContext = applicationContext;
