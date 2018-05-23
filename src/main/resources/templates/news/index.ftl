@@ -12,10 +12,11 @@
 </head>
 <body>
 <div class="container">
-    <div class="main">
+    <div class="main dowebok">
         <ul>
             <#list news as new>
-                <li onclick='Win10.openUrl("${new.url}","<i class=\"fa fa-newspaper-o icon red\"></i>最新资讯")'><i class="fa fa-link"></i>${new.title}</li>
+                <li onclick='Win10.openUrl("${new.url}","<i class=\"fa fa-newspaper-o icon red\"></i>最新资讯")'><i
+                        class="fa fa-link"></i>${new.title}</li>
             </#list>
         </ul>
     </div>
