@@ -317,4 +317,15 @@ public class BaseController {
         model.addAttribute("news",news);
         return "news/index";
     }
+
+    /**
+     * @Description:聊天
+     * @author: peiqiankun
+     * @date: 2018/5/23 18:09
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("chat")
+    public String chat(){
+        return "chat/index";
+    }
 }

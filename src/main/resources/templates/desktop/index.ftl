@@ -62,6 +62,11 @@
                 <div class="title">云桌面浏览器</div>
             </div>
             <div class="shortcut"
+                 onclick='Win10.openUrl("/chat","<i class=\"fa fa-wechat icon blue\"></i>DeskChatTo")'>
+                <i class="fa fa-wechat icon blue"></i>
+                <div class="title">DeskChatTo</div>
+            </div>
+            <div class="shortcut"
                  onclick='Win10.openUrl("/video","<i class=\"fa fa-caret-square-o-right icon blue\"></i>视频播放器")'>
                 <i class="fa fa-caret-square-o-right icon blue"></i>
                 <div class="title">视频播放器</div>
