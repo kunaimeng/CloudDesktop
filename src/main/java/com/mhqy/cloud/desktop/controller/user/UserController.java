@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.controller.user;
 
+import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ import java.util.Map;
 @RestController
 public class UserController {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private CDUserService userService;
@@ -42,20 +44,49 @@ public class UserController {
             map = userService.userLogin(cdUser);
             if ((boolean) map.get("flag")) {
                 String uid = map.get("Uid").toString();
-                logger.info("用户登录成功-->Uid:{}", uid);
+                LOGGER.info("用户登录成功-->Uid:{}", uid);
                 session.setAttribute("Uid", uid);
                 map.put("msg", "登录成功");
             } else {
-                logger.info("用户登录失败-->UName:{}", cdUser.getUserPhone());
+                LOGGER.info("用户登录失败-->UName:{}", cdUser.getUserPhone());
                 map.put("msg", "登录失败");
             }
         } catch (Exception e) {
-            logger.error("用户登录发生异常-->{}", e);
+            LOGGER.error("用户登录发生异常-->{}", e);
             map = new HashMap<String, Object>();
             map.put("flag", false);
             map.put("msg", e);
         } finally {
             return map;
         }
+    }
+
+    /**
+     * @Description:用户注册跳转
+     * @author: peiqiankun
+     * @date: 2018/2/25 20:41
+     * @mail: peiqiankun@jd.com
+     */
+    @PostMapping("userRegister")
+    public Map<String, Object> userRegister(CDUser cdUser) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            cdUser.setUserPassword(DigestUtils.md5DigestAsHex(cdUser.getUserPassword().getBytes()));
+            cdUser.setCreateTime(new Date());
+            cdUser.setUpdateTime(new Date());
+            LOGGER.info("用户注册信息：{}", BeanJsonUtil.bean2Json(cdUser));
+            int i = userService.insertSelective(cdUser);
+            if (i == 1) {
+                map.put("flag", true);
+                map.put("msg", "成功");
+            } else {
+                map.put("flag", false);
+                map.put("msg", "失败");
+            }
+        } catch (Exception e) {
+            map.put("flag", false);
+            map.put("msg", e);
+        }
+        return map;
     }
 }

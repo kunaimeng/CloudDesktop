@@ -12,15 +12,15 @@
         <div class="win10-login-box-square">
             <img src="./static/img/avatar.jpg" class="content"/>
         </div>
-        <p style="font-size: 24px;color: white;text-align: center">云桌面登录</p>
+        <p style="font-size: 24px;color: white;text-align: center">云桌面注册</p>
         <form target="_self" method="post" action="/index">
             <!--用户名-->
-            <input type="text" placeholder="请输入登录名" class="login-username">
+            <input type="text" placeholder="请输入手机号" class="login-username">
             <!--密码-->
             <input type="password" placeholder="请输入密码" class="login-password">
             <!--登陆按钮-->
-            <input type="button" value="登录" id="btn-login" class="login-submit"/>
-            <a href="/register">没有账户？注册</a>
+            <input type="button" value="注册" id="btn-login" class="login-submit"/>
+            <a href="/">有账户？登录</a>
         </form>
     </div>
 </div>
@@ -34,14 +34,14 @@
         var passWd= $(".login-password").val();
         $.ajax({
             type: "post",
-            url: "/userLogin.ftl",
+            url: "/userRegister.ftl",
             data: {"userPhone": phone,"userPassword":passWd},
             dataType: "json",
             success: function (msg) {
                 if(msg.flag){
-                    window.location.href="/index";
+                    window.location.href="/";
                 }else{
-                    layer.alert(Win10.lang('哎呀,好像登录失败了呢。','Ops...There seems to be a little problem.'));
+                    layer.alert(msg.msg);
                 }
             }
         });

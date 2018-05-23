@@ -70,6 +70,17 @@ public class BaseController {
     }
 
     /**
+     * @Description:用户注册跳转
+     * @author: peiqiankun
+     * @date: 2018/2/25 20:41
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("register")
+    public String register() {
+        return "register";
+    }
+
+    /**
      * @Description:首页跳转
      * @author: peiqiankun
      * @date: 2018/2/25 20:41
