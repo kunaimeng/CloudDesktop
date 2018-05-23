@@ -67,9 +67,9 @@ public class FileRestController {
             map.put("list",list);
             return map;
         }catch (Exception e){
-            logger.error("获取文件数据异常-->",e.getMessage());
+            logger.error("获取文件数据异常-->",e);
             map.put("flag",false);
-            map.put("msg",e.getMessage());
+            map.put("msg",e);
             return map;
         }
     }
@@ -93,9 +93,9 @@ public class FileRestController {
             map.put("flag", true);
             return map;
         } catch (Exception e) {
-            logger.error("更新文件数据异常-->", e.getMessage());
+            logger.error("更新文件数据异常-->", e);
             map.put("flag", false);
-            map.put("msg", e.getMessage());
+            map.put("msg", e);
             return map;
         }
     }
@@ -124,9 +124,9 @@ public class FileRestController {
             map.put("flag", true);
             return map;
         } catch (Exception e) {
-            logger.error("新建文件夹异常-->", e.getMessage());
+            logger.error("新建文件夹异常-->", e);
             map.put("flag", false);
-            map.put("msg", e.getMessage());
+            map.put("msg", e);
             return map;
         }
     }

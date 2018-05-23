@@ -31,7 +31,7 @@ public class WallpaperScheduling {
         try {
             reptileService.getWeather();
         } catch (Exception e) {
-            LOGGER.error("桌面壁纸任务开始执行异常：{}", e.getMessage());
+            LOGGER.error("桌面壁纸任务开始执行异常：{}", e);
         }
     }
 }

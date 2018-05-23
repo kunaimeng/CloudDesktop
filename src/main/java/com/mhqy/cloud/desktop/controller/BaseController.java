@@ -182,7 +182,7 @@ public class BaseController {
             model.addAttribute("address", addressList);
             model.addAttribute("search", cdWeather);
         } catch (Exception e) {
-            logger.error("查询天气异常：{}", e.getMessage());
+            logger.error("查询天气异常：{}", e);
         } finally {
             return "weather/index";
         }
@@ -209,7 +209,7 @@ public class BaseController {
                 }
             }
         } catch (Exception e) {
-            logger.error("初始化地址数据库失败：{}", e.getMessage());
+            logger.error("初始化地址数据库失败：{}", e);
         } finally {
             return "禁止调用初始化地址数据库";
         }

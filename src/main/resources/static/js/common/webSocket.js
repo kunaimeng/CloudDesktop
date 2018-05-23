@@ -4,17 +4,17 @@ var websocket = null;
 if ('WebSocket' in window) {
     websocket = new WebSocket("ws://localhost:8080/websocket");
 } else {
-    Win10.newMsg("失败", "主人的浏览器不支持websocket，无法使用通知信息咯。");
+    Win10.newMsg("连接失败", "主人的浏览器不支持websocket，无法使用通知信息咯。");
 }
 
 //连接发生错误的回调方法
 websocket.onerror = function () {
-    Win10.newMsg("失败", "哎呀，不好了。连接发生错误！");
+    Win10.newMsg("连接失败", "哎呀，不好了。连接发生错误！");
 };
 
 //连接成功建立的回调方法
 websocket.onopen = function (event) {
-    Win10.newMsg("成功", "成功与服务器建立连接！");
+    Win10.newMsg("连接成功", "成功与服务器建立连接！");
 };
 
 //接收到消息的回调方法

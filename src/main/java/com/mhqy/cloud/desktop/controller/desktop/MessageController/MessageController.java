@@ -42,7 +42,7 @@ public class MessageController {
      * @mail: peiqiankun@jd.com
      */
     @OnOpen
-    public void onOpen(Session session) {
+    public void onOpen(Session sessions) {
         this.session = session;
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
@@ -56,7 +56,7 @@ public class MessageController {
                 sendMessage(cdSocketMessage);
             }
         } catch (Exception e) {
-            logger.error("IO异常-->{}", e.getMessage());
+            logger.error("IO异常-->{}", e);
         }
     }
 
@@ -109,7 +109,7 @@ public class MessageController {
         try {
             this.session.getBasicRemote().sendObject(message);
         } catch (Exception e) {
-            logger.error("发送消息异常-->", e.getMessage());
+            logger.error("发送消息异常-->", e);
         }
     }
 

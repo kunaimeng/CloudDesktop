@@ -31,7 +31,7 @@ public class WeatherScheduling {
         try {
             reptileService.getWeather();
         } catch (Exception e) {
-            LOGGER.error("天气定时任务执行出现异常：{}", e.getMessage());
+            LOGGER.error("天气定时任务执行出现异常：{}", e);
         }
     }
 }

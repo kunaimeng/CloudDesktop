@@ -52,7 +52,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             cdFile.setUpdateTime(new Date());
             cdFile.setFileSimpleSize(FileUtil.countFileSize(file.getSize()));
         } catch (Exception e) {
-            logger.error("文件上传失败-->{}", e.getMessage());
+            logger.error("文件上传失败-->{}", e);
         }
         return cdFile;
     }

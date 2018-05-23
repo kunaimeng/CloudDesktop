@@ -50,10 +50,10 @@ public class UserController {
                 map.put("msg", "登录失败");
             }
         } catch (Exception e) {
-            logger.error("用户登录发生异常-->{}", e.getMessage());
+            logger.error("用户登录发生异常-->{}", e);
             map = new HashMap<String, Object>();
             map.put("flag", false);
-            map.put("msg", e.getMessage());
+            map.put("msg", e);
         } finally {
             return map;
         }
