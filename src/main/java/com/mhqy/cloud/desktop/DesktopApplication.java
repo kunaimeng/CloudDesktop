@@ -7,7 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class DesktopApplication {
-
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(DesktopApplication.class);
 		ConfigurableApplicationContext configurableApplicationContext = springApplication.run(args);

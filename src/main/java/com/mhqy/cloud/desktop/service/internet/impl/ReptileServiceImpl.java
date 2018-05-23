@@ -56,7 +56,7 @@ public class ReptileServiceImpl implements ReptileService {
      */
     @Override
     public void getHotNews() throws Exception {
-        LOGGER.info("新闻定时任务开始执行");
+        LOGGER.info("新闻任务开始执行");
         String path = "http://v.juhe.cn/toutiao/index?type=top&key=270bcc91e2a8ef430f74e8319e6af774";
         URL url = new URL(path);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -80,6 +80,7 @@ public class ReptileServiceImpl implements ReptileService {
         List<CDNews> cdNews = (List) BeanJsonUtil.json2Object(result.get("data").toString(), List.class);
         LOGGER.info("新闻存入redis信息：key:{},value:{}", "news", cdNews);
         redisTemplate.opsForValue().set("news", BeanJsonUtil.bean2Json(cdNews));
+        LOGGER.info("新闻数据爬取成功");
     }
 
     /**
@@ -90,7 +91,7 @@ public class ReptileServiceImpl implements ReptileService {
      */
     @Override
     public void getWallpaper() throws Exception {
-        LOGGER.info("壁纸定时任务开始执行");
+        LOGGER.info("壁纸任务开始执行");
         List<Map<String, String>> column = new ArrayList<>();
         Document document = internetService.getDocByUrl("http://www.5857.com/list-9-0--0-0-0-1.html");
         Elements elements = document.getElementsByClass("first");
@@ -127,6 +128,7 @@ public class ReptileServiceImpl implements ReptileService {
                 Thread.sleep(3000);
             }
         }
+        LOGGER.info("壁纸数据爬取成功");
     }
 
     /**
@@ -137,7 +139,7 @@ public class ReptileServiceImpl implements ReptileService {
      */
     @Override
     public void getWeather() throws Exception {
-        LOGGER.info("天气定时任务开始执行");
+        LOGGER.info("天气任务开始执行");
         //获取新闻top doc
         Document document = internetService.getDocByUrl("http://www.weather.com.cn/textFC/hb.shtml");
         //获取各省的url
@@ -163,5 +165,7 @@ public class ReptileServiceImpl implements ReptileService {
             redisTemplate.opsForValue().set(cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
             Thread.sleep(3000);
         }
+        redisTemplate.opsForValue().set("weather", "true");
+        LOGGER.info("天气数据爬取成功");
     }
 }

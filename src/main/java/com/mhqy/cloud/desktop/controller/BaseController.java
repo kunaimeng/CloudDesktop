@@ -8,6 +8,7 @@ import com.mhqy.cloud.desktop.domin.CDNews;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
+import com.mhqy.cloud.desktop.service.internet.ReptileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ import java.util.*;
 @Controller
 public class BaseController {
 
-    private final static Logger logger = LoggerFactory.getLogger(BaseController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
     private CDFileService cdFileService;
@@ -50,6 +51,9 @@ public class BaseController {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Autowired
+    private ReptileService reptileService;
 
     @Value("${file.upload.path}")
     private String File_UPLOAN_PATH;
@@ -160,8 +164,16 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather(Model model, CDWeather cdWeather) {
+        if(!redisTemplate.hasKey("weather")){
+            LOGGER.info("缓存中不存在weather信息，开始爬取");
+            try{
+                reptileService.getWeather();
+            }catch (Exception e){
+                LOGGER.error("缓存中不存在weather信息，爬取失败：{}",e);
+            }
+        }
         List<CDWeather> result = new ArrayList<>();
-        logger.info("天气搜索参数-->{}", BeanJsonUtil.bean2Json(cdWeather));
+        LOGGER.info("天气搜索参数-->{}", BeanJsonUtil.bean2Json(cdWeather));
         CDWeather cdWeatherResult;
         try {
             if (cdWeather.getAddressId() != null) {
@@ -182,7 +194,7 @@ public class BaseController {
             model.addAttribute("address", addressList);
             model.addAttribute("search", cdWeather);
         } catch (Exception e) {
-            logger.error("查询天气异常：{}", e);
+            LOGGER.error("查询天气异常：{}", e);
         } finally {
             return "weather/index";
         }
@@ -197,19 +209,19 @@ public class BaseController {
     @RequestMapping("initAddress")
     @ResponseBody
     public String initAddress() {
-        logger.info("开始初始化地址数据库");
+        LOGGER.info("开始初始化地址数据库");
         try {
             if (true) {
                 throw new Exception("禁止调用初始化地址数据库");
             } else {
                 List<CDAddress> addressList = addressService.selectFromRedis();
-                logger.info("地址数量：{}", addressList.size());
+                LOGGER.info("地址数量：{}", addressList.size());
                 for (CDAddress cdAddress : addressList) {
                     addressService.insert(cdAddress);
                 }
             }
         } catch (Exception e) {
-            logger.error("初始化地址数据库失败：{}", e);
+            LOGGER.error("初始化地址数据库失败：{}", e);
         } finally {
             return "禁止调用初始化地址数据库";
         }
@@ -234,6 +246,14 @@ public class BaseController {
      */
     @RequestMapping("wallpaper")
     public String wallpaper(String href, Model model) {
+        if(!redisTemplate.hasKey("column")){
+            LOGGER.info("缓存中不存在column信息，开始爬取");
+            try{
+                reptileService.getWallpaper();
+            }catch (Exception e){
+                LOGGER.error("缓存中不存在column信息，爬取失败：{}",e);
+            }
+        }
         List<Map<String, String>> list = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("column").toString(), List.class);
         model.addAttribute("column", list);
         if (href == null && !list.isEmpty()) {
@@ -285,6 +305,14 @@ public class BaseController {
      */
     @RequestMapping("news")
     public String news(Model model){
+        if(!redisTemplate.hasKey("news")){
+            LOGGER.info("缓存中不存在news信息，开始爬取");
+            try{
+                reptileService.getHotNews();
+            }catch (Exception e){
+                LOGGER.error("缓存中不存在news信息，爬取失败：{}",e);
+            }
+        }
         List<CDNews> news = (List<CDNews>)BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("news").toString(),List.class);
         model.addAttribute("news",news);
         return "news/index";
