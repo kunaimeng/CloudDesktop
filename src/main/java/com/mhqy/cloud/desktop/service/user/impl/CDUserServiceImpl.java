@@ -5,6 +5,7 @@ import com.mhqy.cloud.desktop.dao.CDUserMapper.CDUserMapper;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -26,6 +27,9 @@ public class CDUserServiceImpl implements CDUserService {
 
     @Autowired
     private CDUserMapper cdUserMapper;
+
+    @Value("${httpSession.uid}")
+    private String HTTPSESSION_UID;
 
     @Override
     public int deleteByPrimaryKey(Long userId) {
@@ -69,7 +73,7 @@ public class CDUserServiceImpl implements CDUserService {
         Assert.notNull(record.getUserPassword(),"密码不能为空！");
         List<CDUser> list = selectByCDUser(record);
         if(ListUtil.isNotEmpty(list)){
-            map.put("Uid",list.get(0).getUserId());
+            map.put(HTTPSESSION_UID,list.get(0).getUserId());
             map.put("flag",true);
         }else{
             map.put("flag",false);

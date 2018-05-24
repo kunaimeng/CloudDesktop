@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.controller.desktop.GameController;
+package com.mhqy.cloud.desktop.controller.desktop.game;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

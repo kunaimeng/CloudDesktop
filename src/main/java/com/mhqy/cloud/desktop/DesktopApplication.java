@@ -1,6 +1,7 @@
 package com.mhqy.cloud.desktop;
 
-import com.mhqy.cloud.desktop.controller.desktop.MessageController.MessageController;
+import com.mhqy.cloud.desktop.controller.desktop.chat.ChatController;
+import com.mhqy.cloud.desktop.controller.desktop.message.MessageController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,5 +13,6 @@ public class DesktopApplication {
 		ConfigurableApplicationContext configurableApplicationContext = springApplication.run(args);
 		//解决WebSocket不能注入的问题
 		MessageController.setApplicationContext(configurableApplicationContext);
+		ChatController.setApplicationContext(configurableApplicationContext);
 	}
 }

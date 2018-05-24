@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.domin;
 
+import javax.websocket.Session;
 import java.util.Date;
 
 /**
@@ -25,6 +26,14 @@ public class CDSocketMessage {
      */
     private String To;
     /**
+     * 发送者 session
+     */
+    private Session sessionFrom;
+    /**
+     * 接受者 session
+     */
+    private Session sessionTo;
+    /**
      * 标题
      */
     private String title;
@@ -32,6 +41,10 @@ public class CDSocketMessage {
      * 消息
      */
     private String message;
+    /**
+     * 在线数
+     */
+    private Integer onLineCount;
     /**
      * 数据
      */
@@ -65,6 +78,22 @@ public class CDSocketMessage {
         To = to;
     }
 
+    public Session getSessionFrom() {
+        return sessionFrom;
+    }
+
+    public void setSessionFrom(Session sessionFrom) {
+        this.sessionFrom = sessionFrom;
+    }
+
+    public Session getSessionTo() {
+        return sessionTo;
+    }
+
+    public void setSessionTo(Session sessionTo) {
+        this.sessionTo = sessionTo;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -91,6 +120,14 @@ public class CDSocketMessage {
 
     public Date getDate() {
         return date;
+    }
+
+    public Integer getOnLineCount() {
+        return onLineCount;
+    }
+
+    public void setOnLineCount(Integer onLineCount) {
+        this.onLineCount = onLineCount;
     }
 
     public void setDate(Date date) {

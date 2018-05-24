@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.controller.desktop.FileController;
+package com.mhqy.cloud.desktop.controller.desktop.file;
 
 import com.mhqy.cloud.desktop.service.fileupload.FileUploadService;
 import com.mhqy.cloud.desktop.domin.CDFile;

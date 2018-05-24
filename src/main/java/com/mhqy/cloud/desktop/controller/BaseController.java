@@ -67,6 +67,9 @@ public class BaseController {
     @Value("${redis.key.column}")
     private String REDIS_KEY_COLUMN;
 
+    @Value("${httpSession.uid}")
+    private String HTTPSESSION_UID;
+
     /**
      * @Description:登录页跳转
      * @author: peiqiankun
@@ -109,7 +112,7 @@ public class BaseController {
     @RequestMapping("file")
     public String file(Model model, HttpSession session) {
         CDFile cdFile = new CDFile();
-        cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        cdFile.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         cdFile.setFileParentId(new Long(0));
         cdFile.setYn(new Byte("1"));
         List<CDFile> list = cdFileService.selectByFile(cdFile);
@@ -295,7 +298,7 @@ public class BaseController {
     @RequestMapping("picture")
     public String picture(Model model,HttpSession session){
         CDFile cdFile = new CDFile();
-        cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        cdFile.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         List<CDFile> photoList = cdFileService.listPhonoByUser(cdFile);
         model.addAttribute("photoList",photoList);
         return "picture/index";

@@ -1,4 +1,4 @@
-package com.mhqy.cloud.desktop.controller.desktop.MessageController;
+package com.mhqy.cloud.desktop.controller.desktop.message;
 
 import com.mhqy.cloud.desktop.common.ServerEncoder;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@ServerEndpoint(value = "/websocket", encoders = {ServerEncoder.class})
+@ServerEndpoint(value = "/promptWebSocket", encoders = {ServerEncoder.class})
 @Component
 public class MessageController {
 
@@ -55,13 +55,15 @@ public class MessageController {
     @OnOpen
     public void onOpen(Session session) {
         this.session = session;
-        webSocketSet.add(this);     //加入set中
-        addOnlineCount();           //在线数加1
+        //加入set中
+        webSocketSet.add(this);
+        //在线数加1
+        addOnlineCount();
         LOGGER.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
             //此处是解决无法注入的关键
             cdSocketMessageService = applicationContext.getBean(CDSocketMessageService.class);
-            CDSocketMessage cdSocketMessage =  cdSocketMessageService.getPrompt();
+            CDSocketMessage cdSocketMessage = cdSocketMessageService.getPrompt();
             sendMessage(cdSocketMessage);
         } catch (Exception e) {
             LOGGER.error("IO异常-->{}", e);
@@ -76,8 +78,10 @@ public class MessageController {
      */
     @OnClose
     public void onClose() {
-        webSocketSet.remove(this);  //从set中删除
-        subOnlineCount();               //在线数减1
+        //从set中删除
+        webSocketSet.remove(this);
+        //在线数减1
+        subOnlineCount();
         LOGGER.info("有一连接关闭！当前在线人数为-->{}", getOnlineCount());
     }
 
