@@ -6,6 +6,7 @@ import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private CDUserService userService;
 
+    @Value("${httpSession.uid}")
+    private String HTTPSESSION_UID;
+
     /**
      * @Description:用户登录
      * @author: peiqiankun
@@ -43,9 +47,9 @@ public class UserController {
             cdUser.setUserPassword(DigestUtils.md5DigestAsHex(cdUser.getUserPassword().getBytes()));
             map = userService.userLogin(cdUser);
             if ((boolean) map.get("flag")) {
-                String uid = map.get("Uid").toString();
-                LOGGER.info("用户登录成功-->Uid:{}", uid);
-                session.setAttribute("Uid", uid);
+                String uid = map.get(HTTPSESSION_UID).toString();
+                LOGGER.info("用户登录成功-->HTTPSESSION_UID:{}", uid);
+                session.setAttribute(HTTPSESSION_UID, uid);
                 map.put("msg", "登录成功");
             } else {
                 LOGGER.info("用户登录失败-->UName:{}", cdUser.getUserPhone());

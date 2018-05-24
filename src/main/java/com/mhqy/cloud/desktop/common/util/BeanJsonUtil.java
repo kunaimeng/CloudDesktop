@@ -36,7 +36,6 @@ public class BeanJsonUtil {
                 } else {
                     json = JSON.toJSONString(bean, features);
                 }
-
                 return json;
             } catch (Exception var3) {
                 throw new JSONException("Met error in converting bean to json!Error:" + var3.getMessage());

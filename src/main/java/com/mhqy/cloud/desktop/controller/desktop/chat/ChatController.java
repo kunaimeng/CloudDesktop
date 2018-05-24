@@ -2,6 +2,7 @@ package com.mhqy.cloud.desktop.controller.desktop.chat;
 
 import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.ServerEncoder;
+import com.mhqy.cloud.desktop.config.GetHttpSessionConfig;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 import com.mhqy.cloud.desktop.domin.CDUser;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
@@ -26,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@ServerEndpoint(value = "/chatSocket", encoders = {ServerEncoder.class})
+@ServerEndpoint(value = "/chatSocket", encoders = {ServerEncoder.class},configurator = GetHttpSessionConfig.class)
 @Component
 public class ChatController {
 
@@ -57,7 +58,7 @@ public class ChatController {
      * @mail: peiqiankun@jd.com
      */
     @OnOpen
-    public void onOpen(Session session) {
+    public void onOpen(Session session,EndpointConfig config) {
         this.session = session;
         //加入set中
         webSocketSet.add(this);
@@ -65,7 +66,7 @@ public class ChatController {
         addOnlineCount();
         LOGGER.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
-            openAndClose(Constant.CHAT_CODE_CHAT001.getCode());
+            openAndClose(Constant.CHAT_CODE_CHAT001.getCode(),config);
         } catch (Exception e) {
             LOGGER.error("上线异常-->{}", e);
         }
@@ -80,7 +81,7 @@ public class ChatController {
     @OnClose
     public void onClose() {
         try{
-            openAndClose(Constant.CHAT_CODE_CHAT002.getCode());
+            //openAndClose(Constant.CHAT_CODE_CHAT002.getCode());
         }catch (Exception e){
             LOGGER.error("下线异常-->{}", e);
         }
@@ -154,8 +155,8 @@ public class ChatController {
      * @date: 2018/5/24 18:12
      * @mail: peiqiankun@jd.com
      */
-    private void openAndClose(String chatCode) throws Exception{
-        httpSession = applicationContext.getBean(HttpSession.class);
+    private void openAndClose(String chatCode,EndpointConfig config) throws Exception{
+        HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
         cdUserService = applicationContext.getBean(CDUserService.class);
         //查询用户信息
         CDUser cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(httpSession.getAttribute("sessionUserId").toString()));
@@ -163,7 +164,7 @@ public class ChatController {
         //from userid
         cdSocketMessage.setFrom(cdUser.getUserId().toString());
         //session
-        cdSocketMessage.setSessionFrom(this.session);
+        //cdSocketMessage.setSessionFrom(this.session);
         //信息 类型 code
         cdSocketMessage.setCode(chatCode);
         cdSocketMessage.setTitle(cdUser.getUserName()+"-"+Constant.getDesc(chatCode));
