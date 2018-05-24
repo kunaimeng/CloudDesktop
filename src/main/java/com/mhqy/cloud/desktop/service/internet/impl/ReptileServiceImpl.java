@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,15 @@ public class ReptileServiceImpl implements ReptileService {
     @Autowired
     private WeatherService weatherService;
 
+    @Value("${redis.key.news}")
+    private String REDIS_KEY_NEWS;
+
+    @Value("${redis.key.weather}")
+    private String REDIS_KEY_WEATHER;
+
+    @Value("${redis.key.column}")
+    private String REDIS_KEY_COLUMN;
+
     /**
      * @Description:获取热点信息
      * @author: peiqiankun
@@ -78,8 +88,8 @@ public class ReptileServiceImpl implements ReptileService {
         JsonObject jsonObject = (JsonObject) parse.parse(bos.toString("utf-8"));
         JsonObject result = (JsonObject) jsonObject.get("result");
         List<CDNews> cdNews = (List) BeanJsonUtil.json2Object(result.get("data").toString(), List.class);
-        LOGGER.info("新闻存入redis信息：key:{},value:{}", "news", cdNews);
-        redisTemplate.opsForValue().set("news", BeanJsonUtil.bean2Json(cdNews));
+        LOGGER.info("新闻存入redis信息：key:{},value:{}", REDIS_KEY_NEWS, cdNews);
+        redisTemplate.opsForValue().set(REDIS_KEY_NEWS, BeanJsonUtil.bean2Json(cdNews));
         LOGGER.info("新闻数据爬取成功");
     }
 
@@ -104,7 +114,7 @@ public class ReptileServiceImpl implements ReptileService {
                 column.add(map);
             }
         }
-        redisTemplate.opsForValue().set("column", BeanJsonUtil.bean2Json(column));
+        redisTemplate.opsForValue().set(REDIS_KEY_COLUMN, BeanJsonUtil.bean2Json(column));
         if (!column.isEmpty()) {
             for (Map<String, String> map : column) {
                 LOGGER.info("爬取壁纸数据href:{}", map.get("href"));
@@ -165,7 +175,7 @@ public class ReptileServiceImpl implements ReptileService {
             redisTemplate.opsForValue().set(cdWeather.getAddressId(), BeanJsonUtil.bean2Json(cdWeather));
             Thread.sleep(3000);
         }
-        redisTemplate.opsForValue().set("weather", "true");
+        redisTemplate.opsForValue().set(REDIS_KEY_WEATHER, "true");
         LOGGER.info("天气数据爬取成功");
     }
 }

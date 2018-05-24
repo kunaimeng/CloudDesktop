@@ -58,6 +58,15 @@ public class BaseController {
     @Value("${file.upload.path}")
     private String File_UPLOAN_PATH;
 
+    @Value("${redis.key.news}")
+    private String REDIS_KEY_NEWS;
+
+    @Value("${redis.key.weather}")
+    private String REDIS_KEY_WEATHER;
+
+    @Value("${redis.key.column}")
+    private String REDIS_KEY_COLUMN;
+
     /**
      * @Description:登录页跳转
      * @author: peiqiankun
@@ -175,12 +184,12 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather(Model model, CDWeather cdWeather) {
-        if(!redisTemplate.hasKey("weather")){
-            LOGGER.info("缓存中不存在weather信息，开始爬取");
+        if(!redisTemplate.hasKey(REDIS_KEY_WEATHER)){
+            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_WEATHER);
             try{
                 reptileService.getWeather();
             }catch (Exception e){
-                LOGGER.error("缓存中不存在weather信息，爬取失败：{}",e);
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_WEATHER,e);
             }
         }
         List<CDWeather> result = new ArrayList<>();
@@ -257,15 +266,15 @@ public class BaseController {
      */
     @RequestMapping("wallpaper")
     public String wallpaper(String href, Model model) {
-        if(!redisTemplate.hasKey("column")){
-            LOGGER.info("缓存中不存在column信息，开始爬取");
+        if(!redisTemplate.hasKey(REDIS_KEY_COLUMN)){
+            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_COLUMN);
             try{
                 reptileService.getWallpaper();
             }catch (Exception e){
-                LOGGER.error("缓存中不存在column信息，爬取失败：{}",e);
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_COLUMN,e);
             }
         }
-        List<Map<String, String>> list = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("column").toString(), List.class);
+        List<Map<String, String>> list = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(REDIS_KEY_COLUMN).toString(), List.class);
         model.addAttribute("column", list);
         if (href == null && !list.isEmpty()) {
             href = list.get(0).get("href");
@@ -316,15 +325,15 @@ public class BaseController {
      */
     @RequestMapping("news")
     public String news(Model model){
-        if(!redisTemplate.hasKey("news")){
-            LOGGER.info("缓存中不存在news信息，开始爬取");
+        if(!redisTemplate.hasKey(REDIS_KEY_NEWS)){
+            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_NEWS);
             try{
                 reptileService.getHotNews();
             }catch (Exception e){
-                LOGGER.error("缓存中不存在news信息，爬取失败：{}",e);
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_NEWS,e);
             }
         }
-        List<CDNews> news = (List<CDNews>)BeanJsonUtil.json2Object(redisTemplate.opsForValue().get("news").toString(),List.class);
+        List<CDNews> news = (List<CDNews>)BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(REDIS_KEY_NEWS).toString(),List.class);
         model.addAttribute("news",news);
         return "news/index";
     }
