@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Description:错误处理
@@ -18,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("ErrorPage")
 public class ErrorController {
 
-    private final static Logger logger = LoggerFactory.getLogger(ErrorController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ErrorController.class);
 
     /**
      * @Description:400处理
@@ -28,7 +27,7 @@ public class ErrorController {
      */
     @RequestMapping("400")
     public String error400(Model model){
-        logger.error("程序发生400错误,请检查!");
+        LOGGER.error("程序发生400错误,请检查!");
         model.addAttribute("msg","程序发生404错误，请联系攻城狮！");
         model.addAttribute("email","peiqiankun@jd.com");
         return "errorPage/error";
@@ -42,7 +41,7 @@ public class ErrorController {
      */
     @RequestMapping("401")
     public String error401(Model model){
-        logger.error("程序发生401错误,请检查!");
+        LOGGER.error("程序发生401错误,请检查!");
         model.addAttribute("msg","程序发生40错误，请联系攻城狮！");
         model.addAttribute("email","peiqiankun@jd.com");
         return "errorPage/error";
@@ -56,7 +55,7 @@ public class ErrorController {
      */
     @RequestMapping("404")
     public String error404(Model model){
-        logger.error("程序发生404错误,请检查!");
+        LOGGER.error("程序发生404错误,请检查!");
         model.addAttribute("msg","程序发生404错误，请联系攻城狮！");
         model.addAttribute("email","peiqiankun@jd.com");
         return "errorPage/error";
@@ -70,7 +69,7 @@ public class ErrorController {
      */
     @RequestMapping("500")
     public String error500(Model model){
-        logger.error("程序发生500错误,请检查!");
+        LOGGER.error("程序发生500错误,请检查!");
         model.addAttribute("msg","程序发生500错误，请联系攻城狮！");
         model.addAttribute("email","peiqiankun@jd.com");
         return "errorPage/error";

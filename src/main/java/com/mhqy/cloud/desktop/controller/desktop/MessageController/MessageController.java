@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 public class MessageController {
 
-    private final static Logger logger = LoggerFactory.getLogger(MessageController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(MessageController.class);
 
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
@@ -57,14 +57,14 @@ public class MessageController {
         this.session = session;
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
-        logger.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
             //此处是解决无法注入的关键
             cdSocketMessageService = applicationContext.getBean(CDSocketMessageService.class);
             CDSocketMessage cdSocketMessage =  cdSocketMessageService.getPrompt();
             sendMessage(cdSocketMessage);
         } catch (Exception e) {
-            logger.error("IO异常-->{}", e);
+            LOGGER.error("IO异常-->{}", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class MessageController {
     public void onClose() {
         webSocketSet.remove(this);  //从set中删除
         subOnlineCount();               //在线数减1
-        logger.info("有一连接关闭！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("有一连接关闭！当前在线人数为-->{}", getOnlineCount());
     }
 
     /**
@@ -89,7 +89,7 @@ public class MessageController {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        logger.info("来自客户端的消息-->{}", message);
+        LOGGER.info("来自客户端的消息-->{}", message);
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
         cdSocketMessage.setMessage(message);
         //群发消息
@@ -110,7 +110,7 @@ public class MessageController {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        logger.error("发生错误-->{}", error.getMessage());
+        LOGGER.error("发生错误-->{}", error.getMessage());
     }
 
 
@@ -118,7 +118,7 @@ public class MessageController {
         try {
             this.session.getBasicRemote().sendObject(message);
         } catch (Exception e) {
-            logger.error("发送消息异常-->", e);
+            LOGGER.error("发送消息异常-->", e);
         }
     }
 

@@ -19,7 +19,7 @@ import java.io.IOException;
 @Service
 public class InternetServiceImpl implements InternetService{
 
-    private final static Logger logger = LoggerFactory.getLogger(InternetServiceImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(InternetServiceImpl.class);
 
     /**
      * @Description:获取网页信息
@@ -33,7 +33,7 @@ public class InternetServiceImpl implements InternetService{
         try {
             doc = Jsoup.connect(url).userAgent("Chrome/26.0.1410.64").timeout(3000000).get();
         } catch (IOException e) {
-            logger.error("连接:{}出现异常,原因：{}", url, e);
+            LOGGER.error("连接:{}出现异常,原因：{}", url, e);
         }
         return doc;
     }

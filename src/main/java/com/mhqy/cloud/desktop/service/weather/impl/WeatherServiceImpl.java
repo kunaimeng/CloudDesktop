@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-    private final static Logger logger = LoggerFactory.getLogger(WeatherServiceImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(WeatherServiceImpl.class);
 
     @Override
     public List<String> getProvinceUrl(Document document) {

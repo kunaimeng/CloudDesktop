@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ import java.util.Map;
 @RestController
 public class FileRestController {
 
-    private final static Logger logger = LoggerFactory.getLogger(FileRestController.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FileRestController.class);
 
     @Autowired
     private CDFileService cdFileService;
@@ -67,7 +66,7 @@ public class FileRestController {
             map.put("list",list);
             return map;
         }catch (Exception e){
-            logger.error("获取文件数据异常-->",e);
+            LOGGER.error("获取文件数据异常-->",e);
             map.put("flag",false);
             map.put("msg",e);
             return map;
@@ -93,7 +92,7 @@ public class FileRestController {
             map.put("flag", true);
             return map;
         } catch (Exception e) {
-            logger.error("更新文件数据异常-->", e);
+            LOGGER.error("更新文件数据异常-->", e);
             map.put("flag", false);
             map.put("msg", e);
             return map;
@@ -124,7 +123,7 @@ public class FileRestController {
             map.put("flag", true);
             return map;
         } catch (Exception e) {
-            logger.error("新建文件夹异常-->", e);
+            LOGGER.error("新建文件夹异常-->", e);
             map.put("flag", false);
             map.put("msg", e);
             return map;

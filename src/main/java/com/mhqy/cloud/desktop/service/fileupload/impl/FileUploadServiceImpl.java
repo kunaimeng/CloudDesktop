@@ -23,7 +23,7 @@ import java.util.Date;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    private final static Logger logger = LoggerFactory.getLogger(FileUploadServiceImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FileUploadServiceImpl.class);
 
     @Value("${file.upload.path}")
     private String File_UPLOAN_PATH;
@@ -52,7 +52,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             cdFile.setUpdateTime(new Date());
             cdFile.setFileSimpleSize(FileUtil.countFileSize(file.getSize()));
         } catch (Exception e) {
-            logger.error("文件上传失败-->{}", e);
+            LOGGER.error("文件上传失败-->{}", e);
         }
         return cdFile;
     }
