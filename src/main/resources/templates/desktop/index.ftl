@@ -14,7 +14,7 @@
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <script type="text/javascript" src="./static/js/win10.js"></script>
-    <script type="text/javascript" src="./static/js/common/webSocket.js"></script>
+    <script type="text/javascript" src="./static/js/socket/promptWebSocket.js"></script>
     <style>
         * {
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu
