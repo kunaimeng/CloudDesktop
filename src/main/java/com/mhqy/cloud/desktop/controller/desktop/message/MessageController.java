@@ -59,14 +59,14 @@ public class MessageController {
         webSocketSet.add(this);
         //在线数加1
         addOnlineCount();
-        LOGGER.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("[登录提示语]有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
             //此处是解决无法注入的关键
             cdSocketMessageService = applicationContext.getBean(CDSocketMessageService.class);
             CDSocketMessage cdSocketMessage = cdSocketMessageService.getPrompt();
             sendMessage(cdSocketMessage);
         } catch (Exception e) {
-            LOGGER.error("IO异常-->{}", e);
+            LOGGER.error("[登录提示语]IO异常-->{}", e);
         }
     }
 
@@ -82,7 +82,7 @@ public class MessageController {
         webSocketSet.remove(this);
         //在线数减1
         subOnlineCount();
-        LOGGER.info("有一连接关闭！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("[登录提示语]有一连接关闭！当前在线人数为-->{}", getOnlineCount());
     }
 
     /**
@@ -93,7 +93,7 @@ public class MessageController {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        LOGGER.info("来自客户端的消息-->{}", message);
+        LOGGER.info("[登录提示语]来自客户端的消息-->{}", message);
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
         cdSocketMessage.setMessage(message);
         //群发消息
@@ -114,7 +114,7 @@ public class MessageController {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        LOGGER.error("发生错误-->{}", error.getMessage());
+        LOGGER.error("[登录提示语]发生错误-->{}", error.getMessage());
     }
 
 
@@ -122,7 +122,7 @@ public class MessageController {
         try {
             this.session.getBasicRemote().sendObject(message);
         } catch (Exception e) {
-            LOGGER.error("发送消息异常-->", e);
+            LOGGER.error("[登录提示语]发送消息异常-->", e);
         }
     }
 

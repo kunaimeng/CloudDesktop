@@ -2,6 +2,7 @@ package com.mhqy.cloud.desktop.controller.desktop.chat;
 
 import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.ServerEncoder;
+import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.config.GetHttpSessionConfig;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 import com.mhqy.cloud.desktop.domin.CDUser;
@@ -64,11 +65,11 @@ public class ChatController {
         webSocketSet.add(this);
         //在线数加1
         addOnlineCount();
-        LOGGER.info("有新连接加入！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("[聊天]有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
             openAndClose(Constant.CHAT_CODE_CHAT001.getCode(),config);
         } catch (Exception e) {
-            LOGGER.error("上线异常-->{}", e);
+            LOGGER.error("[聊天]上线异常-->{}", e);
         }
     }
 
@@ -83,13 +84,13 @@ public class ChatController {
         try{
             //openAndClose(Constant.CHAT_CODE_CHAT002.getCode());
         }catch (Exception e){
-            LOGGER.error("下线异常-->{}", e);
+            LOGGER.error("[聊天]下线异常-->{}", e);
         }
         //从set中删除
         webSocketSet.remove(this);
         //在线数减1
         subOnlineCount();
-        LOGGER.info("有一连接关闭！当前在线人数为-->{}", getOnlineCount());
+        LOGGER.info("[聊天]有一连接关闭！当前在线人数为-->{}", getOnlineCount());
     }
 
     /**
@@ -100,7 +101,7 @@ public class ChatController {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        LOGGER.info("来自客户端的消息-->{}", message);
+        LOGGER.info("[聊天]来自客户端的消息-->{}", message);
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
         cdSocketMessage.setMessage(message);
         //群发消息
@@ -121,7 +122,7 @@ public class ChatController {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        LOGGER.error("发生错误-->{}", error.getMessage());
+        LOGGER.error("[聊天]发生错误-->{}", error.getMessage());
     }
 
 
@@ -129,7 +130,7 @@ public class ChatController {
         try {
             this.session.getBasicRemote().sendObject(message);
         } catch (Exception e) {
-            LOGGER.error("发送消息异常-->", e);
+            LOGGER.error("[聊天]发送消息异常-->", e);
         }
     }
 
@@ -172,6 +173,7 @@ public class ChatController {
         cdSocketMessage.setData(this.webSocketSet);
         //当前在线人数
         cdSocketMessage.setOnLineCount(getOnlineCount());
+        LOGGER.info("聊天上线信息：{}", BeanJsonUtil.bean2Json(cdSocketMessage));
         sendInfo(cdSocketMessage);
     }
 
