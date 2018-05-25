@@ -101,11 +101,28 @@ display: -webkit-box;
 	line-height: 42px;
 	font-size: 12px;
 	width: 20%;
-	text-align: right;
 	padding-right: 10px;
 	float: right;
 	height: 100%;
 	
+}
+
+.headConfig img{
+	width:30px;
+	margin-top:6px;
+	border-radius: 50%;
+	float: left;
+}
+
+.headConfig p{
+	width: 80%;
+	line-height: 21px;
+	float: left;
+	margin-left: 8px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
 }
 .headConfig ul{
 	list-style: none;
