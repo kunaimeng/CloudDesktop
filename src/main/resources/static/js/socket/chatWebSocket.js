@@ -23,7 +23,9 @@ websocket.onmessage = function (event) {
     if(data.code=="CHAT001"||data.code=="CHAT002"){
         showPrompt(data);
     }else{
-        answers(data.message);
+        if(!data.from.userId==userId){
+            answers(data.message);
+        }
     }
 };
 

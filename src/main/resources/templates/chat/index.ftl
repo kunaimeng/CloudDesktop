@@ -17,25 +17,18 @@
     <div class="context">
         <div class="conLeft">
             <ul>
-                <li>
-                    <div class="liLeft"><img src="./static/img/qq/20170926103645_04.jpg"/></div>
-                    <div class="liRight">
-                        <span class="intername">前端交流群</span>
-                        <span class="infor">厉害了</span>
-                    </div>
-                </li>
                 <li class="bg">
-                    <div class="liLeft"><img src="./static/img/qq/20170926103645_19.jpg"/></div>
+                    <div class="liLeft"><img src="./static/img/avatar.jpg"/></div>
                     <div class="liRight">
-                        <span  class="intername">赵鹏</span>
-                        <span class="infor">[流泪]</span>
+                        <span  class="intername">云桌面交流</span>
+                        <span class="infor">暂时无消息</span>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="conRight">
             <div class="Righthead">
-                <div class="headName">赵鹏</div>
+                <div class="headName">云桌面交流</div>
                 <div class="headConfig">
 
                 </div>

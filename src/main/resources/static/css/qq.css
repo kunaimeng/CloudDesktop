@@ -70,7 +70,10 @@ display: -webkit-box;
 	height: 100%;
 }
 .liLeft img{
+	width:45px;
+	height: 45px;
 	margin: 10px;
+	border-radius: 50%;
 }
 .liRight span{
 	display:block;

@@ -11,35 +11,65 @@ import java.util.Date;
  * @version: v1.0
  */
 public class CDUser {
-    /*主键*/
+    /**
+     * 主键
+     */
     private Long userId;
-    /*用户名*/
+    /**
+     * 用户名
+     */
     private String userName;
-    /*用户手机号*/
+    /**
+     * 用户手机号
+     */
     private String userPhone;
-    /*用户qq*/
+    /**
+     * 用户qq
+     */
     private String userQq;
-    /*用户微信*/
+    /**
+     * 用户微信
+     */
     private String userWx;
-    /*用户密码*/
+    /**
+     * 用户密码
+     */
     private String userPassword;
-    /*用户头像*/
+    /**
+     * 用户头像
+     */
     private String userImg;
-    /*出生日期*/
+    /**
+     * 出生日期
+     */
     private Date userBirthday;
-    /*年龄*/
+    /**
+     * 年龄
+     */
     private Integer userAge;
-    /*用户住址*/
+    /**
+     * 用户住址
+     */
     private String userAddress;
-    /*经度*/
+    /**
+     * 经度
+     */
     private BigDecimal userLongitude;
-    /*纬度*/
+    /**
+     * 纬度
+     */
     private BigDecimal userLatitude;
-    /*创建日期*/
+    /**
+     * 创建日期
+     */
     private Date createTime;
-    /*更新时间*/
+    /**
+     * 更新时间
+     */
     private Date updateTime;
-    /*是否有效*/
+    /**
+     * 是否有效
+     */
     private Byte yn;
 
     public Long getUserId() {
