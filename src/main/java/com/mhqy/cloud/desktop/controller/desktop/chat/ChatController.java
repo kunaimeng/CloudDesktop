@@ -165,10 +165,11 @@ public class ChatController {
         //from userid
         cdSocketMessage.setFrom(cdUser.getUserId().toString());
         //session
-        //cdSocketMessage.setSessionFrom(this.session);
+        cdSocketMessage.setSessionFrom(session.getId());
         //信息 类型 code
         cdSocketMessage.setCode(chatCode);
-        cdSocketMessage.setTitle(cdUser.getUserName()+"-"+Constant.getDesc(chatCode));
+        cdSocketMessage.setTitle(Constant.getDesc(chatCode));
+        cdSocketMessage.setMessage(cdUser.getUserName()+"-"+Constant.getDesc(chatCode));
         //当前在线
         cdSocketMessage.setData(this.webSocketSet);
         //当前在线人数

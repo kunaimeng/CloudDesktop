@@ -1,5 +1,6 @@
 package com.mhqy.cloud.desktop.domin;
 
+
 import java.util.Date;
 
 /**

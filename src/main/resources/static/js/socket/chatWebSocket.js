@@ -20,7 +20,8 @@ websocket.onopen = function (event) {
 //接收到消息的回调方法
 websocket.onmessage = function (event) {
     var data = eval('(' + event.data + ')');
-    Win10.newMsg(data.title, data.message);
+    alert(data.title);
+    alert(data.message);
 };
 
 //连接关闭的回调方法
