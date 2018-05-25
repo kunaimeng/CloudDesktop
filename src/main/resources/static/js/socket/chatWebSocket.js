@@ -49,7 +49,7 @@ function send(message) {
 
 //显示通知消息
 function showPrompt(data) {
-    $(".headConfig").html("<img src='"+data.from.userImg+"'><p>"+data.title+"</p>");
+    $(".headConfig").html("<img src='"+data.from.userImg+"'><p>"+data.title+"</p><span>当前人数："+data.onLineCount+"人</span>");
 }
 
 

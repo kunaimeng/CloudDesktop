@@ -12,6 +12,7 @@
             <img src="${userInfo.userImg}"/>
         </div>
         <div class="internetName">${userInfo.userName}</div>
+
     </div>
     <div class="context">
         <div class="conLeft">

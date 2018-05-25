@@ -18,10 +18,10 @@
 	-webkit-box-orient: horizontal;
 }
 .headImg{
-	width: 44px;
-	height: 44px;
+	width: 36px;
+	height: 36px;
 	border-radius: 50%;
-	margin:0 10px;
+	margin:8px;
 }
 .headImg img{
 	width: 100%;
@@ -29,11 +29,17 @@
 	border-radius:50%;
 }
 .internetName{
-	width: auto;
+	width: 200px;
 	height: 52px;
 	line-height: 52px;
 	color: white;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
 }
+
+
 .context{
 -webkit-box-flex: 1;
 display: -webkit-box;
@@ -100,7 +106,7 @@ display: -webkit-box;
 .headConfig{
 	line-height: 42px;
 	font-size: 12px;
-	width: 20%;
+	width: 300px;
 	padding-right: 10px;
 	float: right;
 	height: 100%;
@@ -115,10 +121,23 @@ display: -webkit-box;
 }
 
 .headConfig p{
-	width: 80%;
+	margin-left:10px;
+	width: 160px;
 	line-height: 21px;
+
 	float: left;
-	margin-left: 8px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+}
+
+.headConfig span{
+	margin-left:10px;
+	width: 90px;
+	display: block;
+	height:100%;
+	float: left;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 1;
