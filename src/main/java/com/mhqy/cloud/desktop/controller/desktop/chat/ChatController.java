@@ -6,8 +6,8 @@ import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.config.GetHttpSessionConfig;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 import com.mhqy.cloud.desktop.domin.CDUser;
-import com.mhqy.cloud.desktop.domin.MsgUserSessionRelation;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -50,8 +50,6 @@ public class ChatController {
     //此处是解决无法注入的关键
     private static ApplicationContext applicationContext;
 
-    //缓存redisTemplate
-    private RedisTemplate redisTemplate;
     private HttpSession httpSession;
     private CDUserService cdUserService;
 
@@ -77,7 +75,7 @@ public class ChatController {
         addOnlineCount();
         LOGGER.info("[聊天]有新连接加入！当前在线人数为-->{}", getOnlineCount());
         try {
-            openAndClose(Constant.CHAT_CODE_CHAT001.getCode(),config);
+            openAndClose(Constant.CHAT_CODE_CHAT001.getCode(),config,userId);
         } catch (Exception e) {
             LOGGER.error("[聊天]上线异常-->{}", e);
         }
@@ -92,7 +90,7 @@ public class ChatController {
     @OnClose
     public void onClose(@PathParam(value="userId") String userId) {
         try{
-            //openAndClose(Constant.CHAT_CODE_CHAT002.getCode());
+            openAndClose(Constant.CHAT_CODE_CHAT002.getCode(),null,userId);
         }catch (Exception e){
             LOGGER.error("[聊天]下线异常-->{}", e);
         }
@@ -177,19 +175,21 @@ public class ChatController {
      * @date: 2018/5/24 18:12
      * @mail: peiqiankun@jd.com
      */
-    private void openAndClose(String chatCode,EndpointConfig config) throws Exception{
-
-        redisTemplate = applicationContext.getBean(RedisTemplate.class);
-        MsgUserSessionRelation msgUserSessionRelation = new MsgUserSessionRelation();
-        msgUserSessionRelation.setUserId("");
-
-        HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-        cdUserService = applicationContext.getBean(CDUserService.class);
+    private void openAndClose(String chatCode,EndpointConfig config,String userId) throws Exception{
+        CDUser cdUser = null;
         //查询用户信息
-        CDUser cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(httpSession.getAttribute("sessionUserId").toString()));
+        cdUserService = applicationContext.getBean(CDUserService.class);
+        //如果是上线的话
+        if(StringUtils.equals(chatCode,Constant.CHAT_CODE_CHAT001.getCode())){
+             httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+             cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(httpSession.getAttribute("sessionUserId").toString()));
+        }else{
+            //如果是下线
+            cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(userId));
+        }
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
         //from userid
-        cdSocketMessage.setFrom(cdUser.getUserId().toString());
+        cdSocketMessage.setFrom(cdUser);
         //session
         cdSocketMessage.setSessionFrom(session.getId());
         //信息 类型 code
