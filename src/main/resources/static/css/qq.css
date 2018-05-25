@@ -124,6 +124,7 @@ display: -webkit-box;
 	-webkit-line-clamp: 1;
 	overflow: hidden;
 }
+
 .headConfig ul{
 	list-style: none;
 	margin: 0;
@@ -131,9 +132,11 @@ display: -webkit-box;
 	display: -webkit-box;
 	-webkit-box-orient: horizontal;
 }
+
 .headConfig li{
 	margin:10px 5px;
 }
+
 .RightCont{
 	-webkit-box-flex: 1;
 	overflow-y: scroll;
@@ -142,11 +145,13 @@ display: -webkit-box;
 .RightCont::-webkit-scrollbar{
 	width: 15px;
 }
+
 .RightCont ul{
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
+
 .RightCont li{
 	width: 100%;
 	height: 50px;
@@ -154,6 +159,7 @@ display: -webkit-box;
 	-webkit-box-orient: horizontal;*/
 	margin-top: 10px;
 }
+
 .nesHead{
 	width: 44px;
 	height: 44px;
@@ -161,11 +167,13 @@ display: -webkit-box;
 	margin-left:15px ;
 	float: left;
 }
+
 .nesHead img{
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
 }
+
 .news{
 	width: auto;
 	height: 40px;
@@ -179,16 +187,19 @@ display: -webkit-box;
 	position: relative;
 	float: left;
 }
+
 .news .jiao{
 	position: absolute;
 	left: -8px;
 	top: 10px;
 }
+
  .news .Expr{
 	width: 50px;
 	height: 30px;
 	margin: 5px;
 }
+
 .answerHead{
 	width: 44px;
 	height: 44px;
@@ -196,11 +207,13 @@ display: -webkit-box;
 	margin-left:15px ;
 	float: right;
 }
+
 .answerHead img{
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
 }
+
 .answers{
 	width: auto;
 	height: 30px;
@@ -214,6 +227,7 @@ display: -webkit-box;
 	position: relative;
 	float: right;
 }
+
 .answers .jiao{
 	position: absolute;
 	right: -8px;
@@ -225,6 +239,7 @@ display: -webkit-box;
 	border-top: 1px solid #ccc;
 	position: relative;
 }
+
 .emjon{
 	width: 360px;
 	height: 200px;
