@@ -23,8 +23,8 @@ websocket.onmessage = function (event) {
     if(data.code=="CHAT001"||data.code=="CHAT002"){
         showPrompt(data);
     }else{
-        if(!data.from.userId==userId){
-            answers(data.message);
+        if(data.from.userId!=userId){
+            answers(data);
         }
     }
 };
@@ -55,7 +55,6 @@ function showPrompt(data) {
 }
 
 
-
 $('.conLeft li').on('click', function () {
     $(this).addClass('bg').siblings().removeClass('bg');
     var intername = $(this).children('.liRight').children('.intername').text();
@@ -64,14 +63,12 @@ $('.conLeft li').on('click', function () {
 });
 $('.sendBtn').on('click', function () {
     var news = $('#dope').val();
-    if (news == '') {
-        alert('不能为空');
-    } else {
+    if (news != '') {
         $('#dope').val('');
         var str = '';
         str += '<li>' +
-            '<div class="nesHead"><img src="./static/img/qq/6.jpg"/></div>' +
-            '<div class="news"><img class="jiao" src="./static/img/qq/20170926103645_03_02.jpg">' + news + '</div>' +
+            '<div class="answerHead"><img src="'+userImg+'"/></div>' +
+            '<div class="answers"><img class="jiao" src="./static/img/qq/jiao.jpg">' + news + '</div>' +
             '</li>';
         $('.newsList').append(str);
         send(news);
@@ -83,8 +80,8 @@ $('.sendBtn').on('click', function () {
 function answers(ansmsg) {
     var answer = '';
     answer += '<li>' +
-        '<div class="answerHead"><img src="./static/img/qq/tou.jpg"/></div>' +
-        '<div class="answers"><img class="jiao" src="./static/img/qq/jiao.jpg">' + ansmsg + '</div>' +
+        '<div class="nesHead"><img src="'+ansmsg.from.userImg+'"/></div>' +
+        '<div class="news"><img class="jiao" src="./static/img/qq/20170926103645_03_02.jpg">' + ansmsg.message + '</div>' +
         '</li>';
     $('.newsList').append(answer);
     $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
@@ -95,15 +92,4 @@ $('.ExP').on('mouseenter', function () {
 });
 $('.emjon').on('mouseleave', function () {
     $('.emjon').hide();
-});
-$('.emjon li').on('click', function () {
-    var imgSrc = $(this).children('img').attr('src');
-    var str = "";
-    str += '<li>' +
-        '<div class="nesHead"><img src="./static/img/qq/6.jpg"/></div>' +
-        '<div class="news"><img class="jiao" src="./static/img/qq/20170926103645_03_02.jpg"><img class="Expr" src="' + imgSrc + '"></div>' +
-        '</li>';
-    $('.newsList').append(str);
-    $('.emjon').hide();
-    $('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
 });

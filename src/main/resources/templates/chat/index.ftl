@@ -39,31 +39,6 @@
                 </ul>
             </div>
             <div class="RightFoot">
-                <div class="emjon">
-                    <ul>
-                        <li><img src="./static/img/qq/em_02.jpg"/></li>
-                        <li><img src="./static/img/qq/em_05.jpg"/></li>
-                        <li><img src="./static/img/qq/em_07.jpg"/></li>
-                        <li><img src="./static/img/qq/em_12.jpg"/></li>
-                        <li><img src="./static/img/qq/em_14.jpg"/></li>
-                        <li><img src="./static/img/qq/em_16.jpg"/></li>
-                        <li><img src="./static/img/qq/em_20.jpg"/></li>
-                        <li><img src="./static/img/qq/em_23.jpg"/></li>
-                        <li><img src="./static/img/qq/em_25.jpg"/></li>
-                        <li><img src="./static/img/qq/em_30.jpg"/></li>
-                        <li><img src="./static/img/qq/em_31.jpg"/></li>
-                        <li><img src="./static/img/qq/em_33.jpg"/></li>
-                        <li><img src="./static/img/qq/em_37.jpg"/></li>
-                        <li><img src="./static/img/qq/em_38.jpg"/></li>
-                        <li><img src="./static/img/qq/em_40.jpg"/></li>
-                        <li><img src="./static/img/qq/em_45.jpg"/></li>
-                        <li><img src="./static/img/qq/em_47.jpg"/></li>
-                        <li><img src="./static/img/qq/em_48.jpg"/></li>
-                        <li><img src="./static/img/qq/em_52.jpg"/></li>
-                        <li><img src="./static/img/qq/em_54.jpg"/></li>
-                        <li><img src="./static/img/qq/em_55.jpg"/></li>
-                    </ul>
-                </div>
                 <div class="footTop">
                     <ul>
                         <li><img src="./static/img/qq/20170926103645_31.jpg"/></li>
@@ -80,6 +55,7 @@
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
 <script>
     var userId="${userInfo.userId}";
+    var userImg="${userInfo.userImg}";
 </script>
 <script type="text/javascript" src="./static/js/socket/chatWebSocket.js"></script>
 </body>
