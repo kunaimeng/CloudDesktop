@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 
@@ -32,7 +31,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@ServerEndpoint(value = "/chatSocket/{userId}", encoders = {ServerEncoder.class},configurator = GetHttpSessionConfig.class)
+@ServerEndpoint(value = "/chatSocket/{userId}", encoders = {ServerEncoder.class}, configurator = GetHttpSessionConfig.class)
 @Component
 public class ChatController {
 

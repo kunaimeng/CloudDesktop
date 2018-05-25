@@ -53,6 +53,7 @@
     </div>
 </div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
 <script>
     var userId="${userInfo.userId}";
     var userImg="${userInfo.userImg}";
