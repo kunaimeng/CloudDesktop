@@ -6,14 +6,18 @@ import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.config.GetHttpSessionConfig;
 import com.mhqy.cloud.desktop.domin.CDSocketMessage;
 import com.mhqy.cloud.desktop.domin.CDUser;
+import com.mhqy.cloud.desktop.domin.MsgUserSessionRelation;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -28,7 +32,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@ServerEndpoint(value = "/chatSocket", encoders = {ServerEncoder.class},configurator = GetHttpSessionConfig.class)
+@ServerEndpoint(value = "/chatSocket/{userId}", encoders = {ServerEncoder.class},configurator = GetHttpSessionConfig.class)
 @Component
 public class ChatController {
 
@@ -46,8 +50,14 @@ public class ChatController {
     //此处是解决无法注入的关键
     private static ApplicationContext applicationContext;
 
+    //缓存redisTemplate
+    private RedisTemplate redisTemplate;
     private HttpSession httpSession;
     private CDUserService cdUserService;
+
+    public ChatController() {
+    }
+
     public static void setApplicationContext(ApplicationContext applicationContext) {
         ChatController.applicationContext = applicationContext;
     }
@@ -59,7 +69,7 @@ public class ChatController {
      * @mail: peiqiankun@jd.com
      */
     @OnOpen
-    public void onOpen(Session session,EndpointConfig config) {
+    public void onOpen(@PathParam(value="userId") String userId, Session session, EndpointConfig config) {
         this.session = session;
         //加入set中
         webSocketSet.add(this);
@@ -80,7 +90,7 @@ public class ChatController {
      * @mail: peiqiankun@jd.com
      */
     @OnClose
-    public void onClose() {
+    public void onClose(@PathParam(value="userId") String userId) {
         try{
             //openAndClose(Constant.CHAT_CODE_CHAT002.getCode());
         }catch (Exception e){
@@ -103,6 +113,17 @@ public class ChatController {
     public void onMessage(String message, Session session) {
         LOGGER.info("[聊天]来自客户端的消息-->{}", message);
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
+        //cdSocketMessage.setFrom(cdUser.getUserId().toString());
+        //session
+        cdSocketMessage.setSessionFrom(session.getId());
+        //信息 类型 code
+        cdSocketMessage.setCode(Constant.CHAT_CODE_CHAT003.getCode());
+        cdSocketMessage.setTitle(Constant.getDesc(Constant.CHAT_CODE_CHAT003.getCode()));
+        cdSocketMessage.setMessage(Constant.getDesc(Constant.CHAT_CODE_CHAT003.getCode()));
+        //当前在线
+        cdSocketMessage.setData(this.webSocketSet);
+        //当前在线人数
+        cdSocketMessage.setOnLineCount(getOnlineCount());
         cdSocketMessage.setMessage(message);
         //群发消息
         for (ChatController item : webSocketSet) {
@@ -157,6 +178,11 @@ public class ChatController {
      * @mail: peiqiankun@jd.com
      */
     private void openAndClose(String chatCode,EndpointConfig config) throws Exception{
+
+        redisTemplate = applicationContext.getBean(RedisTemplate.class);
+        MsgUserSessionRelation msgUserSessionRelation = new MsgUserSessionRelation();
+        msgUserSessionRelation.setUserId("");
+
         HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
         cdUserService = applicationContext.getBean(CDUserService.class);
         //查询用户信息

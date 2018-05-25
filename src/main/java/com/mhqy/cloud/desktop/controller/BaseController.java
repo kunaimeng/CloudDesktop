@@ -348,7 +348,8 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("chat")
-    public String chat(){
+    public String chat(Model model,HttpSession session){
+        model.addAttribute("userId",Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         return "chat/index";
     }
 }

@@ -84,6 +84,9 @@
     </div>
 </div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+<script>
+    var userId="${userId}";
+</script>
 <script type="text/javascript" src="./static/js/socket/chatWebSocket.js"></script>
 </body>
 </html>
