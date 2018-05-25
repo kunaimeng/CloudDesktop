@@ -98,7 +98,11 @@ display: -webkit-box;
 	float: left;
 }
 .headConfig{
+	line-height: 42px;
+	font-size: 12px;
 	width: 20%;
+	text-align: right;
+	padding-right: 10px;
 	float: right;
 	height: 100%;
 	

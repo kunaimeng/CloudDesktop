@@ -20,8 +20,11 @@ websocket.onopen = function (event) {
 //接收到消息的回调方法
 websocket.onmessage = function (event) {
     var data = eval('(' + event.data + ')');
-    alert(data.title);
-    alert(data.message);
+    if(data.code=="CHAT001"||data.code=="CHAT002"){
+        showPrompt(data);
+    }else{
+        alert("接收到消息");
+    }
 };
 
 //连接关闭的回调方法
@@ -42,6 +45,11 @@ function closeWebSocket() {
 //发送消息
 function send(message) {
     websocket.send(message);
+}
+
+//显示通知消息
+function showPrompt(data) {
+    $(".headConfig").text(data.title);
 }
 
 

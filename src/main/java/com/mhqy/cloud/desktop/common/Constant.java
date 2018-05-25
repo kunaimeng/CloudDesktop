@@ -9,8 +9,8 @@ package com.mhqy.cloud.desktop.common;
  */
 public enum Constant {
 
-    CHAT_CODE_CHAT001("CHAT001","上线通知"),
-    CHAT_CODE_CHAT002("CHAT002","下线通知"),
+    CHAT_CODE_CHAT001("CHAT001","进入DeskChatTo"),
+    CHAT_CODE_CHAT002("CHAT002","退出DeskChatTo"),
     CHAT_CODE_CHAT003("CHAT003","普通消息");
 
     // 成员变量
