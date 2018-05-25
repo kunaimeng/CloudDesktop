@@ -108,10 +108,11 @@ public class ChatController {
      * @param session
      */
     @OnMessage
-    public void onMessage(String message, Session session) {
+    public void onMessage(@PathParam(value="userId") String userId,String message, Session session) {
         LOGGER.info("[聊天]来自客户端的消息-->{}", message);
+        cdUserService = applicationContext.getBean(CDUserService.class);
         CDSocketMessage cdSocketMessage = new CDSocketMessage();
-        //cdSocketMessage.setFrom(cdUser.getUserId().toString());
+        cdSocketMessage.setFrom(cdUserService.selectByPrimaryKey(Long.parseLong(userId)));
         //session
         cdSocketMessage.setSessionFrom(session.getId());
         //信息 类型 code

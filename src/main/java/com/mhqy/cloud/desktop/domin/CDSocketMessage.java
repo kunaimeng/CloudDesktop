@@ -20,7 +20,7 @@ public class CDSocketMessage {
     /**
      * 发送者
      */
-    private CDUser From;
+    private CDUser from;
     /**
      * 接受者
      */
@@ -63,11 +63,11 @@ public class CDSocketMessage {
     }
 
     public CDUser getFrom() {
-        return From;
+        return from;
     }
 
     public void setFrom(CDUser from) {
-        From = from;
+        this.from = from;
     }
 
     public CDUser getTo() {
