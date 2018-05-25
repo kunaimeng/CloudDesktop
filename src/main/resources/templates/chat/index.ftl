@@ -9,9 +9,9 @@
 <div class="qqBox">
     <div class="BoxHead" style="background-image: url(./static/img/qq/20170926103645_01.jpg);background-size:100% 100%;">
         <div class="headImg">
-            <img src="./static/img/qq/6.jpg"/>
+            <img src="${userInfo.userImg}"/>
         </div>
-        <div class="internetName">90后大叔</div>
+        <div class="internetName">${userInfo.userName}</div>
     </div>
     <div class="context">
         <div class="conLeft">
@@ -85,7 +85,7 @@
 </div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
 <script>
-    var userId="${userId}";
+    var userId="${userInfo.userId}";
 </script>
 <script type="text/javascript" src="./static/js/socket/chatWebSocket.js"></script>
 </body>

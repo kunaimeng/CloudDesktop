@@ -9,6 +9,7 @@ import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
+import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class BaseController {
 
     @Autowired
     private CDFileService cdFileService;
+
+    @Autowired
+    private CDUserService cdUserService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -349,7 +353,7 @@ public class BaseController {
      */
     @RequestMapping("chat")
     public String chat(Model model,HttpSession session){
-        model.addAttribute("userId",Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        model.addAttribute("userInfo",cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString())));
         return "chat/index";
     }
 }
