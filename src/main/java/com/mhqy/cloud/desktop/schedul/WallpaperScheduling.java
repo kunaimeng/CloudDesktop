@@ -29,7 +29,7 @@ public class WallpaperScheduling {
     public void getWallpaper() {
         LOGGER.info("[定时任务]桌面壁纸任务");
         try {
-            reptileService.getWeather();
+            reptileService.getWallpaper();
         } catch (Exception e) {
             LOGGER.error("桌面壁纸任务开始执行异常：{}", e);
         }

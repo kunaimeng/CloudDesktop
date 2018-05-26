@@ -18,7 +18,7 @@ public interface ReptileService {
     void getHotNews() throws Exception;
 
     /**
-     * @Description:获取热点新闻
+     * @Description:获取壁纸
      * @author: peiqiankun
      * @date: 2018/5/23 10:09
      * @mail: peiqiankun@jd.com
@@ -26,7 +26,7 @@ public interface ReptileService {
     void getWallpaper() throws Exception;
 
     /**
-     * @Description:获取热点新闻
+     * @Description:获取天气
      * @author: peiqiankun
      * @date: 2018/5/23 10:09
      * @mail: peiqiankun@jd.com
