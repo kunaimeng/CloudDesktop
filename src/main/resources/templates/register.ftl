@@ -34,7 +34,7 @@
         var passWd= $(".login-password").val();
         $.ajax({
             type: "post",
-            url: "/userRegister.ftl",
+            url: "/userRegister",
             data: {"userPhone": phone,"userPassword":passWd},
             dataType: "json",
             success: function (msg) {
