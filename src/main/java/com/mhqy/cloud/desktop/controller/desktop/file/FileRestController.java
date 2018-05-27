@@ -6,6 +6,7 @@ import com.mhqy.cloud.desktop.service.file.CDFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,9 @@ public class FileRestController {
     @Autowired
     private FileUploadService fileUploadService;
 
+    @Value("${httpSession.uid}")
+    private String HTTPSESSION_UID;
+
     /**
      * @Description:文件上传
      * @author: peiqiankun
@@ -44,7 +48,7 @@ public class FileRestController {
     @RequestMapping("fileUpload")
     public CDFile upload(@RequestParam("file") MultipartFile file, CDFile cdFile,HttpServletRequest request, HttpSession session) {
         CDFile cdFile1 = fileUploadService.upload(file, request);
-        cdFile1.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+        cdFile1.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         cdFile1.setFileParentId(cdFile.getFileParentId());
         cdFileService.insertSelective(cdFile1);
         return cdFile1;
@@ -109,7 +113,7 @@ public class FileRestController {
     public Map<String, Object> newBuildFolder(CDFile cdFile,HttpSession session) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            cdFile.setFileUserId(Long.parseLong(session.getAttribute("Uid").toString()));
+            cdFile.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
             cdFile.setYn(new Byte("1"));
             cdFile.setFileType("1");
             int i = cdFileService.insertSelective(cdFile);
