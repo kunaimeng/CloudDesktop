@@ -14,8 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -321,6 +324,34 @@ public class BaseController {
             return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(File_UPLOAN_PATH, filename).toString()));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     * @Description:文件下载
+     * @author: peiqiankun
+     * @date: 2018/5/28 10:54
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping(value = "/download/{filename:.+}")
+    public ResponseEntity<?> listExport(@PathVariable String filename) {
+        try {
+            LOGGER.info("开始下载文件：{}", filename);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            headers.add("Content-Disposition", "attachment; filename=" + filename);
+            headers.add("Pragma", "no-cache");
+            headers.add("Expires", "0");
+            Resource resource = resourceLoader.getResource("file:" + Paths.get(File_UPLOAN_PATH, filename).toString());
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentLength(resource.contentLength())
+                    .contentType(MediaType.parseMediaType("application/octet-stream"))
+                    .body(resourceLoader.getResource("file:" + Paths.get(File_UPLOAN_PATH, filename).toString()));
+        } catch (Exception e) {
+            LOGGER.error("下载文件失败：{}", e);
+            return null;
         }
     }
 
