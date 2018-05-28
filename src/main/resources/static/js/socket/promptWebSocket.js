@@ -2,7 +2,7 @@ var websocket = null;
 
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-    websocket = new WebSocket("ws://localhost:8080/promptWebSocket");
+    websocket = new WebSocket("ws://120.79.183.171/promptWebSocket");
 } else {
     Win10.newMsg("连接失败", "主人的浏览器不支持websocket，无法使用通知信息咯。");
 }
