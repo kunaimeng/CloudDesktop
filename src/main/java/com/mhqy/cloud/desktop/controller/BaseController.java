@@ -387,4 +387,16 @@ public class BaseController {
         model.addAttribute("userInfo",cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString())));
         return "chat/index";
     }
+
+    /**
+     * @Description:朱传涵
+     * @author: peiqiankun
+     * @date: 2018/5/28 17:09
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("updateinfo")
+    public String updateinfo(){
+        LOGGER.info("访问安全卫士更新页面");
+        return "updateinfo/index";
+    }
 }
