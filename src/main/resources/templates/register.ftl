@@ -15,11 +15,13 @@
             <img src="./static/img/avatar.jpg" class="content"/>
         </div>
         <p style="font-size: 24px;color: white;text-align: center">云桌面注册</p>
-        <form target="_self" method="post" action="/index">
+        <form target="_self" method="post" id="RegisterForm">
             <!--用户名-->
             <input type="text" placeholder="请输入手机号" class="login-username" name="userPhone">
             <!--密码-->
             <input type="password" placeholder="请输入密码" class="login-password" name="userPassword">
+            <!--请输入昵称-->
+            <input type="text" placeholder="请输入昵称" class="login-username" name="userName">
             <!--请输入QQ-->
             <input type="text" placeholder="请输入QQ" class="login-username" name="userQq">
             <!--请输入QQ-->
@@ -29,6 +31,7 @@
                 <p style="float: left;line-height:120px;color:#fff;font-size: 12px;">头像上传:</p>
                 <div class="upload" action='/userPhotoUpload' data-num='1' id='case2'></div>
             </div>
+            <br>
             <!--登陆按钮-->
             <input type="button" value="注册" id="btn-login" class="login-submit"/>
             <a href="/">有账户？登录</a>
@@ -49,7 +52,7 @@
         $.ajax({
             type: "post",
             url: "/userRegister",
-            data: {"userPhone": phone,"userPassword":passWd},
+            data: $("#RegisterForm").serialize(),
             dataType: "json",
             success: function (msg) {
                 if(msg.flag){
