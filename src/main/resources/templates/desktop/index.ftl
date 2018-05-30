@@ -35,7 +35,7 @@
             });
 
             if(${mainBg?c}){
-                layer.confirm('您想换一个壁纸吗?', {icon: 3, title: "提示"}, function (index) {
+                layer.confirm('系统检测到，你使用的是默认壁纸，您想换一个壁纸吗?', {icon: 3, title: "提示"}, function (index) {
                     Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>壁纸");
                     layer.close(index);
                 });

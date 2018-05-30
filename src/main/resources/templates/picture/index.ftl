@@ -14,7 +14,11 @@
     <![endif]-->
 </head>
 <body>
+  <#if !photo??>
+    <p class="noPic">暂时没有图片，快去我的电脑中上传图片吧！</p>
+  </#if>
 <section id="gallery-wrapper">
+
     <#list photoList as photo>
         <article class="white-panel">
             <img src="${photo.fileSystemName}" class="thumb" alt="${photo.fileName}">
@@ -40,14 +44,14 @@
         });
     });
 
-    $("section article span").click(function(){
-        $("section article input").attr("type","hidden");
-        $(this).next().attr("type","text");
+    $("section article span").click(function () {
+        $("section article input").attr("type", "hidden");
+        $(this).next().attr("type", "text");
         $(this).next().focus();
     });
 
-    $('section article input').bind('keypress',function(event){
-        if(event.keyCode == "13") {
+    $('section article input').bind('keypress', function (event) {
+        if (event.keyCode == "13") {
             var desc = $(this).val();
             var fileId = $(this).attr("data-id");
             var input = $(this);
@@ -55,21 +59,21 @@
             if (desc == "" || desc == null || desc == "undefined") {
                 layer.alert('亲，描述不合法呦！', 'Ops...There seems to be a little problem.');
                 return false;
-            }else if(desc.length>10){
+            } else if (desc.length > 10) {
                 layer.alert('亲，写的太多啦，10个字符足够呦！', 'Ops...There seems to be a little problem.');
                 return false;
             } else {
                 $.ajax({
                     type: "post",
                     url: "/updateFile",
-                    data: {"fileId": fileId,"fileDesc":desc},
+                    data: {"fileId": fileId, "fileDesc": desc},
                     dataType: "json",
                     success: function (msg) {
-                        if(msg.flag){
-                            input.attr("type","hidden");
+                        if (msg.flag) {
+                            input.attr("type", "hidden");
                             span.text(desc);
                             layer.alert(msg.msg);
-                        }else{
+                        } else {
                             layer.alert(msg.msg);
                         }
                     }
