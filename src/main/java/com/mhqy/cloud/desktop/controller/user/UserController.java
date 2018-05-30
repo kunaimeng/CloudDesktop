@@ -112,12 +112,15 @@ public class UserController {
     public Map<String, Object> userPhotoUpload(@RequestParam("file") MultipartFile file) {
         Map<String, Object> map = new HashMap<>();
         try {
+            LOGGER.info("用户头像上传参数:{}", BeanJsonUtil.bean2Json(file));
             CDFile cdFile = fileUploadService.upload(file);
             map.put("code", 1);
             map.put("msg", cdFile.getFileSystemName());
+            LOGGER.info("用户头像上传成功：{}", BeanJsonUtil.bean2Json(cdFile));
         } catch (Exception e) {
             map.put("code", 0);
             map.put("msg", e);
+            LOGGER.error("用户头像上传失败，原因：{}", e);
         }
         return map;
     }
