@@ -181,7 +181,7 @@ public class CDUser {
     }
 
     public void setUserSmbgimg(String userSmbgimg) {
-        this.userSmbgimg = userSmbgimg;
+        this.userSmbgimg = userSmbgimg == null ? null : userSmbgimg.trim();
     }
 
     public String getUserBgimg() {
@@ -189,7 +189,7 @@ public class CDUser {
     }
 
     public void setUserBgimg(String userBgimg) {
-        this.userBgimg = userBgimg;
+        this.userBgimg = userBgimg == null ? null : userBgimg.trim();
     }
 
     public Date getCreateTime() {
