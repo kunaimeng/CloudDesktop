@@ -46,8 +46,8 @@ public class FileRestController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("fileUpload")
-    public CDFile upload(@RequestParam("file") MultipartFile file, CDFile cdFile,HttpServletRequest request, HttpSession session) {
-        CDFile cdFile1 = fileUploadService.upload(file, request);
+    public CDFile upload(@RequestParam("file") MultipartFile file, CDFile cdFile, HttpSession session) {
+        CDFile cdFile1 = fileUploadService.upload(file);
         cdFile1.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         cdFile1.setFileParentId(cdFile.getFileParentId());
         cdFileService.insertSelective(cdFile1);

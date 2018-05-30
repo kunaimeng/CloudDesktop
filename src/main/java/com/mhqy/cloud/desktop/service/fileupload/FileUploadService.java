@@ -20,6 +20,6 @@ public interface FileUploadService {
      * @date: 2018/5/21 14:30
      * @mail: peiqiankun@jd.com
      */
-    CDFile upload(MultipartFile file, HttpServletRequest request);
+    CDFile upload(MultipartFile file);
 
 }

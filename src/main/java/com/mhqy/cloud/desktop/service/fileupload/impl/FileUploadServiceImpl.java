@@ -29,7 +29,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     private String File_UPLOAN_PATH;
 
     @Override
-    public CDFile upload(MultipartFile file, HttpServletRequest request) {
+    public CDFile upload(MultipartFile file) {
         CDFile cdFile = new CDFile();
         try {
             File dirPath = new File(File_UPLOAN_PATH);
