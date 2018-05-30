@@ -60,6 +60,14 @@ public class CDUser {
      */
     private BigDecimal userLatitude;
     /**
+     * 移动端壁纸
+     */
+    private String userSmbgimg;
+    /**
+     * 壁纸
+     */
+    private String userBgimg;
+    /**
      * 创建日期
      */
     private Date createTime;
@@ -166,6 +174,22 @@ public class CDUser {
 
     public void setUserLatitude(BigDecimal userLatitude) {
         this.userLatitude = userLatitude;
+    }
+
+    public String getUserSmbgimg() {
+        return userSmbgimg;
+    }
+
+    public void setUserSmbgimg(String userSmbgimg) {
+        this.userSmbgimg = userSmbgimg;
+    }
+
+    public String getUserBgimg() {
+        return userBgimg;
+    }
+
+    public void setUserBgimg(String userBgimg) {
+        this.userBgimg = userBgimg;
     }
 
     public Date getCreateTime() {

@@ -11,7 +11,9 @@ public enum Constant {
 
     CHAT_CODE_CHAT001("CHAT001","进入DeskChatTo"),
     CHAT_CODE_CHAT002("CHAT002","退出DeskChatTo"),
-    CHAT_CODE_CHAT003("CHAT003","普通消息");
+    CHAT_CODE_CHAT003("CHAT003","普通消息"),
+    BACKGROUND_MOBILE_URL_IMG("BGURLIMG001","./static/img/wallpapers/mobile.jpg"),
+    BACKGROUND_MAIN_URL_IMG("BGURLIMG002","./static/img/wallpapers/main.jpg");
 
     // 成员变量
     private String code;

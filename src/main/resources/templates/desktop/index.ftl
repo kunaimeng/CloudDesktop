@@ -19,7 +19,6 @@
         * {
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu
         }
-
         /*磁贴自定义样式*/
         .win10-block-content-text {
             line-height: 44px;
@@ -29,12 +28,21 @@
     </style>
     <script>
         Win10.onReady(function () {
-
             //设置壁纸
             Win10.setBgUrl({
-                main: './static/img/wallpapers/main.jpg',
-                mobile: './static/img/wallpapers/mobile.jpg',
+                main: '${userInfo.userBgimg}',
+                mobile: '${userInfo.userSmbgimg}',
             });
+
+            if(${mainBg?c}){
+                layer.confirm('您想换一个壁纸吗?', {icon: 3, title: "提示"}, function (index) {
+                    Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>壁纸");
+                    layer.close(index);
+                });
+            }
+            <#--if(${mobileBg?c}){-->
+                <#--alert("请修改移动端桌面壁纸");-->
+            <#--}-->
 
             Win10.setAnimated([
                 'animated flip',

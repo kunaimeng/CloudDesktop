@@ -1,15 +1,18 @@
 package com.mhqy.cloud.desktop.controller;
 
+import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.common.util.ListUtil;
 import com.mhqy.cloud.desktop.domin.CDAddress;
 import com.mhqy.cloud.desktop.domin.CDFile;
 import com.mhqy.cloud.desktop.domin.CDNews;
+import com.mhqy.cloud.desktop.domin.CDUser;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +109,20 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("index")
-    public String index() {
+    public String index(Model model,HttpSession session) {
+        //查询壁纸信息
+        CDUser cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        if(StringUtils.equals(cdUser.getUserBgimg(), Constant.BACKGROUND_MAIN_URL_IMG.getDesc())){
+            model.addAttribute("mainBg",true);
+        }else{
+            model.addAttribute("mainBg",false);
+        }
+        if(StringUtils.equals(cdUser.getUserSmbgimg(), Constant.BACKGROUND_MOBILE_URL_IMG.getDesc())){
+            model.addAttribute("mobileBg",true);
+        }else{
+            model.addAttribute("mobileBg",false);
+        }
+        model.addAttribute("userInfo",cdUser);
         return "desktop/index";
     }
 

@@ -50,7 +50,7 @@ public class UserController {
      */
     @PostMapping("userLogin")
     public Map<String, Object> userLogin(CDUser cdUser, HttpSession session) {
-        Map<String, Object> map = null;
+        Map<String, Object> map = new HashMap<String, Object>();
         try {
             cdUser.setUserPassword(DigestUtils.md5DigestAsHex(cdUser.getUserPassword().getBytes()));
             map = userService.userLogin(cdUser);
@@ -65,7 +65,6 @@ public class UserController {
             }
         } catch (Exception e) {
             LOGGER.error("用户登录发生异常-->{}", e);
-            map = new HashMap<String, Object>();
             map.put("flag", false);
             map.put("msg", e);
         } finally {
@@ -121,6 +120,35 @@ public class UserController {
             map.put("code", 0);
             map.put("msg", e);
             LOGGER.error("用户头像上传失败，原因：{}", e);
+        }
+        return map;
+    }
+
+    /**
+     * @Description:设置壁纸
+     * @author: peiqiankun
+     * @date: 2018/5/30 17:27
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("updateUserInfo")
+    public Map<String, Object> updateUserInfo(CDUser cdUser, HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            cdUser.setUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+            LOGGER.info("设置壁纸入参：{}", BeanJsonUtil.bean2Json(cdUser));
+            int i = userService.updateByPrimaryKeySelective(cdUser);
+            LOGGER.info("设置壁纸影响记录：{}条", i);
+            if (i == 1) {
+                map.put("code", true);
+                map.put("msg", "设置壁纸成功！");
+            } else {
+                map.put("code", false);
+                map.put("msg", "设置壁纸失败！");
+            }
+        } catch (Exception e) {
+            map.put("code", false);
+            map.put("msg", e);
+            LOGGER.error("设置壁纸异常：{}", e);
         }
         return map;
     }
