@@ -24,7 +24,7 @@
                     <div class="s_img">
                         <i class="fa fa-windows icon blue"></i>
                     </div>
-                    <div class="s_check" data-img="fa fa-plus  icon blue" data-title="我的电脑" data-desc="文件管理"
+                    <div class="s_check" data-img="fa fa-windows  icon blue" data-title="我的电脑" data-desc="文件管理"
                          data-src="/file">
                         <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装我的电脑</span>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="s_img">
                         <i class="fa fa-edge icon blue"></i>
                     </div>
-                    <div class="s_check" data-img="fa fa-windows icon blue" data-title="云桌面浏览器" data-desc="访问网络"
+                    <div class="s_check" data-img="fa fa-internet-explorer icon blue" data-title="云桌面浏览器" data-desc="访问网络"
                          data-src="/explorer">
                         <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装云桌面浏览器</span>
                     </div>

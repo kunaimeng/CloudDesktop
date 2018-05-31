@@ -71,12 +71,6 @@
                      <div class="title">${soft.desktopTitle}</div>
                  </div>
             </#list>
-            <div class="shortcut"
-                 onclick="Win10.openUrl('win10ui.yuri2.cn/src/doc.php','<img class=\'icon\' src=\'./static/img/icon/doc.png\'/>在线文档')">
-                <img class="icon" src="./static/img/icon/doc.png"/>
-                <div class="title">在线文档</div>
-            </div>
-
         </div>
         <div id="win10-desktop-scene"></div>
     </div>
