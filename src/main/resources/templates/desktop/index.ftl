@@ -34,15 +34,17 @@
                 mobile: '${userInfo.userSmbgimg}',
             });
 
-            if(${mainBg?c}){
-                layer.confirm('系统检测到，你使用的是默认壁纸，您想换一个壁纸吗?', {icon: 3, title: "提示"}, function (index) {
-                    Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>壁纸");
-                    layer.close(index);
-                });
-            }
-            <#--if(${mobileBg?c}){-->
-                <#--alert("请修改移动端桌面壁纸");-->
-            <#--}-->
+            setTimeout(function () {
+                if(${software?c}){
+                    Win10.newMsg("更换壁纸提醒", "<a onclick='Win10.openUrl(\"/wallpaper\",\"<i class=\\\"fa fa-google-wallet icon blue\\\"></i>桌面壁纸\")'>系统检测到，你使用的是默认壁纸，点击更换</a>");
+                }
+            }, 4000);
+
+            setTimeout(function () {
+                if(${software?c}){
+                    Win10.newMsg("安装软件提醒", "<a onclick='Win10.openUrl(\"/software\",\"<i class=\\\"fa fa-gears icon blue\\\"></i>软件中心\")'>系统检测到，你还没有安装任何软件，点击安装</a>");
+                }
+            }, 3000);
 
             Win10.setAnimated([
                 'animated flip',

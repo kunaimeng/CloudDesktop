@@ -127,6 +127,11 @@ public class BaseController {
         //查询安装软件
         List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         model.addAttribute("cdDesktopList", cdDesktopList);
+        if(cdDesktopList.isEmpty()){
+            model.addAttribute("software", true);
+        }else{
+            model.addAttribute("software", false);
+        }
         return "desktop/index";
     }
 
