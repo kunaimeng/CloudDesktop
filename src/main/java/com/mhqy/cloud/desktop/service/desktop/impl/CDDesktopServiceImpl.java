@@ -6,6 +6,8 @@ import com.mhqy.cloud.desktop.service.desktop.CDDesktopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service.CDDesktopService.Impl
  * @ClassName: CDDesktopServiceImpl
@@ -49,5 +51,18 @@ public class CDDesktopServiceImpl implements CDDesktopService {
     @Override
     public int updateByPrimaryKey(CDDesktop record) {
         return cdDesktopMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * @Description:基本搜索
+     * @author: peiqiankun
+     * @date: 2018/5/31 10:49
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDDesktop> listSoftWareByUserId(Long userID) {
+        CDDesktop cdDesktop = new CDDesktop();
+        cdDesktop.setDesktopUserId(userID);
+        return cdDesktopMapper.selectByConditon(cdDesktop);
     }
 }

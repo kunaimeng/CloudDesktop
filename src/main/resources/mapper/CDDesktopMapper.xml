@@ -16,11 +16,40 @@
     desktop_id, desktop_user_id, desktop_img, desktop_title, desktop_desc, desktop_opensrc, 
     create_time, update_time, yn
   </sql>
+    <sql id="Base_Search_List">
+        <where>
+            <if test="desktopId != null and desktopId !=''">
+                AND desktop_id = #{desktopId,jdbcType=BIGINT}
+            </if>
+            <if test="desktopUserId != null and desktopUserId !=''">
+                AND desktop_user_id = #{desktopUserId,jdbcType=BIGINT}
+            </if>
+            <if test="desktopImg != null and desktopImg !=''">
+                AND desktop_img = #{desktopImg,jdbcType=VARCHAR}
+            </if>
+            <if test="desktopTitle != null and desktopTitle !=''">
+                AND desktop_title = #{desktopTitle,jdbcType=VARCHAR}
+            </if>
+            <if test="desktopDesc != null and desktopDesc !=''">
+                AND desktop_desc = #{desktopDesc,jdbcType=VARCHAR}
+            </if>
+            <if test="desktopOpensrc != null and desktopOpensrc !=''">
+                AND desktop_opensrc = #{desktopOpensrc,jdbcType=VARCHAR}
+            </if>
+            AND yn = 1
+        </where>
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from c_d_desktop
         where desktop_id = #{desktopId,jdbcType=BIGINT}
+    </select>
+    <select id="selectByConditon" resultMap="BaseResultMap" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
+        select
+        <include refid="Base_Column_List"/>
+        from c_d_desktop
+        <include refid="Base_Search_List"/>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_desktop

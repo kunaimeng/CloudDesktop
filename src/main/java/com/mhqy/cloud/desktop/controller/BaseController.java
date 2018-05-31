@@ -3,12 +3,10 @@ package com.mhqy.cloud.desktop.controller;
 import com.mhqy.cloud.desktop.common.Constant;
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
 import com.mhqy.cloud.desktop.common.util.ListUtil;
-import com.mhqy.cloud.desktop.domin.CDAddress;
-import com.mhqy.cloud.desktop.domin.CDFile;
-import com.mhqy.cloud.desktop.domin.CDNews;
-import com.mhqy.cloud.desktop.domin.CDUser;
+import com.mhqy.cloud.desktop.domin.*;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.address.CDAddressService;
+import com.mhqy.cloud.desktop.service.desktop.CDDesktopService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
@@ -52,6 +50,9 @@ public class BaseController {
 
     @Autowired
     private CDUserService cdUserService;
+
+    @Autowired
+    private CDDesktopService cdDesktopService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -123,6 +124,9 @@ public class BaseController {
             model.addAttribute("mobileBg", false);
         }
         model.addAttribute("userInfo", cdUser);
+        //查询安装软件
+        List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        model.addAttribute("cdDesktopList", cdDesktopList);
         return "desktop/index";
     }
 

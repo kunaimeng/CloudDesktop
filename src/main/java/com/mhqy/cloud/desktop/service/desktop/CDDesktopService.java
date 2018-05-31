@@ -2,6 +2,8 @@ package com.mhqy.cloud.desktop.service.desktop;
 
 import com.mhqy.cloud.desktop.domin.CDDesktop;
 
+import java.util.List;
+
 /**
  * @PACKAGE_NAME:com.mhqy.cloud.desktop.service
  * @ClassName: CDDesktopService
@@ -24,4 +26,12 @@ public interface CDDesktopService {
     int updateByPrimaryKeySelective(CDDesktop record);
 
     int updateByPrimaryKey(CDDesktop record);
+
+    /**
+     * @Description:基本搜索
+     * @author: peiqiankun
+     * @date: 2018/5/31 10:49
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDDesktop> listSoftWareByUserId(Long userID);
 }
