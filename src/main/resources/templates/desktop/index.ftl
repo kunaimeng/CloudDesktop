@@ -60,8 +60,13 @@
     <div class="desktop">
         <div id="win10-shortcuts" class="shortcuts-hidden">
             <div class="shortcut"
-                 onclick="Win10.openUrl('/file','<img class=\'icon\' src=\'./static/img/icon/win10.png\'/>我的电脑')">
-                <img class="icon" src="./static/img/icon/win10.png"/>
+                 onclick='Win10.openUrl("/software","<i class=\"fa fa-gears icon blue\"></i>软件中心")'>
+                <i class="fa fa-gears icon blue"></i>
+                <div class="title">软件中心</div>
+            </div>
+            <div class="shortcut"
+                 onclick='Win10.openUrl("/file","<i class=\"fa fa-windows icon blue\"></i>我的电脑")'>
+                <i class="fa fa-windows icon blue"></i>
                 <div class="title">我的电脑</div>
             </div>
             <div class="shortcut"
@@ -80,24 +85,24 @@
                 <div class="title">视频播放器</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("/music","<i class=\"fa fa-music icon blue\"></i>音乐")'>
+                 onclick='Win10.openUrl("/music","<i class=\"fa fa-music icon blue\"></i>音乐播放器")'>
                 <i class="fa fa-music icon blue"></i>
-                <div class="title">音乐</div>
+                <div class="title">音乐播放器</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("/weather","<i class=\"icon-clima-1 icon blue\"></i>天气")'>
+                 onclick='Win10.openUrl("/weather","<i class=\"icon-clima-1 icon blue\"></i>天气查询")'>
                 <i class="icon-clima-1 icon blue"></i>
                 <div class="title">天气</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>壁纸")'>
+                 onclick='Win10.openUrl("/wallpaper","<i class=\"fa fa-photo icon blue\"></i>桌面壁纸")'>
                 <i class="fa fa-photo icon blue"></i>
-                <div class="title">壁纸</div>
+                <div class="title">桌面壁纸</div>
             </div>
             <div class="shortcut"
-                 onclick='Win10.openUrl("/picture","<i class=\"fa fa-picture-o icon blue\"></i>相册")'>
+                 onclick='Win10.openUrl("/picture","<i class=\"fa fa-picture-o icon blue\"></i>我的相册")'>
                 <i class="fa fa-picture-o icon blue"></i>
-                <div class="title">相册</div>
+                <div class="title">我的相册</div>
             </div>
             <div class="shortcut"
                  onclick='Win10.openUrl("/game/dadishu","<i class=\"fa fa-gavel icon blue\"></i>打地鼠")'>
@@ -114,11 +119,7 @@
                 <img class="icon" src="./static/img/icon/doc.png"/>
                 <div class="title">在线文档</div>
             </div>
-            <div class="shortcut"
-                 onclick='Win10.openUrl("win10ui.yuri2.cn/src/workshop.php","<i class=\"fa fa-gears icon purple\"></i>设置")'>
-                <i class="fa fa-gears icon purple"></i>
-                <div class="title">设置</div>
-            </div>
+
         </div>
         <div id="win10-desktop-scene"></div>
     </div>

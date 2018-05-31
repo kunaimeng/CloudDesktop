@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mhqy.cloud.desktop.dao.CDDesktopMapper.CDDesktopMapper" >
-  <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDDesktop" >
-    <id column="desktop_id" property="desktopId" jdbcType="BIGINT" />
-    <result column="desktop_user_id" property="desktopUserId" jdbcType="BIGINT" />
-    <result column="desktop_img" property="desktopImg" jdbcType="VARCHAR" />
-    <result column="desktop_title" property="desktopTitle" jdbcType="VARCHAR" />
-    <result column="desktop_desc" property="desktopDesc" jdbcType="VARCHAR" />
-    <result column="desktop_opensrc" property="desktopOpensrc" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="yn" property="yn" jdbcType="TINYINT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.mhqy.cloud.desktop.dao.CDDesktopMapper.CDDesktopMapper">
+    <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDDesktop">
+        <id column="desktop_id" property="desktopId" jdbcType="BIGINT"/>
+        <result column="desktop_user_id" property="desktopUserId" jdbcType="BIGINT"/>
+        <result column="desktop_img" property="desktopImg" jdbcType="VARCHAR"/>
+        <result column="desktop_title" property="desktopTitle" jdbcType="VARCHAR"/>
+        <result column="desktop_desc" property="desktopDesc" jdbcType="VARCHAR"/>
+        <result column="desktop_opensrc" property="desktopOpensrc" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="yn" property="yn" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     desktop_id, desktop_user_id, desktop_img, desktop_title, desktop_desc, desktop_opensrc, 
     create_time, update_time, yn
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from c_d_desktop
-    where desktop_id = #{desktopId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from c_d_desktop
+        where desktop_id = #{desktopId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_desktop
     where desktop_id = #{desktopId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop" >
+    <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
     insert into c_d_desktop (desktop_id, desktop_user_id, desktop_img, 
       desktop_title, desktop_desc, desktop_opensrc, 
       create_time, update_time, yn
@@ -36,98 +36,86 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop" >
-    insert into c_d_desktop
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="desktopId != null" >
-        desktop_id,
-      </if>
-      <if test="desktopUserId != null" >
-        desktop_user_id,
-      </if>
-      <if test="desktopImg != null" >
-        desktop_img,
-      </if>
-      <if test="desktopTitle != null" >
-        desktop_title,
-      </if>
-      <if test="desktopDesc != null" >
-        desktop_desc,
-      </if>
-      <if test="desktopOpensrc != null" >
-        desktop_opensrc,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-      <if test="yn != null" >
-        yn,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="desktopId != null" >
-        #{desktopId,jdbcType=BIGINT},
-      </if>
-      <if test="desktopUserId != null" >
-        #{desktopUserId,jdbcType=BIGINT},
-      </if>
-      <if test="desktopImg != null" >
-        #{desktopImg,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopTitle != null" >
-        #{desktopTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopDesc != null" >
-        #{desktopDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopOpensrc != null" >
-        #{desktopOpensrc,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="yn != null" >
-        #{yn,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop" >
-    update c_d_desktop
-    <set >
-      <if test="desktopUserId != null" >
-        desktop_user_id = #{desktopUserId,jdbcType=BIGINT},
-      </if>
-      <if test="desktopImg != null" >
-        desktop_img = #{desktopImg,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopTitle != null" >
-        desktop_title = #{desktopTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopDesc != null" >
-        desktop_desc = #{desktopDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="desktopOpensrc != null" >
-        desktop_opensrc = #{desktopOpensrc,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="yn != null" >
-        yn = #{yn,jdbcType=TINYINT},
-      </if>
-    </set>
-    where desktop_id = #{desktopId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop" >
+    <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
+        insert into c_d_desktop
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="desktopId != null">
+                desktop_id,
+            </if>
+            <if test="desktopUserId != null">
+                desktop_user_id,
+            </if>
+            <if test="desktopImg != null">
+                desktop_img,
+            </if>
+            <if test="desktopTitle != null">
+                desktop_title,
+            </if>
+            <if test="desktopDesc != null">
+                desktop_desc,
+            </if>
+            <if test="desktopOpensrc != null">
+                desktop_opensrc,
+            </if>
+            create_time,
+            update_time,
+            yn,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="desktopId != null">
+                #{desktopId,jdbcType=BIGINT},
+            </if>
+            <if test="desktopUserId != null">
+                #{desktopUserId,jdbcType=BIGINT},
+            </if>
+            <if test="desktopImg != null">
+                #{desktopImg,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopTitle != null">
+                #{desktopTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopDesc != null">
+                #{desktopDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopOpensrc != null">
+                #{desktopOpensrc,jdbcType=VARCHAR},
+            </if>
+            now(),
+            now(),
+            1
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
+        update c_d_desktop
+        <set>
+            <if test="desktopUserId != null">
+                desktop_user_id = #{desktopUserId,jdbcType=BIGINT},
+            </if>
+            <if test="desktopImg != null">
+                desktop_img = #{desktopImg,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopTitle != null">
+                desktop_title = #{desktopTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopDesc != null">
+                desktop_desc = #{desktopDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="desktopOpensrc != null">
+                desktop_opensrc = #{desktopOpensrc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="yn != null">
+                yn = #{yn,jdbcType=TINYINT},
+            </if>
+        </set>
+        where desktop_id = #{desktopId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
     update c_d_desktop
     set desktop_user_id = #{desktopUserId,jdbcType=BIGINT},
       desktop_img = #{desktopImg,jdbcType=VARCHAR},

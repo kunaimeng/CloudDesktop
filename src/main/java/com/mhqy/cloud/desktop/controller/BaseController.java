@@ -109,21 +109,34 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("index")
-    public String index(Model model,HttpSession session) {
+    public String index(Model model, HttpSession session) {
         //查询壁纸信息
         CDUser cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
-        if(StringUtils.equals(cdUser.getUserBgimg(), Constant.BACKGROUND_MAIN_URL_IMG.getDesc())){
-            model.addAttribute("mainBg",true);
-        }else{
-            model.addAttribute("mainBg",false);
+        if (StringUtils.equals(cdUser.getUserBgimg(), Constant.BACKGROUND_MAIN_URL_IMG.getDesc())) {
+            model.addAttribute("mainBg", true);
+        } else {
+            model.addAttribute("mainBg", false);
         }
-        if(StringUtils.equals(cdUser.getUserSmbgimg(), Constant.BACKGROUND_MOBILE_URL_IMG.getDesc())){
-            model.addAttribute("mobileBg",true);
-        }else{
-            model.addAttribute("mobileBg",false);
+        if (StringUtils.equals(cdUser.getUserSmbgimg(), Constant.BACKGROUND_MOBILE_URL_IMG.getDesc())) {
+            model.addAttribute("mobileBg", true);
+        } else {
+            model.addAttribute("mobileBg", false);
         }
-        model.addAttribute("userInfo",cdUser);
+        model.addAttribute("userInfo", cdUser);
         return "desktop/index";
+    }
+
+
+    /**
+     * @Description:软件中心
+     * @author: peiqiankun
+     * @date: 2018/5/30 21:05
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("software")
+    public String software(HttpSession session) {
+        LOGGER.info("进入软件中心");
+        return "software/index";
     }
 
     /**
@@ -150,18 +163,20 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("clock")
-    public String clock(){
+    public String clock() {
         return "desktop/clock";
     }
 
-    /**万年历
+    /**
+     * 万年历
+     *
      * @Description:
      * @author: peiqiankun
      * @date: 2018/4/7 15:35
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("date")
-    public String date(){
+    public String date() {
         return "desktop/date";
     }
 
@@ -174,7 +189,7 @@ public class BaseController {
     @RequestMapping("music")
     public String music(Model model) {
         List<CDFile> list = cdFileService.listMusic();
-        model.addAttribute("musicList",list);
+        model.addAttribute("musicList", list);
         return "music/index";
     }
 
@@ -187,7 +202,7 @@ public class BaseController {
     @RequestMapping("video")
     public String video(Model model) {
         List<CDFile> list = cdFileService.listMovie();
-        model.addAttribute("movieList",list);
+        model.addAttribute("movieList", list);
         return "video/index";
     }
 
@@ -210,12 +225,12 @@ public class BaseController {
      */
     @RequestMapping("weather")
     public String weather(Model model, CDWeather cdWeather) {
-        if(!redisTemplate.hasKey(REDIS_KEY_WEATHER)){
-            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_WEATHER);
-            try{
+        if (!redisTemplate.hasKey(REDIS_KEY_WEATHER)) {
+            LOGGER.info("缓存中不存在{}信息，开始爬取", REDIS_KEY_WEATHER);
+            try {
                 reptileService.getWeather();
-            }catch (Exception e){
-                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_WEATHER,e);
+            } catch (Exception e) {
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}", REDIS_KEY_WEATHER, e);
             }
         }
         List<CDWeather> result = new ArrayList<>();
@@ -280,7 +295,7 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("explorer")
-    public String explorer(){
+    public String explorer() {
         return "explorer/index";
     }
 
@@ -292,12 +307,12 @@ public class BaseController {
      */
     @RequestMapping("wallpaper")
     public String wallpaper(String href, Model model) {
-        if(!redisTemplate.hasKey(REDIS_KEY_COLUMN)){
-            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_COLUMN);
-            try{
+        if (!redisTemplate.hasKey(REDIS_KEY_COLUMN)) {
+            LOGGER.info("缓存中不存在{}信息，开始爬取", REDIS_KEY_COLUMN);
+            try {
                 reptileService.getWallpaper();
-            }catch (Exception e){
-                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_COLUMN,e);
+            } catch (Exception e) {
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}", REDIS_KEY_COLUMN, e);
             }
         }
         List<Map<String, String>> list = (List<Map<String, String>>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(REDIS_KEY_COLUMN).toString(), List.class);
@@ -319,11 +334,11 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("picture")
-    public String picture(Model model,HttpSession session){
+    public String picture(Model model, HttpSession session) {
         CDFile cdFile = new CDFile();
         cdFile.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         List<CDFile> photoList = cdFileService.listPhonoByUser(cdFile);
-        model.addAttribute("photoList",photoList);
+        model.addAttribute("photoList", photoList);
         return "picture/index";
     }
 
@@ -378,17 +393,17 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("news")
-    public String news(Model model){
-        if(!redisTemplate.hasKey(REDIS_KEY_NEWS)){
-            LOGGER.info("缓存中不存在{}信息，开始爬取",REDIS_KEY_NEWS);
-            try{
+    public String news(Model model) {
+        if (!redisTemplate.hasKey(REDIS_KEY_NEWS)) {
+            LOGGER.info("缓存中不存在{}信息，开始爬取", REDIS_KEY_NEWS);
+            try {
                 reptileService.getHotNews();
-            }catch (Exception e){
-                LOGGER.error("缓存中不存在{}信息，爬取失败：{}",REDIS_KEY_NEWS,e);
+            } catch (Exception e) {
+                LOGGER.error("缓存中不存在{}信息，爬取失败：{}", REDIS_KEY_NEWS, e);
             }
         }
-        List<CDNews> news = (List<CDNews>)BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(REDIS_KEY_NEWS).toString(),List.class);
-        model.addAttribute("news",news);
+        List<CDNews> news = (List<CDNews>) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(REDIS_KEY_NEWS).toString(), List.class);
+        model.addAttribute("news", news);
         return "news/index";
     }
 
@@ -399,8 +414,8 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("chat")
-    public String chat(Model model,HttpSession session){
-        model.addAttribute("userInfo",cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString())));
+    public String chat(Model model, HttpSession session) {
+        model.addAttribute("userInfo", cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString())));
         return "chat/index";
     }
 
@@ -411,7 +426,7 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("updateinfo")
-    public String updateinfo(){
+    public String updateinfo() {
         LOGGER.info("访问安全卫士更新页面");
         return "updateinfo/index";
     }
