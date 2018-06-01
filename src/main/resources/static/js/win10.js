@@ -187,6 +187,16 @@ window.Win10 = {
             btn.addClass('active');
         }
     },
+    _installSoft: function (url,icon,title) {
+        url = url.substr(1);
+        var html="<div class=\"shortcut\"\n" +
+            "                 onclick='Win10.openUrl(\"/"+url+"\",\"<i class=\\\""+icon+"\\\"></i>"+title+"\")'>\n" +
+            "                <i class=\""+icon+"\"></i>\n" +
+            "                <div class=\"title\">"+title+"</div>\n" +
+            "            </div>";
+        $("#win10-shortcuts .shortcut").last().after(html);
+        Win10.renderShortcuts();
+    },
     _renderContextMenu: function (x, y, menu, trigger) {
         this._removeContextMenu();
         if (menu === true) {

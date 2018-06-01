@@ -121,6 +121,7 @@
 </div>
 <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
+<script type="text/javascript" src="./static/js/win10.child.js"></script>
 <script type="text/javascript">
     $(".s_check").click(function () {
         var obj = $(this);
@@ -128,6 +129,9 @@
         var desktopTitle = obj.attr("data-title");
         var desktopDesc = obj.attr("data-desc");
         var desktopOpensrc = obj.attr("data-src");
+        if (obj.find("i").attr("class") == "fa fa-check") {
+            return false;
+        }
         layer.confirm('确认安装' + obj.attr("data-title") + '吗?', {icon: 3, title: "提示"}, function (index) {
             $.ajax({
                 type: 'post',
@@ -147,6 +151,7 @@
                     layer.close(index);
                     obj.find("i").attr("class", "fa fa-check");
                     obj.find("span").text("已安装");
+                    Win10_parent._installSoft(desktopOpensrc, desktopImg, desktopTitle);
                 },
                 error: function () {
                     layer.close(index);
