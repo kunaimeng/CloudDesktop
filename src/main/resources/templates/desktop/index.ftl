@@ -34,17 +34,17 @@
                 mobile: '${userInfo.userSmbgimg}',
             });
 
-            setTimeout(function () {
-                if(${software?c}){
+            if (${mainBg?c}) {
+                setTimeout(function () {
                     Win10.newMsg("更换壁纸提醒", "<a onclick='Win10.openUrl(\"/wallpaper\",\"<i class=\\\"fa fa-google-wallet icon blue\\\"></i>桌面壁纸\")'>系统检测到，你使用的是默认壁纸，点击更换</a>");
-                }
-            }, 4000);
+                }, 4000);
+            }
 
-            setTimeout(function () {
-                if(${software?c}){
+            if (${software?c}) {
+                setTimeout(function () {
                     Win10.newMsg("安装软件提醒", "<a onclick='Win10.openUrl(\"/software\",\"<i class=\\\"fa fa-gears icon blue\\\"></i>软件中心\")'>系统检测到，你还没有安装任何软件，点击安装</a>");
-                }
-            }, 3000);
+                }, 3000);
+            }
 
             Win10.setAnimated([
                 'animated flip',
