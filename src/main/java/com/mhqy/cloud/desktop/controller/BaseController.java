@@ -127,9 +127,9 @@ public class BaseController {
         //查询安装软件
         List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         model.addAttribute("cdDesktopList", cdDesktopList);
-        if(cdDesktopList.isEmpty()){
+        if (cdDesktopList.isEmpty()) {
             model.addAttribute("software", true);
-        }else{
+        } else {
             model.addAttribute("software", false);
         }
         return "desktop/index";
@@ -143,8 +143,15 @@ public class BaseController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("software")
-    public String software(HttpSession session) {
+    public String software(Model model, HttpSession session) {
         LOGGER.info("进入软件中心");
+        //查询安装软件
+        List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        List<String> result = new ArrayList<>();
+        for (CDDesktop cdDesktop : cdDesktopList) {
+            result.add(cdDesktop.getDesktopOpensrc());
+        }
+        model.addAttribute("cdDesktopList", result);
         return "software/index";
     }
 

@@ -26,16 +26,17 @@
                     </div>
                     <div class="s_check" data-img="fa fa-windows  icon blue" data-title="我的电脑" data-desc="文件管理"
                          data-src="/file">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装我的电脑</span>
+                    ${cdDesktopList?seq_contains('/file')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装我的电脑</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
                     <div class="s_img">
                         <i class="fa fa-edge icon blue"></i>
                     </div>
-                    <div class="s_check" data-img="fa fa-internet-explorer icon blue" data-title="云桌面浏览器" data-desc="访问网络"
+                    <div class="s_check" data-img="fa fa-internet-explorer icon blue" data-title="云桌面浏览器"
+                         data-desc="访问网络"
                          data-src="/explorer">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装云桌面浏览器</span>
+                    ${cdDesktopList?seq_contains('/explorer')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装云桌面浏览器</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -44,7 +45,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-wechat icon blue" data-title="DeskChatTo" data-desc="云桌面交流"
                          data-src="/chat">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装DeskChatTo</span>
+                    ${cdDesktopList?seq_contains('/chat')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装DeskChatTo</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -53,7 +54,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-caret-square-o-right icon blue" data-title="视频播放器"
                          data-desc="视频播放" data-src="/video">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装视频播放器</span>
+                    ${cdDesktopList?seq_contains('/video')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装视频播放器</span>")}
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-music icon blue" data-title="音乐播放器" data-desc="音乐播放"
                          data-src="/music">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装音乐播放器</span>
+                    ${cdDesktopList?seq_contains('/music')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装音乐播放器</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -73,7 +74,7 @@
                     </div>
                     <div class="s_check" data-img="icon-clima-1 icon blue" data-title="天气查询" data-desc="天气查询"
                          data-src="/weather">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装天气查询</span>
+                    ${cdDesktopList?seq_contains('/weather')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装天气查询</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -82,7 +83,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-google-wallet icon blue" data-title="桌面壁纸" data-desc="桌面壁纸"
                          data-src="/wallpaper">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装桌面壁纸</span>
+                    ${cdDesktopList?seq_contains('/wallpaper')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装桌面壁纸</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -91,7 +92,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-picture-o icon blue" data-title="我的相册" data-desc="我的相册"
                          data-src="/picture">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装我的相册</span>
+                    ${cdDesktopList?seq_contains('/picture')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装我的相册</span>")}
                     </div>
                 </div>
             </div>
@@ -102,7 +103,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-gavel icon blue" data-title="打地鼠" data-desc="打地鼠小游戏"
                          data-src="/game/dadishu">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装打地鼠</span>
+                    ${cdDesktopList?seq_contains('/game/dadishu')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装打地鼠</span>")}
                     </div>
                 </div>
                 <div class="col-md-3 column softItem">
@@ -111,7 +112,7 @@
                     </div>
                     <div class="s_check" data-img="fa fa-gg-circle  icon blue" data-title="捕鱼达人" data-desc="捕鱼达人小游戏"
                          data-src="/game/buyvdaren">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;<span>安装捕鱼达人</span>
+                    ${cdDesktopList?seq_contains('/game/buyvdaren')?string("<i class='fa fa-check'></i>&nbsp;&nbsp;<span>已安装</span>", "<i class='fa fa-plus'></i>&nbsp;&nbsp;<span>安装捕鱼达人</span>")}
                     </div>
                 </div>
             </div>
