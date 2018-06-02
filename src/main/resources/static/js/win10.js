@@ -433,6 +433,9 @@ window.Win10 = {
                 });
             });
         });
+        $("#win10-btn-news").click(function () {
+            Win10.openUrl('/news', '<i class="fa fa-newspaper-o icon"></i>最新资讯', [['650px', '450px'], 'rt']);
+        });
         setInterval(function () {
             var myDate = new Date();
             var year = myDate.getFullYear();
@@ -466,10 +469,6 @@ window.Win10 = {
                 $(this).parent().parent().find('.layui-layer-btn0').click();
             }
         });
-        //打广告
-        setTimeout(function () {
-            console.log(Win10.lang('本页由Win10-UI强力驱动\n更多信息：http://win10ui.yuri2.cn \nWin10-UI,轻松打造别具一格的后台界面 ', 'The page is strongly driven by Win10-UI.\nFor more info: http://win10ui.yuri2.cn.\n Win10-UI, easy to create a unique background interface.'))
-        }, 2000);
         //点击清空右键菜单
         $(document).click(function (event) {
             if (!event.button)
@@ -507,6 +506,11 @@ window.Win10 = {
                     layer.alert(Win10.lang('您的浏览器不支持,请按 Ctrl+D 手动收藏!', 'Your browser does not support, please press Ctrl+D to manual collection!'));
                 }
             }],
+            '|',
+            ['<i class="fa fa-fw fa-refresh"></i> ' + Win10.lang('刷新', 'Reflash'), function () {
+                window.location.href="/index";
+            }],
+            '|',
             ['<i class="fa fa-fw fa-window-maximize"></i> ' + Win10.lang('进入全屏', 'Enable Full Screen'), function () {
                 Win10.enableFullScreen()
             }],
@@ -902,14 +906,14 @@ window.Win10 = {
             type: 1,
             closeBtn: 1, //不显示关闭按钮
             anim: 2,
-            skin: 'layui-layer-molv',
-            title: 'WIN10-UI ' + this._version,
+            skin: 'layui-layer-lan',
+            title: '云桌面 ' + this._version,
             shadeClose: true, //开启遮罩关闭
             area: ['320px', '200px'], //宽高
             content: '<div style="padding: 10px;font-size: 12px">' +
-            '<p>支持组件:layer、jquery、animated.css、font-awesome</p>' +
-            '<p>尤里2号©版权所有</p>' +
-            '<p>作者邮箱:yuri2peter@qq.com</p>' +
+            '<p>我们致力做一款云上桌面，并为之努力！</p>' +
+            '<p>云桌面©版权所有</p>' +
+            '<p>作者邮箱:peiqiankun@jd.com</p>' +
             '</div>'
         });
     },

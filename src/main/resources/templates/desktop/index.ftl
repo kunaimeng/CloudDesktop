@@ -52,7 +52,7 @@
             ], 0.01);
 
             setTimeout(function () {
-                Win10.openUrl('/news', '<i class="fa fa-newspaper-o icon red"></i>最新资讯', [['650px', '450px'], 'rt'])
+                Win10.openUrl('/news', '<i class="fa fa-newspaper-o icon"></i>最新资讯', [['650px', '450px'], 'rt'])
             }, 2000);
         });
     </script>
@@ -192,6 +192,7 @@
         <div id="win10_btn_group_left" class="btn_group">
             <div id="win10_btn_win" class="btn"><span class="fa fa-windows"></span></div>
             <div class="btn" id="win10-btn-browser"><span class="fa fa-internet-explorer"></span></div>
+            <div class="btn" id="win10-btn-news"><span class="fa fa-newspaper-o"></span></div>
         </div>
         <div id="win10_btn_group_middle" class="btn_group"></div>
         <div id="win10_btn_group_right" class="btn_group">

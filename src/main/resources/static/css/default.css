@@ -86,12 +86,12 @@ body {
 #win10_btn_group_left{
     float: left;
     overflow: auto;
-    max-width:200px;
+    max-width:300px;
 }
 
 #win10_btn_group_middle{
     float: left;
-    width:calc(100% - 240px);
+    width:calc(100% - 340px);
     overflow: auto;
 }
 #win10_btn_group_middle .btn_close{
