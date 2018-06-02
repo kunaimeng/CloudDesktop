@@ -446,4 +446,15 @@ public class BaseController {
         LOGGER.info("访问安全卫士更新页面");
         return "updateinfo/index";
     }
+
+    /**
+     * @Description:系统初始化软件录入界面
+     * @author: peiqiankun
+     * @date: 2018/6/2 20:37
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("softAdd")
+    public String softInit() {
+        return "softAdd/index";
+    }
 }
