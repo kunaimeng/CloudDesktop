@@ -5,53 +5,7 @@
     <title>软件初始化中心</title>
     <link rel="stylesheet" href="./static/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css">
-    <style>
-        .control-group {
-            width: 100%;
-            height: 60px;
-            float: left;
-        }
-
-        .control-label {
-            width: 25%;
-            float: left;
-            text-align: right;
-            line-height: 60px;
-            padding-right: 10px;
-        }
-
-        .controls {
-            width: 75%;
-            float: left;
-        }
-
-        .controls input {
-            width: 80%;
-            height: 34px;
-            margin: 13px 0 13px 10px;
-            outline: none;
-            padding-left: 8px;
-        }
-
-        .control-group span {
-            display: block;
-            font-size: 10px;
-            cursor: pointer;
-            width: 50%;
-            height: 40px;
-            border-radius: 4px;
-            background: #1E9FFF;
-            color: #fff;
-            text-align: center;
-            line-height: 40px;
-            margin: 25px auto;
-        }
-
-        .control-group span:hover {
-            background: #2e8ded;
-            transition: all 0.3s ease-in-out;
-        }
-    </style>
+    <link rel="stylesheet" href="./static/css/softadd.css">
 </head>
 <body>
 <div class="container">
