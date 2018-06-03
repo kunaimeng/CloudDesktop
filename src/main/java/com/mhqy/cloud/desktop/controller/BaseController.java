@@ -452,4 +452,15 @@ public class BaseController {
         LOGGER.info("访问安全卫士更新页面");
         return "updateinfo/index";
     }
+
+    /**
+     * @Description:地图
+     * @author: peiqiankun
+     * @date: 2018/6/3 15:41
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("map")
+    public String map() {
+        return "map/index";
+    }
 }
