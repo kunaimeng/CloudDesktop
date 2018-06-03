@@ -9,6 +9,7 @@ import com.mhqy.cloud.desktop.service.address.CDAddressService;
 import com.mhqy.cloud.desktop.service.desktop.CDDesktopService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
+import com.mhqy.cloud.desktop.service.soft.CDSoftwareService;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -53,6 +54,9 @@ public class BaseController {
 
     @Autowired
     private CDDesktopService cdDesktopService;
+
+    @Autowired
+    private CDSoftwareService cdSoftwareService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -145,6 +149,8 @@ public class BaseController {
     @RequestMapping("software")
     public String software(Model model, HttpSession session) {
         LOGGER.info("进入软件中心");
+        List<CDSoftware> cdSoftware = cdSoftwareService.listAllSoft();
+        model.addAttribute("cdSoftware", cdSoftware);
         //查询安装软件
         List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
         List<String> result = new ArrayList<>();

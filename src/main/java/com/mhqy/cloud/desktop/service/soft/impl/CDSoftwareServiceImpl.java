@@ -6,6 +6,8 @@ import com.mhqy.cloud.desktop.service.soft.CDSoftwareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description:软件相关
  * @author: peiqiankun
@@ -47,5 +49,16 @@ public class CDSoftwareServiceImpl implements CDSoftwareService {
     @Override
     public int updateByPrimaryKey(CDSoftware record) {
         return cdSoftwareMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * @Description:查询所有安装软件
+     * @author: peiqiankun
+     * @date: 2018/6/3 10:38
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDSoftware> listAllSoft() {
+        return cdSoftwareMapper.selectAllSoft();
     }
 }

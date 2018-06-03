@@ -17,17 +17,23 @@
     <sql id="Base_Column_List">
     soft_id, soft_title, soft_desc, soft_img, soft_img_type, soft_url, soft_type, soft_creater_id, 
     create_time, update_time, yn
-  </sql>
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from c_d_software
         where soft_id = #{softId,jdbcType=BIGINT}
     </select>
+    <select id="selectAllSoft" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from c_d_software
+        where yn=1
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_software
     where soft_id = #{softId,jdbcType=BIGINT}
-  </delete>
+    </delete>
     <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
     insert into c_d_software (soft_id, soft_title, soft_desc, 
       soft_img, soft_img_type, soft_url, 
@@ -37,7 +43,7 @@
       #{softImg,jdbcType=VARCHAR}, #{softImgType,jdbcType=TINYINT}, #{softUrl,jdbcType=VARCHAR}, 
       #{softType,jdbcType=TINYINT}, #{softCreaterId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT})
-  </insert>
+    </insert>
     <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
         insert into c_d_software
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -148,5 +154,5 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       yn = #{yn,jdbcType=TINYINT}
     where soft_id = #{softId,jdbcType=BIGINT}
-  </update>
+    </update>
 </mapper>

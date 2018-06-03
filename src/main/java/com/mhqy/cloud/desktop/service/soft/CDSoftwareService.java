@@ -2,6 +2,8 @@ package com.mhqy.cloud.desktop.service.soft;
 
 import com.mhqy.cloud.desktop.domin.CDSoftware;
 
+import java.util.List;
+
 /**
  * @Description:软件相关
  * @author: peiqiankun
@@ -22,5 +24,13 @@ public interface CDSoftwareService {
     int updateByPrimaryKeySelective(CDSoftware record);
 
     int updateByPrimaryKey(CDSoftware record);
+
+    /**
+     * @Description:查询所有安装软件
+     * @author: peiqiankun
+     * @date: 2018/6/3 10:38
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDSoftware> listAllSoft();
 
 }
