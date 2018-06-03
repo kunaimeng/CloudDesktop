@@ -12,6 +12,9 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @Description:定时任务手动执行
@@ -89,6 +92,11 @@ public class InitController {
         }
     }
 
+    @RequestMapping("promptAdd")
+    public String promptAdd(){
+        return "promptAdd/index";
+    }
+
     /**
      * @Description:初始化redis提示用语
      * @author: peiqiankun
@@ -96,17 +104,22 @@ public class InitController {
      * @mail: peiqiankun@jd.com
      */
     @ResponseBody
-    @RequestMapping(value = "promptSchedule", produces = "application/json;charset=utf-8")
-    public String promptSchedule(CDSocketMessage cdSocketMessage) {
+    @RequestMapping(value = "promptSchedule")
+    public Map<String, Object> promptSchedule(CDSocketMessage cdSocketMessage) {
+        Map<String, Object> map = new HashMap<String, Object>();
         LOGGER.info("[初始化提示用语]内容：{}",BeanJsonUtil.bean2Json(cdSocketMessage));
         try {
             Assert.notNull(cdSocketMessage.getMessage(), "数据内容不能为空");
             Assert.notNull(cdSocketMessage.getTitle(), "标题内容不能为空");
             redisTemplate.opsForValue().set("prompt", BeanJsonUtil.bean2Json(cdSocketMessage));
-            return "[初始化提示用语]成功"+BeanJsonUtil.bean2Json(cdSocketMessage);
+            map.put("flag", true);
+            map.put("msg", "操作成功");
+            return map;
         } catch (Exception e) {
             LOGGER.error("[初始化提示用语]失败：con:{}，msg:{}", BeanJsonUtil.bean2Json(cdSocketMessage), e);
-            return "[初始化提示用语]失败:"+BeanJsonUtil.bean2Json(cdSocketMessage);
+            map.put("flag", false);
+            map.put("msg", e);
+            return map;
         }
     }
 }

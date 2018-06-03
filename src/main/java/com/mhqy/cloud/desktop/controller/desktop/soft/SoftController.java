@@ -7,8 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -21,7 +22,8 @@ import java.util.Map;
  * @mail: peiqiankun@jd.com
  * @version: v1.0
  */
-@RestController
+@Controller
+@RequestMapping("soft")
 public class SoftController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SoftController.class);
@@ -33,12 +35,24 @@ public class SoftController {
     private CDSoftwareService cdSoftwareService;
 
     /**
+     * @Description:系统初始化软件录入界面
+     * @author: peiqiankun
+     * @date: 2018/6/2 20:37
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("softAdd")
+    public String softInit() {
+        return "softAdd/index";
+    }
+
+    /**
      * @Description:管理员软件安装
      * @author: peiqiankun
      * @date: 2018/6/2 22:43
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("softInsert")
+    @ResponseBody
     public Map<String, Object> softInsert(HttpSession session, CDSoftware cdSoftware) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {

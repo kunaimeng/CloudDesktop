@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>软件初始化中心</title>
+    <title>提示初始化中心</title>
     <link rel="stylesheet" href="../static/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../static/component/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/softadd.css">
@@ -24,27 +24,15 @@
                 <div class="col-md-6 column">
                     <form id="submitForm">
                         <div class="control-group">
-                            <label class="control-label" for="inputEmail">应用名称:</label>
+                            <label class="control-label" for="inputEmail">提示标题:</label>
                             <div class="controls">
-                                <input type="text" name="softTitle"/>
+                                <input type="text" name="title"/>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputEmail">应用描述:</label>
+                            <label class="control-label" for="inputEmail">提示内容:</label>
                             <div class="controls">
-                                <input type="text" name="softDesc"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail">应用图标:</label>
-                            <div class="controls">
-                                <input type="text" name="softImg"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail">应用链接:</label>
-                            <div class="controls">
-                                <input type="text" name="softUrl"/>
+                                <input type="text" name="message"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -74,7 +62,7 @@
         layer.confirm('确认要提交吗吗?', {icon: 3, title: "提示"}, function (index) {
             $.ajax({
                 type: 'post',
-                url: "/soft/softInsert",
+                url: "/init/promptSchedule",
                 data: $("#submitForm").serialize(),
                 dataType: "json",
                 beforeSend: function () {

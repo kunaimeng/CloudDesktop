@@ -79,10 +79,11 @@
     <div id="win10-menu" class="hidden">
         <div class="list win10-menu-hidden animated animated-slideOutLeft">
             <div class="item"><i class="red icon fa fa-wrench fa-fw"></i><span>信息初始化入口</span></div>
+            <div class="sub-item" onclick="Win10.openUrl('/soft/softAdd','新开发功能录入')">新开发功能录入</div>
             <div class="sub-item" onclick="Win10.openUrl('/init/newsSchedule','新闻信息初始化')">新闻信息初始化</div>
             <div class="sub-item" onclick="Win10.openUrl('/init/wallpaperSchedule','壁纸信息初始化')">壁纸信息初始化</div>
             <div class="sub-item" onclick="Win10.openUrl('/init/weatherSchedule','天气信息初始化')">天气信息初始化</div>
-            <#--<div class="sub-item" onclick="Win10.openUrl('/init/promptSchedule','提示用语初始化')">提示用语初始化</div>-->
+            <div class="sub-item" onclick="Win10.openUrl('/init/promptAdd','提示用语初始化')">提示用语初始化</div>
             <div class="sub-item" onclick="Win10.commandCenterOpen()">打开消息中心</div>
             <div class="sub-item" onclick="Win10.menuClose()">关闭菜单</div>
             <div class="item"><i class="blue icon fa fa-gavel fa-fw"></i>辅助工具</div>
