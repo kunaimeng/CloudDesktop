@@ -90,11 +90,11 @@
             <div class="sub-item" onclick='Win10.openUrl("/software","<i class=\"fa fa-gears icon blue\"></i>软件中心")'>
                 程序与功能
             </div>
-            <div class="sub-item" onclick="Win10.commandCenterOpen()">打开消息中心</div>
+            <div class="sub-item" onclick="Win10.commandCenterOpen()">消息中心</div>
             <div class="sub-item" onclick="Win10.menuClose()">关闭菜单</div>
             <div class="item"><i class="blue icon fa fa-gavel fa-fw"></i>辅助工具</div>
-            <div class="sub-item" onclick="Win10.openUrl('win10ui.yuri2.cn/src/tools/builder-shortcut.html','图标代码生成器')">
-                桌面图标代码生成器
+            <div class="sub-item" onclick="Win10.openUrl('/assist/calculator','云桌面计算器')">
+                云桌面计算器
             </div>
             <div class="sub-item" onclick="Win10.openUrl('win10ui.yuri2.cn/src/tools/builder-tile.html','磁贴代码生成器')">
                 磁贴代码生成器
