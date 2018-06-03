@@ -30,12 +30,7 @@
         </div>
         <div id="d_left">
             <ul>
-                <li>目录</li>
-                <li>视频</li>
-                <li>图片</li>
-                <li>文档</li>
-                <li>音乐</li>
-                <li>回收站</li>
+
             </ul>
         </div>
         <div id="d_right">
