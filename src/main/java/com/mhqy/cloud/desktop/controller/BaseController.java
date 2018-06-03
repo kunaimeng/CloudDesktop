@@ -85,6 +85,9 @@ public class BaseController {
     @Value("${httpSession.uid}")
     private String HTTPSESSION_UID;
 
+    @Value("${admin.auth.id}")
+    private String ADMIN_AUTH_ID;
+
     /**
      * @Description:登录页跳转
      * @author: peiqiankun
@@ -115,8 +118,9 @@ public class BaseController {
      */
     @RequestMapping("index")
     public String index(Model model, HttpSession session) {
+        Long httpSessionId = Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString());
         //查询壁纸信息
-        CDUser cdUser = cdUserService.selectByPrimaryKey(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        CDUser cdUser = cdUserService.selectByPrimaryKey(httpSessionId);
         if (StringUtils.equals(cdUser.getUserBgimg(), Constant.BACKGROUND_MAIN_URL_IMG.getDesc())) {
             model.addAttribute("mainBg", true);
         } else {
@@ -129,12 +133,20 @@ public class BaseController {
         }
         model.addAttribute("userInfo", cdUser);
         //查询安装软件
-        List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+        List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(httpSessionId);
         model.addAttribute("cdDesktopList", cdDesktopList);
         if (cdDesktopList.isEmpty()) {
             model.addAttribute("software", true);
         } else {
             model.addAttribute("software", false);
+        }
+        //判断是否是管理员
+        String[] arr = ADMIN_AUTH_ID.split(",");
+        List<String> stringList = Arrays.asList(arr);
+        if (stringList.contains(cdUser.getUserPhone())) {
+            model.addAttribute("isAdmin", cdUser.getUserPhone());
+        } else {
+            model.addAttribute("isAdmin", null);
         }
         return "desktop/index";
     }
