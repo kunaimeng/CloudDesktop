@@ -61,10 +61,11 @@ public class FileRestController {
      * @mail: peiqiankun@jd.com
      */
     @RequestMapping("queryFileList")
-    public Map<String,Object> queryFileList(CDFile cdFile){
+    public Map<String,Object> queryFileList(CDFile cdFile,HttpSession session){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
             cdFile.setYn(new Byte("1"));
+            cdFile.setFileUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
             List<CDFile> list = cdFileService.selectByFile(cdFile);
             map.put("flag",true);
             map.put("list",list);
