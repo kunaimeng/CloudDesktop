@@ -144,6 +144,15 @@
         </set>
         where desktop_id = #{desktopId,jdbcType=BIGINT}
     </update>
+    <update id="deleteSoft" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
+        update c_d_desktop
+        <set>
+            yn = 0
+        </set>
+        where desktop_user_id = #{desktopUserId,jdbcType=BIGINT}
+        and desktop_opensrc = #{desktopOpensrc,jdbcType=VARCHAR}
+        and yn = 1
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDDesktop">
     update c_d_desktop
     set desktop_user_id = #{desktopUserId,jdbcType=BIGINT},

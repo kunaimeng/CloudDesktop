@@ -26,4 +26,12 @@ public interface CDDesktopMapper {
      * @mail: peiqiankun@jd.com
      */
     List<CDDesktop> selectByConditon(CDDesktop record);
+
+    /**
+     * @Description:删除软件
+     * @author: peiqiankun
+     * @date: 2018/6/3 18:59
+     * @mail: peiqiankun@jd.com
+     */
+    int deleteSoft(CDDesktop record);
 }

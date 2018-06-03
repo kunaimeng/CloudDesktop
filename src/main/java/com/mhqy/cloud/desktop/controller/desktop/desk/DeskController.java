@@ -60,4 +60,29 @@ public class DeskController {
             return map;
         }
     }
+
+    /**
+     * @Description:软件卸载
+     * @author: peiqiankun
+     * @date: 2018/6/3 18:53
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("dealSoft")
+    public Map<String, Object> dealSoft(CDDesktop cdDesktop, HttpSession session) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            LOGGER.info("{}:开始卸载软件：{}", session.getAttribute(HTTPSESSION_UID), BeanJsonUtil.bean2Json(cdDesktop));
+            cdDesktop.setDesktopUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
+            cdDesktopService.deleteSoft(cdDesktop);
+            map.put("flag", true);
+            map.put("msg", "操作成功");
+            return map;
+        } catch (Exception e) {
+            LOGGER.error("{}:开始卸载软件：{},失败：{}", session.getAttribute(HTTPSESSION_UID), BeanJsonUtil.bean2Json(cdDesktop), e);
+            map.put("flag", false);
+            map.put("msg", e);
+            return map;
+        }
+    }
+
 }

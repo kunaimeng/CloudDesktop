@@ -65,4 +65,15 @@ public class CDDesktopServiceImpl implements CDDesktopService {
         cdDesktop.setDesktopUserId(userID);
         return cdDesktopMapper.selectByConditon(cdDesktop);
     }
+
+    /**
+     * @Description:删除软件
+     * @author: peiqiankun
+     * @date: 2018/6/3 18:59
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public int deleteSoft(CDDesktop record) {
+        return cdDesktopMapper.deleteSoft(record);
+    }
 }

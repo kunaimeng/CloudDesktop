@@ -34,4 +34,12 @@ public interface CDDesktopService {
      * @mail: peiqiankun@jd.com
      */
     List<CDDesktop> listSoftWareByUserId(Long userID);
+
+    /**
+     * @Description:删除软件
+     * @author: peiqiankun
+     * @date: 2018/6/3 18:59
+     * @mail: peiqiankun@jd.com
+     */
+    int deleteSoft(CDDesktop record);
 }
