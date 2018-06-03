@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mhqy.cloud.desktop.dao.CDSoftwareMapper.CDSoftwareMapper">
-    <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDSoftware">
-        <id column="soft_id" property="softId" jdbcType="BIGINT"/>
-        <result column="soft_title" property="softTitle" jdbcType="VARCHAR"/>
-        <result column="soft_desc" property="softDesc" jdbcType="VARCHAR"/>
-        <result column="soft_img" property="softImg" jdbcType="VARCHAR"/>
-        <result column="soft_img_type" property="softImgType" jdbcType="TINYINT"/>
-        <result column="soft_url" property="softUrl" jdbcType="VARCHAR"/>
-        <result column="soft_type" property="softType" jdbcType="TINYINT"/>
-        <result column="soft_creater_id" property="softCreaterId" jdbcType="BIGINT"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="yn" property="yn" jdbcType="TINYINT"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-    soft_id, soft_title, soft_desc, soft_img, soft_img_type, soft_url, soft_type, soft_creater_id, 
+  <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDSoftware">
+    <id column="soft_id" property="softId" jdbcType="BIGINT"/>
+    <result column="soft_title" property="softTitle" jdbcType="VARCHAR"/>
+    <result column="soft_desc" property="softDesc" jdbcType="VARCHAR"/>
+    <result column="soft_img" property="softImg" jdbcType="VARCHAR"/>
+    <result column="soft_img_type" property="softImgType" jdbcType="TINYINT"/>
+    <result column="soft_url" property="softUrl" jdbcType="VARCHAR"/>
+    <result column="soft_type" property="softType" jdbcType="TINYINT"/>
+    <result column="soft_creater_id" property="softCreaterId" jdbcType="BIGINT"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="yn" property="yn" jdbcType="TINYINT"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    soft_id, soft_title, soft_desc, soft_img, soft_img_type, soft_url, soft_type, soft_creater_id,
     create_time, update_time, yn
-    </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select
-        <include refid="Base_Column_List"/>
-        from c_d_software
-        where soft_id = #{softId,jdbcType=BIGINT}
-    </select>
-    <select id="selectAllSoft" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from c_d_software
-        where yn=1
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List"/>
+    from c_d_software
+    where soft_id = #{softId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllSoft" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from c_d_software
+    where yn=1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_software
     where soft_id = #{softId,jdbcType=BIGINT}
     </delete>
-    <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
+  <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
     insert into c_d_software (soft_id, soft_title, soft_desc, 
       soft_img, soft_img_type, soft_url, 
       soft_type, soft_creater_id, create_time, 
@@ -44,104 +44,104 @@
       #{softType,jdbcType=TINYINT}, #{softCreaterId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT})
     </insert>
-    <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
-        insert into c_d_software
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="softId != null">
-                soft_id,
-            </if>
-            <if test="softTitle != null">
-                soft_title,
-            </if>
-            <if test="softDesc != null">
-                soft_desc,
-            </if>
-            <if test="softImg != null">
-                soft_img,
-            </if>
-            <if test="softImgType != null">
-                soft_img_type,
-            </if>
-            <if test="softUrl != null">
-                soft_url,
-            </if>
-            <if test="softType != null">
-                soft_type,
-            </if>
-            <if test="softCreaterId != null">
-                soft_creater_id,
-            </if>
-            create_time,
-            update_time,
-            yn
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="softId != null">
-                #{softId,jdbcType=BIGINT},
-            </if>
-            <if test="softTitle != null">
-                #{softTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="softDesc != null">
-                #{softDesc,jdbcType=VARCHAR},
-            </if>
-            <if test="softImg != null">
-                #{softImg,jdbcType=VARCHAR},
-            </if>
-            <if test="softImgType != null">
-                #{softImgType,jdbcType=TINYINT},
-            </if>
-            <if test="softUrl != null">
-                #{softUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="softType != null">
-                #{softType,jdbcType=TINYINT},
-            </if>
-            <if test="softCreaterId != null">
-                #{softCreaterId,jdbcType=BIGINT},
-            </if>
-            now(),
-            now(),
-            1
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
-        update c_d_software
-        <set>
-            <if test="softTitle != null">
-                soft_title = #{softTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="softDesc != null">
-                soft_desc = #{softDesc,jdbcType=VARCHAR},
-            </if>
-            <if test="softImg != null">
-                soft_img = #{softImg,jdbcType=VARCHAR},
-            </if>
-            <if test="softImgType != null">
-                soft_img_type = #{softImgType,jdbcType=TINYINT},
-            </if>
-            <if test="softUrl != null">
-                soft_url = #{softUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="softType != null">
-                soft_type = #{softType,jdbcType=TINYINT},
-            </if>
-            <if test="softCreaterId != null">
-                soft_creater_id = #{softCreaterId,jdbcType=BIGINT},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="yn != null">
-                yn = #{yn,jdbcType=TINYINT},
-            </if>
-        </set>
-        where soft_id = #{softId,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
+  <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
+    insert into c_d_software
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="softId != null">
+        soft_id,
+      </if>
+      <if test="softTitle != null">
+        soft_title,
+      </if>
+      <if test="softDesc != null">
+        soft_desc,
+      </if>
+      <if test="softImg != null">
+        soft_img,
+      </if>
+      <if test="softImgType != null">
+        soft_img_type,
+      </if>
+      <if test="softUrl != null">
+        soft_url,
+      </if>
+      <if test="softType != null">
+        soft_type,
+      </if>
+      <if test="softCreaterId != null">
+        soft_creater_id,
+      </if>
+      create_time,
+      update_time,
+      yn
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="softId != null">
+        #{softId,jdbcType=BIGINT},
+      </if>
+      <if test="softTitle != null">
+        #{softTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="softDesc != null">
+        #{softDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="softImg != null">
+        #{softImg,jdbcType=VARCHAR},
+      </if>
+      <if test="softImgType != null">
+        #{softImgType,jdbcType=TINYINT},
+      </if>
+      <if test="softUrl != null">
+        #{softUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="softType != null">
+        #{softType,jdbcType=TINYINT},
+      </if>
+      <if test="softCreaterId != null">
+        #{softCreaterId,jdbcType=BIGINT},
+      </if>
+      now(),
+      now(),
+      1
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
+    update c_d_software
+    <set>
+      <if test="softTitle != null">
+        soft_title = #{softTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="softDesc != null">
+        soft_desc = #{softDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="softImg != null">
+        soft_img = #{softImg,jdbcType=VARCHAR},
+      </if>
+      <if test="softImgType != null">
+        soft_img_type = #{softImgType,jdbcType=TINYINT},
+      </if>
+      <if test="softUrl != null">
+        soft_url = #{softUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="softType != null">
+        soft_type = #{softType,jdbcType=TINYINT},
+      </if>
+      <if test="softCreaterId != null">
+        soft_creater_id = #{softCreaterId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+    </set>
+    where soft_id = #{softId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
     update c_d_software
     set soft_title = #{softTitle,jdbcType=VARCHAR},
       soft_desc = #{softDesc,jdbcType=VARCHAR},
