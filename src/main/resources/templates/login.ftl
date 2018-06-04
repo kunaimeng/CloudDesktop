@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>云桌面</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
+    <link rel='Shortcut Icon' type='image/x-icon' href='./static/img/windows.ico'>
     <link href="./static/css/login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -20,14 +25,12 @@
             <input type="password" placeholder="请输入密码" class="login-password">
             <!--登陆按钮-->
             <input type="button" value="登录" id="btn-login" class="login-submit"/>
-            <a href="/register">没有账户？注册</a>
+            <a class="regOrLogin" href="/register">没有账户？注册</a>
         </form>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="./static/js/win10.js"></script>
-<script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
+
 <script>
     $("#btn-login").click(function () {
         var phone= $(".login-username").val();
@@ -41,7 +44,7 @@
                 if(msg.flag){
                     window.location.href="/index";
                 }else{
-                    layer.alert(Win10.lang('哎呀,好像登录失败了呢。','Ops...There seems to be a little problem.'));
+                    layer.alert('哎呀,好像登录失败了呢！');
                 }
             }
         });

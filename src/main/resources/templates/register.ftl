@@ -34,7 +34,7 @@
             <br>
             <!--登陆按钮-->
             <input type="button" value="注册" id="btn-login" class="login-submit"/>
-            <a href="/">有账户？登录</a>
+            <a class="regOrLogin" href="/">有账户？登录</a>
         </form>
     </div>
 </div>

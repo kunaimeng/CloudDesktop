@@ -70,7 +70,7 @@ input {
     opacity: .9;
     filter: alpha(opacity=90);
 }
-a{
+.regOrLogin{
     color: #fff;
     width:100%;
     display:block;
