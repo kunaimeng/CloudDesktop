@@ -197,6 +197,14 @@ window.Win10 = {
         $("#win10-shortcuts .shortcut").last().after(html);
         Win10.renderShortcuts();
     },
+    _uninstallSoft:function(url){
+        $("#win10-shortcuts .shortcut").each(function(){
+            if(url==$(this).attr("onclick").split("\"")[1]){
+                $(this).remove();
+                Win10.renderShortcuts();
+            }
+        });
+    },
     _renderContextMenu: function (x, y, menu, trigger) {
         this._removeContextMenu();
         if (menu === true) {

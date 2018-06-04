@@ -61,6 +61,8 @@
                     },
                     success: function (msg) {
                         layer.close(index);
+                        //删除主页图标
+                        Win10_parent._uninstallSoft(desktopOpensrc);
                         obj.find("i").attr("class", "fa fa-plus");
                         obj.find("span").text("安装" + desktopTitle);
                     },
