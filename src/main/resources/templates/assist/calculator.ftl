@@ -18,7 +18,7 @@
         <span>0</span>
         <div class="calc-rad">Rad</div>
         <div class="calc-hold"></div>
-        <div class="calc-buttons">
+        <div class="calc-buttons" style="display: none;">
             <div class="calc-info">?</div>
             <div class="calc-smaller">&gt;</div>
             <div class="calc-ln">.</div>
