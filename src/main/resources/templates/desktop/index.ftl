@@ -279,6 +279,7 @@
     //显示
     function showMusic(){
         $(".audio-box").show().addClass('animated bounceInDown');
+        Win10.menuClose()
     }
 </script>
 </body>
