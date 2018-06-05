@@ -40,7 +40,7 @@
         nthTabs = $("#editor-tabs").nthTabs();
         nthTabs.addTab({
             id: idValue + i,
-            title: '新标签页',
+            title: '<marquee direction=left>新标签页</marquee>',
             content: '<iframe style="height:'+iframeHeight+'px;width: 100%;" frameborder="no"></iframe>',
         }).setActTab("#" + idValue + i + "");
 
@@ -50,7 +50,7 @@
             hei = document.documentElement.clientHeight - 100;
             nthTabs.addTab({
                 id: idValue + i,
-                title: '新标签页',
+                title: '<marquee direction=left>新标签页</marquee>',
                 content: '<iframe style="height:'+iframeHeight+'px;width: 100%;" frameborder="no"></iframe>',
             }).setActTab("#" + idValue + i + "");
         });
@@ -70,7 +70,7 @@
     //刷新  回车
     function show() {
         var url = $('.s_input input').val();
-        $(".content-tabs-container .nav-tabs .active a span").html(url);
+        $(".content-tabs-container .nav-tabs .active a span marquee").html(url);
         $(".tab-content .active iframe").attr("src", url);
     }
 

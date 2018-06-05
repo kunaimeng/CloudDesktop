@@ -203,3 +203,12 @@
     border: 1px solid #000;
     outline: none
 }
+
+.content-tabs-container ul li a span{
+    width:70px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    -o-text-overflow: ellipsis;
+    white-space:nowrap;
+}
