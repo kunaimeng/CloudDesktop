@@ -13,12 +13,10 @@
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 </head>
-<body>
-  <#if !photo??>
+<body>  <#if !photoList??>
     <p class="noPic">暂时没有图片，快去我的电脑中上传图片吧！</p>
   </#if>
 <section id="gallery-wrapper">
-
     <#list photoList as photo>
         <article class="white-panel">
             <img src="${photo.fileSystemName}" class="thumb" alt="${photo.fileName}">

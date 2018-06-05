@@ -50,7 +50,8 @@ body, html {
 }
 
 body {
-    background: #494A5F;
+    background-image: url("../img/pcbg.jpg");
+    background-size:100% 100%;
     font-weight: 500;
     font-size: 1.05em;
     font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
@@ -377,9 +378,7 @@ img.thumb {
 .white-panel {
     position: absolute;
     background: white;
-    border-radius: 5px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 10px;
+    padding: 3px;
 }
 
 .white-panel h1 {
@@ -400,15 +399,15 @@ img.thumb {
 
 section article span {
     font-size: 12px;
-    margin: 5px 0 5px 0;
     cursor: pointer;
     display: block;
-    padding: 3px;
     color: #010101;
     border: 1px solid #1d7db1;
-    border-radius: 3px;
+    height: 30px;
+    line-height: 30px;
     width: 100%;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 section article p {
@@ -418,16 +417,17 @@ section article p {
 }
 
 section article span:hover {
-    background: #1d7db1;
-    color: #fff;
+    border: 1px solid #00a2ff;
     transition: all 0.3s ease;
 }
 
 section article input {
     width: 100%;
     display: block;
-    height: 20px;
+    height: 30px;
     font-size: 10px;
+    outline:none;
+    padding-left: 3px;
 }
 
 .noPic {
