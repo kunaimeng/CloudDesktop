@@ -68,12 +68,8 @@
     //刷新  回车
     function show() {
         var url = $('.s_input input').val();
-        if (!reg.test(url)) {
-            layer.alert('亲，经检测，您输入的不是网址呦！', 'Ops...There seems to be a little problem.');
-        } else {
-            $(".content-tabs-container .nav-tabs .active a span").html(url);
-            $(".tab-content .active iframe").attr("src", url);
-        }
+        $(".content-tabs-container .nav-tabs .active a span").html(url);
+        $(".tab-content .active iframe").attr("src", url);
     }
 </script>
 </body>
