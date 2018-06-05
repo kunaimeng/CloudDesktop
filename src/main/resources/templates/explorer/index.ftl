@@ -35,21 +35,23 @@
     var nthTabs;
     var idValue = 'ID';
     var i = 0;
+    var iframeHeight = document.documentElement.clientHeight - 100;
     $(function () {
         nthTabs = $("#editor-tabs").nthTabs();
         nthTabs.addTab({
             id: idValue + i,
             title: '新标签页',
-            content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
+            content: '<iframe style="height:'+iframeHeight+'px;width: 100%;" frameborder="no"></iframe>',
         }).setActTab("#" + idValue + i + "");
 
         //新增标签页
         $(".fa-plus").click(function () {
             i++;
+            hei = document.documentElement.clientHeight - 100;
             nthTabs.addTab({
                 id: idValue + i,
                 title: '新标签页',
-                content: '<iframe style="height: 460px;width: 100%;" frameborder="no"></iframe>',
+                content: '<iframe style="height:'+iframeHeight+'px;width: 100%;" frameborder="no"></iframe>',
             }).setActTab("#" + idValue + i + "");
         });
     });
@@ -71,6 +73,12 @@
         $(".content-tabs-container .nav-tabs .active a span").html(url);
         $(".tab-content .active iframe").attr("src", url);
     }
+
+    //定时刷新窗口高低
+    setInterval(function () {
+        iframeHeight = document.documentElement.clientHeight - 100;
+        $(".tab-content iframe").css("height", iframeHeight);
+    }, 300);
 </script>
 </body>
 </html>
