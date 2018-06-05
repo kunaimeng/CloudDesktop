@@ -148,6 +148,8 @@ public class BaseController {
         } else {
             model.addAttribute("isAdmin", null);
         }
+        List<CDFile> list = cdFileService.listMusic();
+        model.addAttribute("musicList", list);
         return "desktop/index";
     }
 

@@ -11,10 +11,12 @@
     <link href="./static/css/default.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./static/weather/css/climacons.css"/>
     <link rel="stylesheet" type="text/css" href="./static/weather/css/component2.css"/>
+    <link rel="stylesheet" type="text/css" href="./static/css/audio.css">
     <script type="text/javascript" src="./static/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="./static/component/layer-v3.0.3/layer/layer.js"></script>
     <script type="text/javascript" src="./static/js/win10.js"></script>
     <script type="text/javascript" src="./static/js/socket/promptWebSocket.js"></script>
+    <script type="text/javascript" src="./static/js/audio.js"></script>
     <style>
         * {
             font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu
@@ -77,6 +79,54 @@
         </div>
         <div id="win10-desktop-scene"></div>
     </div>
+    <div class="audio-box" style="display: none;">
+        <div class="audio-container">
+            <div class="audio-list">
+                <div class="audio-list-head">
+                    <p>歌单</p>
+                    <span class="menu-close">关闭</span>
+                </div>
+                <ul class="audio-inline">
+                </ul>
+            </div>
+            <div class="audio-view">
+                <div class="audio-body">
+                    <h3 class="audio-title">未知歌曲</h3>
+                    <div class="audio-backs">
+                        <div class="audio-this-time">00:00</div>
+                        <div class="audio-count-time">00:00</div>
+                        <div class="audio-setbacks">
+                            <i class="audio-this-setbacks">
+                                <span class="audio-backs-btn"></span>
+                            </i>
+                            <span class="audio-cache-setbacks">
+							</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="audio-btn">
+                    <div class="audio-select">
+                        <div class="audio-prev"></div>
+                        <div class="audio-play"></div>
+                        <div class="audio-next"></div>
+                        <div class="audio-menu"></div>
+                        <div class="audio-volume"></div>
+                        <div class="audio-mini">
+                            <i class="fa fa-window-minimize"></i>
+                        </div>
+                        <div class="audio-cloae">
+                            <i class="fa fa-close"></i>
+                        </div>
+                    </div>
+                    <div class="audio-set-volume">
+                        <div class="volume-box">
+                            <i><span></span></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="win10-menu" class="hidden">
         <div class="list win10-menu-hidden animated animated-slideOutLeft">
             <div class="item"><i class="red icon fa fa-wrench fa-fw"></i><span>应用</span></div>
@@ -96,11 +146,8 @@
             <div class="sub-item" onclick="Win10.openUrl('/assist/calculator','云桌面计算器')">
                 云桌面计算器
             </div>
-            <div class="sub-item" onclick="Win10.openUrl('win10ui.yuri2.cn/src/tools/builder-tile.html','磁贴代码生成器')">
-                磁贴代码生成器
-            </div>
-            <div class="sub-item" onclick="Win10.openUrl('win10ui.yuri2.cn/src/tools/builder-menu.html','菜单代码生成器')">
-                菜单代码生成器
+            <div class="sub-item" onclick="showMusic()">
+                迷你播放器
             </div>
             <div class="item" onclick="Win10.aboutUs()"><i class="purple icon fa fa-info-circle fa-fw"></i>关于</div>
             <div class="item" onclick=" Win10.exit();"><i class="black icon fa fa-power-off fa-fw"></i>关闭</div>
@@ -209,5 +256,30 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var listAry = [];
+         <#list musicList as music>
+             listAry.push({cover: '', src: '${music.fileSystemName}', title: '${music.fileName}'});
+         </#list>
+        var audioFn =  audioPlay({
+            song: listAry,
+            autoPlay: false
+        });
+        //最小化
+        $(".audio-mini").click(function(){
+            $(".audio-box").hide();
+        });
+        //退出
+        $(".audio-cloae").click(function(){
+            audioFn.stopAudio();
+            $(".audio-box").hide();
+        });
+    });
+    //显示
+    function showMusic(){
+        $(".audio-box").show().addClass('animated bounceInDown');
+    }
+</script>
 </body>
 </html>
