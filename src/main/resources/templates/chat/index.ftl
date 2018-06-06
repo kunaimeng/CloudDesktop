@@ -12,7 +12,6 @@
             <img src="${userInfo.userImg}"/>
         </div>
         <div class="internetName">${userInfo.userName}</div>
-
     </div>
     <div class="context">
         <div class="conLeft">
@@ -57,6 +56,16 @@
 <script>
     var userId="${userInfo.userId}";
     var userImg="${userInfo.userImg}";
+
+    var iframeHeight = 0;
+
+    //定时刷新窗口高低
+    setInterval(function () {
+        iframeHeight = document.documentElement.clientHeight-6;
+            $(".qqBox").css("height", iframeHeight);
+            $(".conLeft").css("height", iframeHeight-52);
+
+    }, 300);
 </script>
 <script type="text/javascript" src="./static/js/socket/chatWebSocket.js"></script>
 </body>
