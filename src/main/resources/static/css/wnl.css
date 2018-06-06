@@ -124,8 +124,7 @@ a em {
 /*修改资料*/
 #main {
     position: relative;
-    width: 540px;
-    margin: 40px auto 0 auto;
+    margin: 0px auto 0 auto;
     z-index: 10;
 }
 
@@ -1055,20 +1054,21 @@ a em {
 }
 
 #mohe-rili .mh-rili-widget .mh-cal-main .mh-col-1 {
-    width: 398px;
+    width: 80%;
     float: left;
 }
 
 #mohe-rili .mh-rili-widget .mh-cal-main .mh-col-2 {
-    width: auto;
+    width: 19%;
     overflow: hidden;
 }
+
 
 #mohe-rili .mh-rili-widget .mh-days-title {
     float: left;
     padding-top: 14px;
     padding-bottom: 12px;
-    width: 56px;
+    width: 14%;
     height: 13px;
     line-height: 13px;
     background: #fefbeb;
@@ -1143,8 +1143,8 @@ a em {
 #mohe-rili .mh-rili-widget .mh-dates-bd li {
     float: left;
     padding-top: 10px;
-    width: 56px;
-    height: 46px;
+    width: 14%;
+    height: 60px;
     background: #fff;
     border-right: 1px solid #f1ebe4;
     border-bottom: 1px solid #f1ebe4;
@@ -1311,8 +1311,8 @@ a em {
 }
 
 #mohe-rili .mh-rili-widget .mh-almanac-base {
-    width: 130px;
-    height: 190px;
+    width: 100%;
+    height: 170px;
     border-bottom: 1px solid #d2d2d2;
 }
 
@@ -1348,8 +1348,8 @@ a em {
 #mohe-rili .mh-rili-widget .mh-almanac-extra {
     margin: 0 14px;
     padding-bottom: 15px;
-    width: 106px;
-    height: 125px;
+    width: 100%;
+    height: 180px;
     overflow: hidden;
     border-bottom: 1px dashed #f1ebe4;
     line-height: 18px;
@@ -1358,7 +1358,7 @@ a em {
 #mohe-rili .mh-rili-widget .mh-almanac-extra div {
     padding: 8px 0;
     float: left;
-    width: 50px;
+    width: 49%;
     height: 150px;
 }
 
