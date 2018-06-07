@@ -188,9 +188,8 @@ window.Win10 = {
         }
     },
     _installSoft: function (url, icon, title) {
-        url = url.substr(1);
         var html = "<div class=\"shortcut\"\n" +
-            "                 onclick='Win10.openUrl(\"/" + url + "\",\"<i class=\\\"" + icon + "\\\"></i>" + title + "\")'>\n" +
+            "                 onclick='Win10.openUrl(\"" + url + "\",\"<i class=\\\"" + icon + "\\\"></i>" + title + "\")'>\n" +
             "                <i class=\"" + icon + "\"></i>\n" +
             "                <div class=\"title\">" + title + "</div>\n" +
             "            </div>";
