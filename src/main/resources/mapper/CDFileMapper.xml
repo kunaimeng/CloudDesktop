@@ -106,7 +106,7 @@
     WHERE  yn = 1
     AND file_ext IN ('mp4','MP4')
     AND file_type = 2
-    ORDER BY file_quote,create_time DESC
+    ORDER BY file_quote,create_time DESC limit 40
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_file

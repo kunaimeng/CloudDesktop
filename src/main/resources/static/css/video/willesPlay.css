@@ -74,16 +74,12 @@ a:hover {
     width: 80%;
     line-height: 40px;
     float: left;
+    height: 40px;
     margin: 0 !important;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     overflow: hidden;
-}
-
-#movieList ul{
-    max-height: 480px;
-    overflow-y:scroll
 }
 
 #movieList .fa-play-circle-o{
@@ -98,19 +94,13 @@ a:hover {
 #movieList ul li {
     list-style: none;
     font-size: 12px;
-    height: 40px;
-    width: 100%;
-    border: 1px solid #2e8ded;
-    border-top: none;
-    padding-left: 15px;
-    background: #f9f9f9;
+    height: 200px;
+    float: left;
     cursor: pointer;
 }
 
-#movieList ul li:hover {
-    background: #1E9FFF;
-    color: #fff;
-    transition: all 0.3s ease-in;
+#movieList ul li video{
+    margin:0 auto;
 }
 
 /*播放器头部*/

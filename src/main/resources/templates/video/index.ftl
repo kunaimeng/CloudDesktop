@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
     <title>视频播放器</title>
-    <link href="./static/css/video/reset.css" rel="stylesheet" type="text/css" />
-    <link href="./static/css/video/willesPlay.css" rel="stylesheet" type="text/css" />
+    <link href="./static/css/video/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="./static/css/video/willesPlay.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="./static/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./static/component/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="./static/js/jquery-2.2.4.min.js" type="text/javascript" charset="utf-8"></script>
@@ -23,7 +23,7 @@
             </span>
     </div>
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <div id="willesPlay">
                 <div class="playHeader">
                     <div class="videoName">
@@ -78,94 +78,37 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
+    </div>
+    <div class="row" style="margin-top: 58px;">
+        <div class="col-sm-12">
             <div id="movieList">
-                <p class="m_title"><i class="fa fa-fire"></i>&nbsp;&nbsp;热点播放</p>
                 <ul>
                     <#list movieList as movie>
-                       <li data-movieUrl="${movie.fileSystemName}" data-movieName="${movie.fileName}">
-                           <p class="m_con">${movie.fileName}</p>
-                           <i class="fa fa-play-circle-o"></i>
-                       </li>
+                        <li class="col-sm-3" data-movieUrl="${movie.fileSystemName}" data-movieName="${movie.fileName}">
+                            <p class="m_con">${movie.fileName}</p>
+                            <video width="90%">
+                                 <source src="${movie.fileSystemName}" type="video/mp4"></source>
+                                当前浏览器不支持 video直接播放，点击这里下载视频： <a href="/">下载视频</a>
+                            </video>
+                        </li>
                     </#list>
                 </ul>
             </div>
-        </div>
-    </div>
-    <br>
-    <div class="row info">
-        <div class="col-sm-6">
-            <p class="i_title"><i class="fa fa-heart"></i>&nbsp;&nbsp;收藏中心</p>
-            <ul>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-6">
-            <p class="i_title"><i class="fa fa-upload"></i>&nbsp;&nbsp;上传中心</p>
-            <ul>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-                <li>
-                    <p class="m_con">哈哈哈哈</p>
-                    <i class="fa fa-play-circle-o"></i>
-                </li>
-            </ul>
         </div>
     </div>
 </div>
 <br>
 <br>
 <script type="text/javascript">
-    $(".m_s_searcch").click(function(){
+    $(".m_s_searcch").click(function () {
         var url = $(".m_s_c_input").val();
-        $("#playVideo").attr("src",url);
+        $("#playVideo").attr("src", url);
     });
 
-    $("#movieList ul li").click(function(){
+    $("#movieList ul li").click(function () {
         var movieName = $(this).attr("data-movieName");
         var movieUrl = $(this).attr("data-movieUrl");
-        $("#playVideo").attr("src",movieUrl);
+        $("#playVideo").attr("src", movieUrl);
         $(".videoName").html(movieName);
     });
 </script>
