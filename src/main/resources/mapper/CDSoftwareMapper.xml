@@ -24,11 +24,13 @@
     from c_d_software
     where soft_id = #{softId,jdbcType=BIGINT}
   </select>
-  <select id="selectAllSoft" resultMap="BaseResultMap">
+  <select id="selectAllSoft" resultMap="BaseResultMap" parameterType="com.mhqy.cloud.desktop.domin.CDSoftware">
     select
     <include refid="Base_Column_List"/>
     from c_d_software
-    where yn=1
+    <if test="yn != null">
+      where yn = #{yn,jdbcType=TINYINT}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_software

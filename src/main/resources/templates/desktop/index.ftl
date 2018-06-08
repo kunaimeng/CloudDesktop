@@ -131,7 +131,7 @@
         <div class="list win10-menu-hidden animated animated-slideOutLeft">
             <div class="item"><i class="red icon fa fa-wrench fa-fw"></i><span>应用</span></div>
             <#if isAdmin?? >
-                <div class="sub-item" onclick="Win10.openUrl('/soft/softAdd','新开发功能录入')">新开发功能录入</div>
+                <div class="sub-item" onclick="Win10.openUrl('/soft/index','新开发功能录入')">新开发功能录入</div>
                 <div class="sub-item" onclick="Win10.openUrl('/init/newsSchedule','新闻信息初始化')">新闻信息初始化</div>
                 <div class="sub-item" onclick="Win10.openUrl('/init/wallpaperSchedule','壁纸信息初始化')">壁纸信息初始化</div>
                 <div class="sub-item" onclick="Win10.openUrl('/init/weatherSchedule','天气信息初始化')">天气信息初始化</div>

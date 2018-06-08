@@ -8,11 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,14 +37,28 @@ public class SoftController {
     private CDSoftwareService cdSoftwareService;
 
     /**
+     * @Description:软件index
+     * @author: peiqiankun
+     * @date: 2018/6/8 23:10
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("index")
+    public String soft(Model model) {
+        CDSoftware cdSoftware = new CDSoftware();
+        List<CDSoftware> softList = cdSoftwareService.listAllSoft(cdSoftware);
+        model.addAttribute("softList", softList);
+        return "soft/index";
+    }
+
+    /**
      * @Description:系统初始化软件录入界面
      * @author: peiqiankun
      * @date: 2018/6/2 20:37
      * @mail: peiqiankun@jd.com
      */
-    @RequestMapping("softAdd")
-    public String softInit() {
-        return "softAdd/index";
+    @RequestMapping("add")
+    public String softAdd() {
+        return "soft/add";
     }
 
     /**
@@ -69,6 +85,28 @@ public class SoftController {
             return map;
         } catch (Exception e) {
             LOGGER.error("{}:开始安装软件：{},失败：{}", session.getAttribute(HTTPSESSION_UID), BeanJsonUtil.bean2Json(cdSoftware), e);
+            map.put("flag", false);
+            map.put("msg", e);
+            return map;
+        }
+    }
+
+    @RequestMapping("updateSoft")
+    @ResponseBody
+    public Map<String, Object> updateSoft(CDSoftware cdSoftware) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int i = cdSoftwareService.updateByPrimaryKeySelective(cdSoftware);
+            if (i == 1) {
+                map.put("flag", true);
+                map.put("msg", "操作成功");
+            } else {
+                map.put("flag", false);
+                map.put("msg", "操作失败");
+            }
+            return map;
+        } catch (Exception e) {
+            LOGGER.error("更新软件：{},失败：{}",BeanJsonUtil.bean2Json(cdSoftware), e);
             map.put("flag", false);
             map.put("msg", e);
             return map;

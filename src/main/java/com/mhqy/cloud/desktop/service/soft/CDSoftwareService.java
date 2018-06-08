@@ -31,6 +31,6 @@ public interface CDSoftwareService {
      * @date: 2018/6/3 10:38
      * @mail: peiqiankun@jd.com
      */
-    List<CDSoftware> listAllSoft();
+    List<CDSoftware> listAllSoft(CDSoftware record);
 
 }

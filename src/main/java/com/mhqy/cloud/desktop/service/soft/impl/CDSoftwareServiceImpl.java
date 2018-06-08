@@ -58,7 +58,7 @@ public class CDSoftwareServiceImpl implements CDSoftwareService {
      * @mail: peiqiankun@jd.com
      */
     @Override
-    public List<CDSoftware> listAllSoft() {
-        return cdSoftwareMapper.selectAllSoft();
+    public List<CDSoftware> listAllSoft(CDSoftware record) {
+        return cdSoftwareMapper.selectAllSoft(record);
     }
 }

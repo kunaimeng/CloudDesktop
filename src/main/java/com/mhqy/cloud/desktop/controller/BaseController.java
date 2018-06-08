@@ -163,7 +163,9 @@ public class BaseController {
     @RequestMapping("software")
     public String software(Model model, HttpSession session) {
         LOGGER.info("进入软件中心");
-        List<CDSoftware> cdSoftware = cdSoftwareService.listAllSoft();
+        CDSoftware software = new CDSoftware();
+        software.setYn(new Byte("1"));
+        List<CDSoftware> cdSoftware = cdSoftwareService.listAllSoft(software);
         model.addAttribute("cdSoftware", cdSoftware);
         //查询安装软件
         List<CDDesktop> cdDesktopList = cdDesktopService.listSoftWareByUserId(Long.parseLong(session.getAttribute(HTTPSESSION_UID).toString()));
