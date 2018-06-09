@@ -67,7 +67,7 @@
                          <#else >
                             <button class="btn btn-warning" type="button">异常</button>
                          </#if>
-                        <button class="btn btn-info" type="button" data-id="${soft.softId}"
+                        <button class="btn btn-info softUpdate" type="button" data-id="${soft.softId}"
                                 data-name="${soft.softTitle}">更新
                         </button>
                     </th>
@@ -94,6 +94,12 @@
         var softName = $(this).attr("data-name");
         var yn = 1;
         ajaxPost(softId, softName, yn);
+    });
+
+    //软件更新跳转
+    $(".softUpdate").click(function(){
+        var softId = $(this).attr("data-id");
+        window.location.href = "/soft/update?softId="+softId;
     });
 
     //跳转软件安装界面

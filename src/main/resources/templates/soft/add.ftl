@@ -90,10 +90,9 @@
                 },
                 success: function (msg) {
                     layer.close(index);
-                    layer.alert(msg.msg);
-                    setTimeout(function () {
+                    layer.alert(msg.msg+"，点击确定返回。",function(){
                         window.location.href = "/soft/index";
-                    }, 5000);
+                    });
                 },
                 error: function () {
                     layer.close(index);

@@ -62,6 +62,48 @@ public class SoftController {
     }
 
     /**
+     * @Description:软件更新跳转
+     * @author: peiqiankun
+     * @date: 2018/6/9 16:22
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("update")
+    public String update(Model model,CDSoftware cdSoftware) {
+        CDSoftware soft = cdSoftwareService.selectByPrimaryKey(cdSoftware.getSoftId());
+        model.addAttribute("soft",soft);
+        return "soft/update";
+    }
+
+    /**
+     * @Description:软件更新
+     * @author: peiqiankun
+     * @date: 2018/6/9 16:31
+     * @mail: peiqiankun@jd.com
+     */
+    @RequestMapping("softUpdate")
+    @ResponseBody
+    public Map<String, Object>  softUpdate(HttpSession session,CDSoftware cdSoftware) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try{
+            LOGGER.info("{}:软件更新:{}", session.getAttribute(HTTPSESSION_UID),BeanJsonUtil.bean2Json(cdSoftware));
+            int i = cdSoftwareService.updateByPrimaryKeySelective(cdSoftware);
+            if (i == 1) {
+                map.put("flag", true);
+                map.put("msg", "操作成功");
+            } else {
+                map.put("flag", false);
+                map.put("msg", "操作失败");
+            }
+            return map;
+        }catch(Exception e){
+            LOGGER.error("{}:软件更新:{},失败,原因:{}", session.getAttribute(HTTPSESSION_UID),BeanJsonUtil.bean2Json(cdSoftware),e);
+            map.put("flag", false);
+            map.put("msg", e);
+            return map;
+        }
+    }
+
+    /**
      * @Description:管理员软件安装
      * @author: peiqiankun
      * @date: 2018/6/2 22:43
