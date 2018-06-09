@@ -48,7 +48,9 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <span>确定</span>
+                            <div class="btn-group">
+                                <span class="span-submit">保存</span> <span class="span-forward">返回</span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -60,14 +62,19 @@
 <script type="text/javascript" src="../static/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="../static/component/layer-v3.0.3/layer/layer.js"></script>
 <script type="text/javascript">
-    $(".control-group span").click(function () {
+
+    $(".control-group .span-forward").click(function(){
+        window.location.href = "/soft/index";
+    });
+
+    $(".control-group .span-submit").click(function () {
         var flag = false;
         $('input[type=text]').each(function () {
             if ($(this).val() == '') {
-                flag =true;
+                flag = true;
             }
         });
-        if(flag){
+        if (flag) {
             layer.alert("输入不完整，请检查！");
             return false;
         }
@@ -84,6 +91,9 @@
                 success: function (msg) {
                     layer.close(index);
                     layer.alert(msg.msg);
+                    setTimeout(function () {
+                        window.location.href = "/soft/index";
+                    }, 5000);
                 },
                 error: function () {
                     layer.close(index);

@@ -18,6 +18,10 @@
         </div>
     </div>
     <div class="row clearfix">
+        <button class="btn btn-primary pull-right installSoft" type="button">添加</button>
+    </div>
+    <br>
+    <div class="row clearfix">
         <table class="table table-bordered">
             <thead>
             <tr class="success">
@@ -53,11 +57,11 @@
                     </th>
                     <th>
                          <#if soft.yn?string == "1">
-                            <button class="btn btn-danger" type="button" data-id="${soft.softId}"
+                            <button class="btn btn-danger softDown" type="button" data-id="${soft.softId}"
                                     data-name="${soft.softTitle}">下线
                             </button>
                          <#elseif soft.yn?string == "0">
-                            <button class="btn btn-primary" type="button" data-id="${soft.softId}"
+                            <button class="btn btn-primary softUp" type="button" data-id="${soft.softId}"
                                     data-name="${soft.softTitle}">上线
                             </button>
                          <#else >
@@ -76,18 +80,25 @@
 <script type="text/javascript" src="../static/js/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="../static/component/layer-v3.0.3/layer/layer.js"></script>
 <script>
-    $(".btn-danger").click(function () {
+    //下线操作
+    $(".softDown").click(function () {
         var softId = $(this).attr("data-id");
         var softName = $(this).attr("data-name");
         var yn = 0;
         ajaxPost(softId, softName, yn);
     });
 
-    $(".btn-primary").click(function () {
+    //重新上线
+    $(".softUp").click(function () {
         var softId = $(this).attr("data-id");
         var softName = $(this).attr("data-name");
         var yn = 1;
         ajaxPost(softId, softName, yn);
+    });
+
+    //跳转软件安装界面
+    $(".installSoft").click(function () {
+        window.location.href = "/soft/add";
     });
 
     function ajaxPost(softId, softName, yn) {

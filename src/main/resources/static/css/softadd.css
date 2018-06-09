@@ -17,6 +17,11 @@
     float: left;
 }
 
+.btn-group{
+    width: 40%;
+    margin:0 30%;
+}
+
 .controls input {
     width: 80%;
     height: 34px;
@@ -29,14 +34,34 @@
     display: block;
     font-size: 10px;
     cursor: pointer;
-    width: 50%;
+    width: 40%;
     height: 40px;
     border-radius: 4px;
     background: #1E9FFF;
     color: #fff;
+    float: left;
     text-align: center;
     line-height: 40px;
-    margin: 25px auto;
+    margin: 20px 5% 20px 5%;
+}
+
+.control-group span {
+    display: block;
+    font-size: 10px;
+    cursor: pointer;
+    width: 40%;
+    height: 40px;
+    border-radius: 4px;
+    background: #1E9FFF;
+    color: #fff;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    margin: 20px 5% 20px 5%;
+}
+
+.control-group  .span-forward{
+    background: #00bc3e;
 }
 
 .control-group span:hover {

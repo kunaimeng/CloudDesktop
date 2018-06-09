@@ -31,6 +31,7 @@
     <if test="yn != null">
       where yn = #{yn,jdbcType=TINYINT}
     </if>
+    order by 1 DESC
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from c_d_software
