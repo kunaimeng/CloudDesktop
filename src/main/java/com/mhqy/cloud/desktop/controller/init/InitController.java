@@ -93,7 +93,7 @@ public class InitController {
     }
 
     @RequestMapping("promptAdd")
-    public String promptAdd(){
+    public String promptAdd() {
         return "promptAdd/index";
     }
 
@@ -107,7 +107,7 @@ public class InitController {
     @RequestMapping(value = "promptSchedule")
     public Map<String, Object> promptSchedule(CDSocketMessage cdSocketMessage) {
         Map<String, Object> map = new HashMap<String, Object>();
-        LOGGER.info("[初始化提示用语]内容：{}",BeanJsonUtil.bean2Json(cdSocketMessage));
+        LOGGER.info("[初始化提示用语]内容：{}", BeanJsonUtil.bean2Json(cdSocketMessage));
         try {
             Assert.notNull(cdSocketMessage.getMessage(), "数据内容不能为空");
             Assert.notNull(cdSocketMessage.getTitle(), "标题内容不能为空");
@@ -120,6 +120,25 @@ public class InitController {
             map.put("flag", false);
             map.put("msg", e);
             return map;
+        }
+    }
+
+    /**
+     * @Description:初始化歌手信息
+     * @author: peiqiankun
+     * @date: 2018/6/11 18:16
+     * @mail: peiqiankun@jd.com
+     */
+    @ResponseBody
+    @RequestMapping(value = "musicianData")
+    public String promptSchedule() {
+        LOGGER.info("[初始化歌手信息]");
+        try {
+            reptileService.getBaiduMp3();
+            return "[初始化歌手信息]成功";
+        } catch (Exception e) {
+            LOGGER.error("出错了{}", e);
+            return "[初始化歌手信息]失败";
         }
     }
 }

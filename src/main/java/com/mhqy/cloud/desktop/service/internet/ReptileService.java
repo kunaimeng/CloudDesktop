@@ -33,4 +33,12 @@ public interface ReptileService {
      */
     void getWeather() throws Exception;
 
+    /**
+     * @Description:爬虫百度音乐
+     * @author: peiqiankun
+     * @date: 2018/6/9 17:51
+     * @mail: peiqiankun@jd.com
+     */
+    void getBaiduMp3() throws Exception;
+
 }

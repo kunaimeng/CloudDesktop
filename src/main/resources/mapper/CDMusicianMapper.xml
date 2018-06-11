@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhqy.cloud.desktop.dao.CDMusicianMapper.CDMusicianMapper" >
+  <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDMusician" >
+    <id column="musician_id" property="musicianId" jdbcType="BIGINT" />
+    <result column="musician_name" property="musicianName" jdbcType="VARCHAR" />
+    <result column="musician_bd_id" property="musicianBdId" jdbcType="BIGINT" />
+    <result column="musician_introduction" property="musicianIntroduction" jdbcType="VARCHAR" />
+    <result column="musician_bd_img" property="musicianBdImg" jdbcType="VARCHAR" />
+    <result column="musician_birth" property="musicianBirth" jdbcType="VARCHAR" />
+    <result column="musician_address" property="musicianAddress" jdbcType="VARCHAR" />
+    <result column="musician_hot" property="musicianHot" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    musician_id, musician_name, musician_bd_id, musician_introduction, musician_bd_img, 
+    musician_birth, musician_address, musician_hot, create_time, update_time, yn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_d_musician
+    where musician_id = #{musicianId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from c_d_musician
+    where musician_id = #{musicianId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDMusician" >
+    insert into c_d_musician (musician_id, musician_name, musician_bd_id, 
+      musician_introduction, musician_bd_img, musician_birth, 
+      musician_address, musician_hot, create_time, 
+      update_time, yn)
+    values (#{musicianId,jdbcType=BIGINT}, #{musicianName,jdbcType=VARCHAR}, #{musicianBdId,jdbcType=BIGINT}, 
+      #{musicianIntroduction,jdbcType=VARCHAR}, #{musicianBdImg,jdbcType=VARCHAR}, #{musicianBirth,jdbcType=VARCHAR}, 
+      #{musicianAddress,jdbcType=VARCHAR}, #{musicianHot,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDMusician" >
+    insert into c_d_musician
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="musicianId != null" >
+        musician_id,
+      </if>
+      <if test="musicianName != null" >
+        musician_name,
+      </if>
+      <if test="musicianBdId != null" >
+        musician_bd_id,
+      </if>
+      <if test="musicianIntroduction != null" >
+        musician_introduction,
+      </if>
+      <if test="musicianBdImg != null" >
+        musician_bd_img,
+      </if>
+      <if test="musicianBirth != null" >
+        musician_birth,
+      </if>
+      <if test="musicianAddress != null" >
+        musician_address,
+      </if>
+      <if test="musicianHot != null" >
+        musician_hot,
+      </if>
+        create_time,
+        update_time,
+      <if test="yn != null" >
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="musicianId != null" >
+        #{musicianId,jdbcType=BIGINT},
+      </if>
+      <if test="musicianName != null" >
+        #{musicianName,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBdId != null" >
+        #{musicianBdId,jdbcType=BIGINT},
+      </if>
+      <if test="musicianIntroduction != null" >
+        #{musicianIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBdImg != null" >
+        #{musicianBdImg,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBirth != null" >
+        #{musicianBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianAddress != null" >
+        #{musicianAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianHot != null" >
+        #{musicianHot,jdbcType=VARCHAR},
+      </if>
+      now(),
+      now(),
+      <if test="yn != null" >
+        #{yn,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDMusician" >
+    update c_d_musician
+    <set >
+      <if test="musicianName != null" >
+        musician_name = #{musicianName,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBdId != null" >
+        musician_bd_id = #{musicianBdId,jdbcType=BIGINT},
+      </if>
+      <if test="musicianIntroduction != null" >
+        musician_introduction = #{musicianIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBdImg != null" >
+        musician_bd_img = #{musicianBdImg,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianBirth != null" >
+        musician_birth = #{musicianBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianAddress != null" >
+        musician_address = #{musicianAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="musicianHot != null" >
+        musician_hot = #{musicianHot,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+    </set>
+    where musician_id = #{musicianId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDMusician" >
+    update c_d_musician
+    set musician_name = #{musicianName,jdbcType=VARCHAR},
+      musician_bd_id = #{musicianBdId,jdbcType=BIGINT},
+      musician_introduction = #{musicianIntroduction,jdbcType=VARCHAR},
+      musician_bd_img = #{musicianBdImg,jdbcType=VARCHAR},
+      musician_birth = #{musicianBirth,jdbcType=VARCHAR},
+      musician_address = #{musicianAddress,jdbcType=VARCHAR},
+      musician_hot = #{musicianHot,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=TINYINT}
+    where musician_id = #{musicianId,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteAllData">
+    DELETE FROM c_d_musician
+  </delete>
+</mapper>

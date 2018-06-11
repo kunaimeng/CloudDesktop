@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mhqy.cloud.desktop.dao.CDSongMapper.CDSongMapper" >
+  <resultMap id="BaseResultMap" type="com.mhqy.cloud.desktop.domin.CDSong" >
+    <id column="song_id" property="songId" jdbcType="BIGINT" />
+    <result column="song_bd_id" property="songBdId" jdbcType="VARCHAR" />
+    <result column="song_lrc_src" property="songLrcSrc" jdbcType="VARCHAR" />
+    <result column="song_mp3_src" property="songMp3Src" jdbcType="VARCHAR" />
+    <result column="song_musician_id" property="songMusicianId" jdbcType="BIGINT" />
+    <result column="song_bg_sm" property="songBgSm" jdbcType="VARCHAR" />
+    <result column="song_bg_lg" property="songBgLg" jdbcType="VARCHAR" />
+    <result column="song_bg_bg" property="songBgBg" jdbcType="VARCHAR" />
+    <result column="song_size" property="songSize" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="yn" property="yn" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    song_id, song_bd_id, song_lrc_src, song_mp3_src, song_musician_id, song_bg_sm, song_bg_lg, 
+    song_bg_bg, song_size, create_time, update_time, yn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_d_song
+    where song_id = #{songId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from c_d_song
+    where song_id = #{songId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mhqy.cloud.desktop.domin.CDSong" >
+    insert into c_d_song (song_id, song_bd_id, song_lrc_src, 
+      song_mp3_src, song_musician_id, song_bg_sm, 
+      song_bg_lg, song_bg_bg, song_size, 
+      create_time, update_time, yn
+      )
+    values (#{songId,jdbcType=BIGINT}, #{songBdId,jdbcType=VARCHAR}, #{songLrcSrc,jdbcType=VARCHAR}, 
+      #{songMp3Src,jdbcType=VARCHAR}, #{songMusicianId,jdbcType=BIGINT}, #{songBgSm,jdbcType=VARCHAR}, 
+      #{songBgLg,jdbcType=VARCHAR}, #{songBgBg,jdbcType=VARCHAR}, #{songSize,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{yn,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mhqy.cloud.desktop.domin.CDSong" >
+    insert into c_d_song
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        song_id,
+      </if>
+      <if test="songBdId != null" >
+        song_bd_id,
+      </if>
+      <if test="songLrcSrc != null" >
+        song_lrc_src,
+      </if>
+      <if test="songMp3Src != null" >
+        song_mp3_src,
+      </if>
+      <if test="songMusicianId != null" >
+        song_musician_id,
+      </if>
+      <if test="songBgSm != null" >
+        song_bg_sm,
+      </if>
+      <if test="songBgLg != null" >
+        song_bg_lg,
+      </if>
+      <if test="songBgBg != null" >
+        song_bg_bg,
+      </if>
+      <if test="songSize != null" >
+        song_size,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="yn != null" >
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="songId != null" >
+        #{songId,jdbcType=BIGINT},
+      </if>
+      <if test="songBdId != null" >
+        #{songBdId,jdbcType=VARCHAR},
+      </if>
+      <if test="songLrcSrc != null" >
+        #{songLrcSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="songMp3Src != null" >
+        #{songMp3Src,jdbcType=VARCHAR},
+      </if>
+      <if test="songMusicianId != null" >
+        #{songMusicianId,jdbcType=BIGINT},
+      </if>
+      <if test="songBgSm != null" >
+        #{songBgSm,jdbcType=VARCHAR},
+      </if>
+      <if test="songBgLg != null" >
+        #{songBgLg,jdbcType=VARCHAR},
+      </if>
+      <if test="songBgBg != null" >
+        #{songBgBg,jdbcType=VARCHAR},
+      </if>
+      <if test="songSize != null" >
+        #{songSize,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mhqy.cloud.desktop.domin.CDSong" >
+    update c_d_song
+    <set >
+      <if test="songBdId != null" >
+        song_bd_id = #{songBdId,jdbcType=VARCHAR},
+      </if>
+      <if test="songLrcSrc != null" >
+        song_lrc_src = #{songLrcSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="songMp3Src != null" >
+        song_mp3_src = #{songMp3Src,jdbcType=VARCHAR},
+      </if>
+      <if test="songMusicianId != null" >
+        song_musician_id = #{songMusicianId,jdbcType=BIGINT},
+      </if>
+      <if test="songBgSm != null" >
+        song_bg_sm = #{songBgSm,jdbcType=VARCHAR},
+      </if>
+      <if test="songBgLg != null" >
+        song_bg_lg = #{songBgLg,jdbcType=VARCHAR},
+      </if>
+      <if test="songBgBg != null" >
+        song_bg_bg = #{songBgBg,jdbcType=VARCHAR},
+      </if>
+      <if test="songSize != null" >
+        song_size = #{songSize,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+    </set>
+    where song_id = #{songId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mhqy.cloud.desktop.domin.CDSong" >
+    update c_d_song
+    set song_bd_id = #{songBdId,jdbcType=VARCHAR},
+      song_lrc_src = #{songLrcSrc,jdbcType=VARCHAR},
+      song_mp3_src = #{songMp3Src,jdbcType=VARCHAR},
+      song_musician_id = #{songMusicianId,jdbcType=BIGINT},
+      song_bg_sm = #{songBgSm,jdbcType=VARCHAR},
+      song_bg_lg = #{songBgLg,jdbcType=VARCHAR},
+      song_bg_bg = #{songBgBg,jdbcType=VARCHAR},
+      song_size = #{songSize,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=TINYINT}
+    where song_id = #{songId,jdbcType=BIGINT}
+  </update>
+</mapper>

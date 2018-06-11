@@ -3,11 +3,14 @@ package com.mhqy.cloud.desktop.service.internet.impl;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mhqy.cloud.desktop.common.util.BeanJsonUtil;
+import com.mhqy.cloud.desktop.domin.CDMusician;
 import com.mhqy.cloud.desktop.domin.CDNews;
 import com.mhqy.cloud.desktop.domin.WeatherDomin.CDWeather;
 import com.mhqy.cloud.desktop.service.internet.InternetService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
+import com.mhqy.cloud.desktop.service.song.CDMusicianService;
 import com.mhqy.cloud.desktop.service.weather.WeatherService;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -48,6 +51,9 @@ public class ReptileServiceImpl implements ReptileService {
 
     @Autowired
     private WeatherService weatherService;
+
+    @Autowired
+    private CDMusicianService cdMusicianService;
 
     @Value("${redis.key.news}")
     private String REDIS_KEY_NEWS;
@@ -177,5 +183,36 @@ public class ReptileServiceImpl implements ReptileService {
         }
         redisTemplate.opsForValue().set(REDIS_KEY_WEATHER, "true");
         LOGGER.info("天气数据爬取成功");
+    }
+
+    /**
+     * @Description:爬虫百度音乐
+     * @author: peiqiankun
+     * @date: 2018/6/9 17:51
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public void getBaiduMp3() throws Exception {
+        cdMusicianService.deleteAllData();
+        String href = null, title = null;
+        String arr[] = null;
+        LOGGER.info("爬虫百度音乐人开始执行");
+        Document document = internetService.getDocByUrl("http://music.baidu.com/artist");
+        Elements elements = document.getElementsByClass("container");
+        Element element = elements.get(0);
+        //所有a链接
+        Elements aelement = element.getElementsByTag("a");
+        CDMusician cdMusician = new CDMusician();
+        for (Element ele : aelement) {
+            href = ele.attr("href");
+            title = ele.attr("title");
+            if (!StringUtils.isEmpty(href) && !StringUtils.isEmpty(title) && href.contains("artist")) {
+                cdMusician.setMusicianName(title);
+                arr = href.split("/");
+                cdMusician.setMusicianBdId(Long.parseLong(arr[2]));
+                LOGGER.info("插入数据库音乐人数据：{}",BeanJsonUtil.bean2Json(cdMusician));
+                cdMusicianService.insertSelective(cdMusician);
+            }
+        }
     }
 }

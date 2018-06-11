@@ -136,6 +136,7 @@
                 <div class="sub-item" onclick="Win10.openUrl('/init/wallpaperSchedule','壁纸信息初始化')">壁纸信息初始化</div>
                 <div class="sub-item" onclick="Win10.openUrl('/init/weatherSchedule','天气信息初始化')">天气信息初始化</div>
                 <div class="sub-item" onclick="Win10.openUrl('/init/promptAdd','提示用语初始化')">提示用语初始化</div>
+                <div class="sub-item" onclick="Win10.openUrl('/init/musicianData','初始化歌手信息')">初始化歌手信息</div>
             </#if>
             <div class="sub-item" onclick='Win10.openUrl("/software","<i class=\"fa fa-gears icon blue\"></i>软件中心")'>
                 程序与功能
