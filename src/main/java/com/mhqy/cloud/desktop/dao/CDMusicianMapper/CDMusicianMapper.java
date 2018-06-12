@@ -35,4 +35,12 @@ public interface CDMusicianMapper {
      * @mail: peiqiankun@jd.com
      */
     List<CDMusician> selectAllData();
+
+    /**
+     * @Description:搜索歌手信息
+     * @author: peiqiankun
+     * @date: 2018/6/12 16:18
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDMusician> selectByCondition(CDMusician record);
 }

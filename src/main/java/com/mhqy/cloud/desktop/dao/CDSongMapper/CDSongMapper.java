@@ -3,6 +3,8 @@ package com.mhqy.cloud.desktop.dao.CDSongMapper;
 import com.mhqy.cloud.desktop.domin.CDSong;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CDSongMapper {
     int deleteByPrimaryKey(Long songId);
@@ -16,4 +18,6 @@ public interface CDSongMapper {
     int updateByPrimaryKeySelective(CDSong record);
 
     int updateByPrimaryKey(CDSong record);
+
+    List<CDSong> selectByCondition(CDSong record);
 }

@@ -127,3 +127,22 @@ i:hover {
     height: 650px;
     overflow-y: scroll
 }
+
+ul li {
+    list-style: none;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.col-sm-2 .col_img img {
+    border-radius: 50% !important;
+    width: 50% !important;
+    margin: 5px auto;
+}
+.col-sm-2 .m_con{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}

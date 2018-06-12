@@ -72,4 +72,15 @@ public class CDMusicianServiceImpl implements CDMusicianService {
     public List<CDMusician> selectAllData() {
         return cdMusicianMapper.selectAllData();
     }
+
+    /**
+     * @Description:搜索歌手信息
+     * @author: peiqiankun
+     * @date: 2018/6/12 16:18
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDMusician> listByCondition(CDMusician record){
+        return cdMusicianMapper.selectByCondition(record);
+    }
 }

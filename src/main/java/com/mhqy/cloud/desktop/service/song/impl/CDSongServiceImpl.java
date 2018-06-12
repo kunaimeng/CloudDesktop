@@ -6,6 +6,8 @@ import com.mhqy.cloud.desktop.service.song.CDSongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description:音乐服务层
  * @author: peiqiankun
@@ -47,5 +49,16 @@ public class CDSongServiceImpl implements CDSongService{
     @Override
     public int updateByPrimaryKey(CDSong record) {
         return cdSongMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * @Description:查询歌曲相关信息
+     * @author: peiqiankun
+     * @date: 2018/6/12 16:15
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDSong> listByCondition(CDSong record){
+        return cdSongMapper.selectByCondition(record);
     }
 }

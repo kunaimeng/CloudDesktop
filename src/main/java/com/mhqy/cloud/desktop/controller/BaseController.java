@@ -10,6 +10,8 @@ import com.mhqy.cloud.desktop.service.desktop.CDDesktopService;
 import com.mhqy.cloud.desktop.service.file.CDFileService;
 import com.mhqy.cloud.desktop.service.internet.ReptileService;
 import com.mhqy.cloud.desktop.service.soft.CDSoftwareService;
+import com.mhqy.cloud.desktop.service.song.CDMusicianService;
+import com.mhqy.cloud.desktop.service.song.CDSongService;
 import com.mhqy.cloud.desktop.service.user.CDUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -66,6 +68,12 @@ public class BaseController {
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    @Autowired
+    private CDMusicianService cdMusicianService;
+
+    @Autowired
+    private CDSongService cdSongService;
 
     @Autowired
     private ReptileService reptileService;
@@ -219,16 +227,31 @@ public class BaseController {
     }
 
     /**
-     * @Description:音乐跳转
+     * @Description:音乐人跳转
      * @author: peiqiankun
      * @date: 2018/3/4 15:38
      * @mail: peiqiankun@jd.com
      */
+    @RequestMapping("musician")
+    public String musician(Model model) {
+        CDMusician cdMusician = new CDMusician();
+        cdMusician.setYn(new Byte("2"));
+        List<CDMusician> list = cdMusicianService.listByCondition(cdMusician);
+        model.addAttribute("musician", list);
+        return "music/musician";
+    }
+
+    /**
+     * @Description:音乐跳转
+     * @author: peiqiankun
+     * @date: 2018/6/12 17:19
+     * @mail: peiqiankun@jd.com
+     */
     @RequestMapping("music")
-    public String music(Model model) {
-        List<CDFile> list = cdFileService.listMusic();
-        model.addAttribute("musicList", list);
-        return "music/index";
+    public String music(Model model,CDSong cdSong) {
+        List<CDSong> musicList = cdSongService.listByCondition(cdSong);
+        model.addAttribute("musicList",musicList);
+        return "music/music";
     }
 
     /**
