@@ -6,6 +6,8 @@ import com.mhqy.cloud.desktop.service.song.CDMusicianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description:音乐人服务层
  * @author: peiqiankun
@@ -58,5 +60,16 @@ public class CDMusicianServiceImpl implements CDMusicianService {
     @Override
     public void deleteAllData() {
         cdMusicianMapper.deleteAllData();
+    }
+
+    /**
+     * @Description:查询所有歌手信息
+     * @author: peiqiankun
+     * @date: 2018/6/11 18:54
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDMusician> selectAllData() {
+        return cdMusicianMapper.selectAllData();
     }
 }

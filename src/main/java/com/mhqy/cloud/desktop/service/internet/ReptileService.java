@@ -1,5 +1,8 @@
 package com.mhqy.cloud.desktop.service.internet;
 
+
+import com.google.gson.JsonObject;
+
 /**
  * @Description:爬虫service
  * @author: peiqiankun
@@ -40,5 +43,13 @@ public interface ReptileService {
      * @mail: peiqiankun@jd.com
      */
     void getBaiduMp3() throws Exception;
+
+    /**
+     * @Description:根据url获取json信息
+     * @author: peiqiankun
+     * @date: 2018/6/12 11:17
+     * @mail: peiqiankun@jd.com
+     */
+    JsonObject getJsonByUrl(String url) throws Exception;
 
 }

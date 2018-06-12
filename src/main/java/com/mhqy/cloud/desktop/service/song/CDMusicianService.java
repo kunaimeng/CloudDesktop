@@ -2,6 +2,8 @@ package com.mhqy.cloud.desktop.service.song;
 
 import com.mhqy.cloud.desktop.domin.CDMusician;
 
+import java.util.List;
+
 /**
  * @Description:音乐人
  * @author: peiqiankun
@@ -30,4 +32,12 @@ public interface CDMusicianService {
      * @mail: peiqiankun@jd.com
      */
     void deleteAllData();
+
+    /**
+     * @Description:查询所有歌手信息
+     * @author: peiqiankun
+     * @date: 2018/6/11 18:53
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDMusician> selectAllData();
 }

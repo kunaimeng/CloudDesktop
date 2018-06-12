@@ -55,7 +55,7 @@
         <!--<table tableName="c_d_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false"/>-->
         <!-- 指定数据库表 -->
-        <table tableName="c_d_musician" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+        <table tableName="c_d_song" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>

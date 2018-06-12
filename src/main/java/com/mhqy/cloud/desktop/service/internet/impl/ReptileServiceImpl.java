@@ -74,24 +74,7 @@ public class ReptileServiceImpl implements ReptileService {
     public void getHotNews() throws Exception {
         LOGGER.info("新闻任务开始执行");
         String path = "http://v.juhe.cn/toutiao/index?type=top&key=270bcc91e2a8ef430f74e8319e6af774";
-        URL url = new URL(path);
-        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setRequestMethod("POST");
-        httpURLConnection.setDoOutput(true);
-        httpURLConnection.setDoInput(true);
-        PrintWriter printWriter = new PrintWriter(httpURLConnection.getOutputStream());
-        printWriter.flush();
-        BufferedInputStream bis = new BufferedInputStream(httpURLConnection.getInputStream());
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        int len;
-        byte[] arr = new byte[1024];
-        while ((len = bis.read(arr)) != -1) {
-            bos.write(arr, 0, len);
-            bos.flush();
-        }
-        bos.close();
-        JsonParser parse = new JsonParser();
-        JsonObject jsonObject = (JsonObject) parse.parse(bos.toString("utf-8"));
+        JsonObject jsonObject = getJsonByUrl(path);
         JsonObject result = (JsonObject) jsonObject.get("result");
         List<CDNews> cdNews = (List) BeanJsonUtil.json2Object(result.get("data").toString(), List.class);
         LOGGER.info("新闻存入redis信息：key:{},value:{}", REDIS_KEY_NEWS, cdNews);
@@ -210,9 +193,37 @@ public class ReptileServiceImpl implements ReptileService {
                 cdMusician.setMusicianName(title);
                 arr = href.split("/");
                 cdMusician.setMusicianBdId(Long.parseLong(arr[2]));
-                LOGGER.info("插入数据库音乐人数据：{}",BeanJsonUtil.bean2Json(cdMusician));
+                LOGGER.info("插入数据库音乐人数据：{}", BeanJsonUtil.bean2Json(cdMusician));
                 cdMusicianService.insertSelective(cdMusician);
             }
         }
+    }
+
+    /**
+     * @Description:根据url获取json信息
+     * @author: peiqiankun
+     * @date: 2018/6/12 11:17
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public JsonObject getJsonByUrl(String url) throws Exception {
+        URL url1 = new URL(url);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url1.openConnection();
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setDoInput(true);
+        PrintWriter printWriter = new PrintWriter(httpURLConnection.getOutputStream());
+        printWriter.flush();
+        BufferedInputStream bis = new BufferedInputStream(httpURLConnection.getInputStream());
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        int len;
+        byte[] arr = new byte[1024];
+        while ((len = bis.read(arr)) != -1) {
+            bos.write(arr, 0, len);
+            bos.flush();
+        }
+        bos.close();
+        JsonParser parse = new JsonParser();
+        return (JsonObject) parse.parse(bos.toString("utf-8"));
     }
 }

@@ -24,6 +24,12 @@
     from c_d_musician
     where musician_id = #{musicianId,jdbcType=BIGINT}
   </select>
+  <select id="selectAllData" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from c_d_musician
+    WHERE yn = 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_musician
     where musician_id = #{musicianId,jdbcType=BIGINT}
@@ -130,9 +136,7 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+        update_time = now(),
       <if test="yn != null" >
         yn = #{yn,jdbcType=TINYINT},
       </if>

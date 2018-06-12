@@ -3,9 +3,9 @@ package com.mhqy.cloud.desktop.domin;
 import java.util.Date;
 
 /**
- * @Description:音乐实体
+ * @Description:音乐
  * @author: peiqiankun
- * @date: 2018/6/10 22:47
+ * @date: 2018/6/11 21:24
  * @mail: peiqiankun@jd.com
  */
 public class CDSong {
@@ -16,7 +16,15 @@ public class CDSong {
     /**
      * 音乐百度id
      */
-    private String songBdId;
+    private Long songBdId;
+    /**
+     * 音乐id
+     */
+    private Long songMusicianId;
+    /**
+     * 音乐名称
+     */
+    private String songName;
     /**
      * 音乐歌词路径
      */
@@ -26,19 +34,23 @@ public class CDSong {
      */
     private String songMp3Src;
     /**
-     * 音乐人ID
+     * 音乐专辑
      */
-    private Long songMusicianId;
+    private String songAlbum;
     /**
-     * 音乐背景图小号
+     * 音乐时长
+     */
+    private String songLongTime;
+    /**
+     * 音乐小头像
      */
     private String songBgSm;
     /**
-     * 音乐背景图中号
+     * 音乐中头像
      */
     private String songBgLg;
     /**
-     * 音乐背景图大号
+     * 音乐大头像
      */
     private String songBgBg;
     /**
@@ -66,12 +78,28 @@ public class CDSong {
         this.songId = songId;
     }
 
-    public String getSongBdId() {
+    public Long getSongBdId() {
         return songBdId;
     }
 
-    public void setSongBdId(String songBdId) {
-        this.songBdId = songBdId == null ? null : songBdId.trim();
+    public void setSongBdId(Long songBdId) {
+        this.songBdId = songBdId;
+    }
+
+    public Long getSongMusicianId() {
+        return songMusicianId;
+    }
+
+    public void setSongMusicianId(Long songMusicianId) {
+        this.songMusicianId = songMusicianId;
+    }
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public void setSongName(String songName) {
+        this.songName = songName == null ? null : songName.trim();
     }
 
     public String getSongLrcSrc() {
@@ -90,12 +118,20 @@ public class CDSong {
         this.songMp3Src = songMp3Src == null ? null : songMp3Src.trim();
     }
 
-    public Long getSongMusicianId() {
-        return songMusicianId;
+    public String getSongAlbum() {
+        return songAlbum;
     }
 
-    public void setSongMusicianId(Long songMusicianId) {
-        this.songMusicianId = songMusicianId;
+    public void setSongAlbum(String songAlbum) {
+        this.songAlbum = songAlbum == null ? null : songAlbum.trim();
+    }
+
+    public String getSongLongTime() {
+        return songLongTime;
+    }
+
+    public void setSongLongTime(String songLongTime) {
+        this.songLongTime = songLongTime == null ? null : songLongTime.trim();
     }
 
     public String getSongBgSm() {

@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface CDSongMapper {
-
     int deleteByPrimaryKey(Long songId);
 
     int insert(CDSong record);
