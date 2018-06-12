@@ -42,7 +42,7 @@ public interface ReptileService {
      * @date: 2018/6/9 17:51
      * @mail: peiqiankun@jd.com
      */
-    void getBaiduMp3() throws Exception;
+    void getBaiduMusician() throws Exception;
 
     /**
      * @Description:根据url获取json信息
@@ -51,5 +51,13 @@ public interface ReptileService {
      * @mail: peiqiankun@jd.com
      */
     JsonObject getJsonByUrl(String url) throws Exception;
+
+    /**
+     * @Description:百度音乐爬虫
+     * @author: peiqiankun
+     * @date: 2018/6/12 15:48
+     * @mail: peiqiankun@jd.com
+     */
+    void getMusicianInfoAndMuisc() throws Exception;
 
 }

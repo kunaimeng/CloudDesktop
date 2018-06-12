@@ -155,7 +155,7 @@ public class InitController {
     public String promptSchedule() {
         LOGGER.info("[初始化歌手信息]");
         try {
-            reptileService.getBaiduMp3();
+            reptileService.getBaiduMusician();
             return "[初始化歌手信息]成功";
         } catch (Exception e) {
             LOGGER.error("出错了{}", e);
@@ -163,79 +163,22 @@ public class InitController {
         }
     }
 
+    /**
+     * @Description:百度音乐爬虫继续执行
+     * @author: peiqiankun
+     * @date: 2018/6/12 15:54
+     * @mail: peiqiankun@jd.com
+     */
     @ResponseBody
-    @RequestMapping("getMusicianInfoAndMuisc")
+    @RequestMapping(value = "getMusicianInfoAndMuisc", produces = "application/json;charset=utf-8")
     public String getMusicianInfoAndMuisc() {
-        //百度歌手信息
-        String musicianUrl = "http://music.baidu.com/artist/";
-        //歌曲信息
-        String musicInfoUrl = "http://music.baidu.com/data/music/fmlink?type=mp3&songIds=";
-        LOGGER.info("从百度音乐查询歌手所属歌曲");
-        CDSong cdSong = new CDSong();
-        String arr[] = null;
-        Map<String, String> musicInfo = null;
-        JsonObject jsonObject = null;
-        Element element1, element2, element3;
         try {
-            List<CDMusician> cDMusicianList = cdMusicianService.selectAllData();
-            for (CDMusician cdMusician : cDMusicianList) {
-                LOGGER.info("查询音乐家的详细信息：音乐家Id{},音乐家名称：{}",cdMusician.getMusicianBdId(),cdMusician.getMusicianName());
-                //获取每个音乐家的详细页面
-                Document document = internetService.getDocByUrl(musicianUrl+cdMusician.getMusicianBdId());
-                //获取音乐家的头像
-                cdMusician.setMusicianBdImg(document.getElementsByClass("music-artist-img").get(0).attr("src"));
-                //获取音乐家的热度
-                cdMusician.setMusicianHot(document.getElementsByClass("hot-nums-detail").get(0).text());
-                arr = document.getElementsByClass("area").get(0).text().split("： ");
-                //地区
-                if(arr.length>1){
-                    cdMusician.setMusicianAddress(arr[1]);
-                }
-                //生辰
-                if(document.getElementsByClass("birth").size()!=0){
-                    arr = document.getElementsByClass("birth").get(0).text().split("： ");
-                    cdMusician.setMusicianBirth(arr[1]);
-                }
-                //获取音乐家的介绍
-                cdMusician.setMusicianIntroduction(document.getElementsByClass("introduce").get(0).getElementsByClass("overdd").get(0).text());
-                cdMusician.setYn(new Byte("2"));
-                cdMusicianService.updateByPrimaryKeySelective(cdMusician);
-                //获取音乐列表
-                Elements elements = document.getElementsByClass("songlist-item");
-                for (Element element : elements) {
-                    element1 = element.getElementsByClass("songlist-songname").get(0);
-                    arr = element1.attr("href").split("/");
-                    //音乐百度id
-                    cdSong.setSongBdId(Long.parseLong(arr[2]));
-                    //音乐名
-                    cdSong.setSongName(element1.attr("title"));
-                    element2 = element.getElementsByClass("album-name").get(0);
-                    //专辑名
-                    cdSong.setSongAlbum(element2.attr("title"));
-                    element3 = element.getElementsByClass("songlist-time").get(0);
-                    //音乐时长
-                    cdSong.setSongLongTime(element3.text());
-                    //音乐人id
-                    cdSong.setSongMusicianId(cdMusician.getMusicianBdId());
-                    jsonObject = reptileService.getJsonByUrl(musicInfoUrl+cdSong.getSongBdId());
-                    musicInfo = JSONObject.parseObject(jsonObject.toString(), new TypeReference<Map<String, String>>(){});
-                    musicInfo = JSONObject.parseObject( musicInfo.get("data").toString(), new TypeReference<Map<String, String>>(){});
-                    musicInfo = JSONObject.parseObject( musicInfo.get("songList").toString(), new TypeReference<Map<String, String>>(){});
-                    cdSong.setSongBgBg(musicInfo.get("songPicRadio"));
-                    cdSong.setSongBgLg(musicInfo.get("songPicBig"));
-                    cdSong.setSongBgSm(musicInfo.get("songPicSmall"));
-                    cdSong.setSongLrcSrc(musicInfo.get("lrcLink"));
-                    cdSong.setSongMp3Src(musicInfo.get("songLink"));
-                    cdSong.setSongSize(Integer.parseInt(String.valueOf(musicInfo.get("size"))));
-                    LOGGER.info("百度音乐存入数据库详细信息：{}",BeanJsonUtil.bean2Json(cdSong));
-                    cdSongService.insertSelective(cdSong);
-                    Thread.sleep(3000);
-                }
-            }
-            return "[从百度音乐查询歌手所属歌曲]成功";
+            LOGGER.info("继续执行百度音乐爬虫任务");
+            reptileService.getMusicianInfoAndMuisc();
+            return "百度音乐爬虫完毕";
         } catch (Exception e) {
-            LOGGER.error("出错了{}", e);
-            return "[从百度音乐查询歌手所属歌曲]失败";
+            LOGGER.info("执行百度音乐爬虫任务出现异常，请继续重试。原因：{}", e);
+            return "执行百度音乐爬虫任务出现异常，请继续重试。原因：" + e;
         }
     }
 }
