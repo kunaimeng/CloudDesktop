@@ -97,7 +97,7 @@
     WHERE  yn = 1
     AND file_ext IN ('mp3','MP3','ogg','OGG','wav','WAV')
     AND file_type = 2
-    ORDER BY file_quote,create_time DESC
+    ORDER BY file_quote,create_time DESC limit 40
   </select>
   <select id="selectMovie" resultMap="BaseResultMap">
     select
