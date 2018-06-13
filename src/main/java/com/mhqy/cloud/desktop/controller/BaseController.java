@@ -274,12 +274,17 @@ public class BaseController {
         List<CDWeather> result = new ArrayList<>();
         LOGGER.info("天气搜索参数-->{}", BeanJsonUtil.bean2Json(cdWeather));
         CDWeather cdWeatherResult;
+        List<CDAddress> list = null;
         try {
-            if (cdWeather.getAddressId() != null) {
+            if (cdWeather.getAddressId() != null && cdWeather.getAddressId() != "") {
                 cdWeatherResult = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdWeather.getAddressId()).toString(), CDWeather.class);
                 result.add(cdWeatherResult);
             } else {
-                List<CDAddress> list = addressService.selectByRand();
+                if (cdWeather.getProvince() != null) {
+                    list = addressService.listByProvince(cdWeather.getProvince());
+                } else {
+                    list = addressService.selectByRand();
+                }
                 if (ListUtil.isNotEmpty(list)) {
                     for (CDAddress cdAddress : list) {
                         cdWeatherResult = (CDWeather) BeanJsonUtil.json2Object(redisTemplate.opsForValue().get(cdAddress.getAddressPlatId().toString()).toString(), CDWeather.class);

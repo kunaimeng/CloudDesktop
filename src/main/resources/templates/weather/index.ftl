@@ -38,6 +38,10 @@
             </span>
             </div>
         </form>
+        <#if content?? && (content?size > 0)>
+        <#else >
+        <p class="noPic">没有搜索到相关数据</p>
+        </#if>
         <ul id="rb-grid" class="rb-grid clearfix">
             <#list content as con>
                 <#if con_index==0>
@@ -103,11 +107,6 @@
                                  <span class="desc">${week.weatherDesc}</span>
                                  <span class="desc">${week.windFrom}~${week.winTo}</span>
                                  <span class="desc">${week.windSpeed}</span>
-                                 <span class="desc">
-                                     <i class="fa fa-star fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                                     <i class="fa fa-share-alt fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-                                     <i class="fa fa-info-circle fa-lg"></i>
-                                 </span>
                              </div>
                          </#list>
                     </div>
@@ -140,10 +139,7 @@
         });
         
         $(".m_s_searcch").click(function () {
-            var addressId = $(".addressId").val();
-            if(addressId!=undefined&&addressId!=""){
-                $("#search").submit();
-            }
+            $("#search").submit();
         });
     });
 </script>

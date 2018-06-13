@@ -13,7 +13,8 @@
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 </head>
-<body>  <#if !photoList??>
+<body>
+<#if !photoList??>
     <p class="noPic">暂时没有图片，快去我的电脑中上传图片吧！</p>
   </#if>
 <section id="gallery-wrapper">

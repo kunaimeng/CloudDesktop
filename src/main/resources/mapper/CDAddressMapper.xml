@@ -20,6 +20,14 @@
     from c_d_address
     where address_id = #{addressId,jdbcType=BIGINT}
   </select>
+  <select id="selectByProvince" resultMap="BaseResultMap" parameterType="com.mhqy.cloud.desktop.domin.CDAddress" >
+    select
+    <include refid="Base_Column_List" />
+    from c_d_address
+    WHERE
+    address_province LIKE CONCAT(CONCAT('%',#{addressProvince,jdbcType=VARCHAR},'%'))
+    AND yn = 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from c_d_address
     where address_id = #{addressId,jdbcType=BIGINT}

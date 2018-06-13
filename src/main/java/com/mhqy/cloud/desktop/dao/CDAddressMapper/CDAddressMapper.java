@@ -35,4 +35,12 @@ public interface CDAddressMapper {
      * @mail: peiqiankun@jd.com
      */
     List<CDAddress> selectAllContent();
+
+    /**
+     * @Description:根据城市查询相关ID
+     * @author: peiqiankun
+     * @date: 2018/6/13 16:09
+     * @mail: peiqiankun@jd.com
+     */
+    List<CDAddress> selectByProvince(CDAddress record);
 }

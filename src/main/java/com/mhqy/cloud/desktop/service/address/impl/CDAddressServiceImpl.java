@@ -108,4 +108,17 @@ public class CDAddressServiceImpl implements CDAddressService {
     public List<CDAddress> selectAllContent() {
         return cdAddressMapper.selectAllContent();
     }
+
+    /**
+     * @Description:根据城市查询ID
+     * @author: peiqiankun
+     * @date: 2018/6/13 16:10
+     * @mail: peiqiankun@jd.com
+     */
+    @Override
+    public List<CDAddress> listByProvince(String province) {
+        CDAddress cdAddress = new CDAddress();
+        cdAddress.setAddressProvince(province);
+        return cdAddressMapper.selectByProvince(cdAddress);
+    }
 }
