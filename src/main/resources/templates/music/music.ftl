@@ -19,7 +19,7 @@
             <div id="movieList">
                 <ul>
                     <#list musicList as music>
-                        <li class="col-sm-2">
+                        <li class="col-sm-2" data-url="${music.songMp3Src}" data-img="${music.songBgBg}" data-title="${music.songName}">
                             <div class="col_img">
                                 <img src="${music.songBgBg}" alt="${music.songName}">
                             </div>
@@ -31,6 +31,31 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="win-forward">
+        <span class="forward">返回</span>
+    </div>
+    <div class="player" >
+        <div class="p_pic">
+            <img src="images/1.jpg" alt="" width="80px" height="80px"/>
+            <p class="p_name">绿野仙踪</p>
+        </div>
+        <div class="p_btn">
+            <a href="#" class="b_left"></a>
+            <a href="#" class="b_center"></a>
+            <a href="#" class="b_pause"></a>
+            <a href="#" class="b_right"></a>
+        </div>
+        <div class="p_left"> </div>
+        <div class="p_right"> </div>
+        <div id="play"><div>
+        </div>
+            <audio src="http://zhangmenshiting.qianqian.com/data2/music/bf160d8f4fb3bb924659f20a3b00f8b6/559184460/100575177118800128.mp3?xcode=ecb6cee984c1514037ff48ca31f559c2" autoplay="autoplay"></audio>
 </div>
+<script>
+    $(".forward").click(function(){
+        window.location.href = "/musician";
+    });
+</script>
 </body>
 </html>

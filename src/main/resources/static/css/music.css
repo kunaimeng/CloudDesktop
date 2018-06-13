@@ -140,9 +140,54 @@ ul li {
     width: 50% !important;
     margin: 5px auto;
 }
-.col-sm-2 .m_con{
+
+.col-sm-2 .m_con {
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
 }
+
+.win-forward {
+    width: 100%;
+    margin: 0 auto;
+    color:#fff;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.forward {
+    height: 40px;
+    background: #1E9FFF;
+    width:30%;
+    margin:0 auto;
+    display: block;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*playwe-start*/
+.player{width:563px;height:115px;background:#AEAAAA;opacity:0.8;position:relative;bottom:120px;left:-541px;border-radius:5px;}
+.player .p_pic{width:80px;height:80px;padding:18px;float:left;}
+
+.player .p_pic p{line-height:50px;padding-left:20px;position:absolute;top:30px;left:120px;}
+.player .p_btn{width:200px;height:50px;position:absolute;top:30px;left:270px;}
+.player .p_btn a{background:url("../img/music/3.png");}
+.player .p_btn .b_left{width:36px;height:28px;display:block;margin:10px 0 0 10px; background-position: -69px -32px;float:left;}
+
+.player .p_btn .b_center{width:42px;height:42px;display:block;margin:3px 0 0 6px;background-position: -105px -42px;float:left;}
+.player .p_btn .b_pause{width:42px;height:42px;display:block;margin:3px 0 0 6px;background-position: -333px -88px;float:left;display:none;}
+
+.player .p_btn .b_right{width:36px;height:28px;display:block;margin:10px 0 0 100px;background-position: -147px -32px;}
+
+.player .p_left{width: 22px;height: 115px;background:#fff;float:right;background:url("../img/music/3.png");display:none;}
+.player .p_right{width: 22px;height: 115px;background:#fff;float:right;background:url("../img/music/3.png")-23px 0;}
+/*player end*/
+.xz{
+    -webkit-animation:xuanzhuan 2s infinite linear;animation:xuanzhuan 2s infinite linear;
+-moz-animation:xuanzhuan 2s infinite linear;animation:xuanzhuan 2s infinite linear;
+}
+@-webkit-keyframes xuanzhuan{from{transform:rotate(0deg);-moz-transform:rotate(0deg)}to{transform:rotate(360deg);-moz-transform:rotate(360deg)}}
+@-moz-keyframes xuanzhuan{from{transform:rotate(0deg);-moz-transform:rotate(0deg)}to{transform:rotate(360deg);-moz-transform:rotate(360deg)}}
+.opa{opacity:0.6;}

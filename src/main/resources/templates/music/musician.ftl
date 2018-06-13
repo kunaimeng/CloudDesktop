@@ -46,11 +46,11 @@
         </div>
     </div>
 </div>
+<audio id="audio" crossOrigin="anonymous" src="http://zhangmenshiting.qianqian.com/data2/music/bf160d8f4fb3bb924659f20a3b00f8b6/559184460/100575177118800128.mp3?xcode=ecb6cee984c1514037ff48ca31f559c2"></audio>
 <script>
     function goMusic(obj) {
         window.location.href = "/music?songMusicianId="+obj;
     }
-
 </script>
 </body>
 </html>
