@@ -22,10 +22,10 @@ public class Interceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         HttpSession session = httpServletRequest.getSession(true);
         //判断用户ID是否存在，不存在就跳转到登录界面
-//        if (session.getAttribute("Uid") == null) {
-//            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
-//            return false;
-//        }
+        if (session.getAttribute("sessionUserId") == null) {
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
+            return false;
+        }
         return true;
     }
 
